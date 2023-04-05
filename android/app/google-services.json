@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "261391729964",
+    "project_id": "passion-9985b",
+    "storage_bucket": "passion-9985b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261391729964:android:093ea3830c0f112bed5889",
+        "android_client_info": {
+          "package_name": "com.example.shaghaf"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "261391729964-a6aun0q053aeitqsisaptm089gl84v72.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8Oa-6vRxJWSpHHkxQGJ6b5NRc5uq0aEE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "261391729964-a6aun0q053aeitqsisaptm089gl84v72.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "261391729964-37fuqj1jqflp6t5n9enj93cifb7mg256.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.shaghaf"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
