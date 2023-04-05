@@ -80,20 +80,17 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                     SizedBox(
                       height: size.height / 20,
                     ),
-                    Positioned(
-                      top: 600,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Button(
-                          color: welcomeButtomColor,
-                          isActive: true,
-                          borderButton: false,
-                          loading: false,
-                          onClick: () {},
-                          screenHieght: size.height / 14,
-                          screenWidth: size.width / 1.1,
-                          txt: AppLocalizations.of(context)!.getstartbuttom,
-                        ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Button(
+                        color: welcomeButtomColor,
+                        isActive: true,
+                        borderButton: false,
+                        loading: false,
+                        onClick: () {},
+                        screenHieght: size.height / 14,
+                        screenWidth: size.width / 1.1,
+                        txt: AppLocalizations.of(context)!.getstartbuttom,
                       ),
                     )
                   ],
