@@ -49,7 +49,7 @@ dependencies:
   # shimmer:
 flutter_native_splash:
   color: "#F8EED3"
-  image: assets/logo.png  
+  image: assets/logof.png  
 dev_dependencies:
   flutter_test:
     sdk: flutter
