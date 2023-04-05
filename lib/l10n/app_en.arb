@@ -1,0 +1,21 @@
+{
+"welcomesignuptitle": "Create Your Account",
+  "welcomesignupsubtitle": "Create Your Very First Account, it's only take less than minute",
+  "welcomelogintitle": "",
+  "welcomeloginsubtitle": "We are happy to see you again, Enter your email and password",
+  "hintemail": "Your Email",
+  "validtionemptyemail": "Please Enter Your Email",
+  "validtioninvalidemail": "Please Enter a Valid Email",
+  "hintpassword": "Your Password",
+  "validtionemptypassword": "Please Enter Your Password",
+  "validtioninvalidpassword": "Please Enter a Valid Password",
+  "hintname": "Your Name",
+  "validtionemptyname": "Please Enter Your Name",
+  "validtioninvalidname": "Please Enter a Valid Name",
+  "signupbutton": "Sign Up",
+  "signupmsgbutton": "Already Have An Account?",
+  "signupmsgbuttonsec": "log in",
+  "loginmsgbutton": "You Don't Have An Account?",
+  "loginmsgbuttonsec": "Sign Up",
+  "loginmsgbuttonforgetpassword": "Forgot Password ?"
+}

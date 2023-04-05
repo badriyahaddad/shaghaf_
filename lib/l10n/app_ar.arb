@@ -1,0 +1,23 @@
+{
+  
+  "welcomesignuptitle": "انشئ حساب",
+  "welcomesignupsubtitle": "قم بإنشاء حسابك، لا ياخذ منك الا دقائق ، ادخل بيانات الشخصية ",
+  "welcomelogintitle": "اهلا بك",
+  "welcomeloginsubtitle": "نحن سعداء لرؤيتك من جديد، ادخل بريدك الالكتروني وكلمة المرور  ",
+  "hintemail": "بريدك الالكتروني",
+  "validtionemptyemail": "رجاء ادخل بريدك الاكتروني",
+  "validtioninvalidemail": "رجاء ادخل بريد الاكتروني صالح",
+  "hintpassword": "كلمة المرور",
+  "validtionemptypassword": "رجاء ادخل كلمة المرور",
+  "validtioninvalidpassword": "رجاء ادخل كلمة مرور صالحه",
+  "hintname": "اسمك",
+  "validtionemptyname": "رجاء ادخل اسمك",
+  "validtioninvalidname": "رجاء ادخل اسم صالح",
+  "signupbutton": "انشئ الحساب",
+  "signupmsgbutton": "لديك حساب ؟",
+  "signupmsgbuttonsec": "قم بالتسجيل الدخول",
+  "loginmsgbutton": "ليس لديك حساب ؟",
+  "loginmsgbuttonsec": "تسجيل الدخول",
+  "loginmsgbuttonforgetpassword": "نسيت كلمة المرور ؟"
+
+}
