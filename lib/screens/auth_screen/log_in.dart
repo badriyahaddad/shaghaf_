@@ -138,7 +138,7 @@ class _LoginState extends State<Login> {
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Text(
-                                AppLocalizations.of(context)!.loginmsgbuttonsec,
+                                AppLocalizations.of(context)!.signupbutton,
                                 style: TextStyle(
                                     color: buttomColor,
                                     fontSize: 20,
@@ -151,6 +151,7 @@ class _LoginState extends State<Login> {
                       height: size.height / 30,
                     ),
                     Button(
+                        color: mainColor,
                         screenWidth: size.width,
                         screenHieght: size.height * 0.061,
                         borderButton: false,

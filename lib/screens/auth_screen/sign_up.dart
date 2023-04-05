@@ -177,6 +177,7 @@ class _SignUpState extends State<SignUp> {
                       height: size.height / 30,
                     ),
                     Button(
+                        color: mainColor,
                         screenWidth: size.width,
                         screenHieght: size.height * 0.061,
                         borderButton: false,

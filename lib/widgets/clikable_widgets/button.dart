@@ -11,7 +11,8 @@ class Button extends StatelessWidget {
       required this.onClick,
       required this.screenWidth,
       required this.screenHieght,
-      this.isActive});
+      this.isActive,
+      required this.color});
   final bool borderButton;
   final String txt;
   final Function onClick;
@@ -19,6 +20,7 @@ class Button extends StatelessWidget {
   final double screenWidth;
   final double screenHieght;
   final bool? isActive;
+  final Color color;
   @override
   Widget build(BuildContext context) {
     return loading
@@ -33,17 +35,17 @@ class Button extends StatelessWidget {
               style: ButtonStyle(
                 side: MaterialStateProperty.all(BorderSide(
                     color: borderButton
-                        ? mainColor
+                        ? color
                         : isActive!
-                            ? mainColor
+                            ? color
                             : const Color.fromARGB(0, 255, 255, 255),
                     width: 2)),
                 backgroundColor: MaterialStateProperty.all(
                   borderButton
                       ? const Color.fromARGB(255, 255, 255, 255)
                       : isActive!
-                          ? mainColor
-                          : mainColor.withOpacity(0.2),
+                          ? color
+                          : color.withOpacity(0.2),
                 ),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
@@ -57,7 +59,7 @@ class Button extends StatelessWidget {
                   txt,
                   style: TextStyle(
                     color: borderButton
-                        ? mainColor
+                        ? color
                         : const Color.fromARGB(255, 255, 255, 255),
                     fontSize: 20,
                     fontWeight: FontWeight.w700,

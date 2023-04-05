@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shaghaf/screens/auth_screen/sign_up.dart';
+import 'package:shaghaf/screens/auth_screen/get_started_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
         Locale('ar'), // Arabic
       ],
       locale: _locale,
-      home: const SignUp(),
+      home: const GetStartedScreen(),
     );
   }
 }

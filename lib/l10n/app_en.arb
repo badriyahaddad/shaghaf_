@@ -1,7 +1,7 @@
 {
 "welcomesignuptitle": "Create Your Account",
   "welcomesignupsubtitle": "Create Your Very First Account, it's only take less than minute",
-  "welcomelogintitle": "",
+  "welcomelogintitle": "Welcome",
   "welcomeloginsubtitle": "We are happy to see you again, Enter your email and password",
   "hintemail": "Your Email",
   "validtionemptyemail": "Please Enter Your Email",
@@ -17,5 +17,8 @@
   "signupmsgbuttonsec": "log in",
   "loginmsgbutton": "You Don't Have An Account?",
   "loginmsgbuttonsec": "Sign Up",
-  "loginmsgbuttonforgetpassword": "Forgot Password ?"
+  "loginmsgbuttonforgetpassword": "Forgot Password ?",
+  "getstartedtitle": "Find Your Favorite Artist",
+  "getstartedsubtitle": "Explore your favorite artists on Shaghaf",
+  "getstartbuttom" : "Get Started"
 }

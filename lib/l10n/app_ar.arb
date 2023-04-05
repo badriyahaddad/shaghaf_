@@ -18,6 +18,8 @@
   "signupmsgbuttonsec": "قم بالتسجيل الدخول",
   "loginmsgbutton": "ليس لديك حساب ؟",
   "loginmsgbuttonsec": "تسجيل الدخول",
-  "loginmsgbuttonforgetpassword": "نسيت كلمة المرور ؟"
-
+  "loginmsgbuttonforgetpassword": "نسيت كلمة المرور ؟",
+  "getstartedtitle": "اعثر على فنانيك المفضلين",
+  "getstartedsubtitle": "استكشف فنانيك المفضلين على شغف",
+  "getstartbuttom" : "إبدا معنا"
 }
