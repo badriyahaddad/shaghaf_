@@ -3,19 +3,16 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../helpers/const.dart';
 import '../../widgets/clikable_widgets/button.dart';
+import 'log_in.dart';
 
-class GetStartedScreen extends StatefulWidget {
+class GetStartedScreen extends StatelessWidget {
   const GetStartedScreen({super.key});
 
-  @override
-  State<GetStartedScreen> createState() => _GetStartedScreenState();
-}
-
-class _GetStartedScreenState extends State<GetStartedScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
+      //for the background color
       decoration: const BoxDecoration(
         gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -28,6 +25,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
             ]),
       ),
       child: Scaffold(
+        //so the background color from line from 19 to 31 can displayed
         backgroundColor: Colors.transparent,
         body: SizedBox(
           width: size.width,
@@ -35,6 +33,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
           child: Stack(
             children: [
               Container(
+                //background in front of the image so the text can displayed
                 foregroundDecoration: const BoxDecoration(
                   gradient: LinearGradient(
                       begin: Alignment.topCenter,
@@ -53,14 +52,17 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                   height: size.height / 1.3,
                 ),
               ),
+              //postion of the widgets
               Positioned(
                 top: 600,
                 right: 2,
+                //coulmn of the welcoming texts
                 child: Column(
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(2),
                       child: Text(
+                        //find your favirote artist text
                         AppLocalizations.of(context)!.getstartedtitle,
                         style: const TextStyle(
                             fontSize: 30,
@@ -71,15 +73,18 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                     Padding(
                       padding: const EdgeInsets.all(2),
                       child: Text(
+                        //helper text
                         AppLocalizations.of(context)!.getstartedsubtitle,
                         style: const TextStyle(
                             fontSize: 20,
                             color: Color.fromARGB(255, 255, 255, 255)),
                       ),
                     ),
+                    //vertical space
                     SizedBox(
                       height: size.height / 20,
                     ),
+                    //button to Navigate to the app other screens
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Button(
@@ -87,7 +92,10 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                         isActive: true,
                         borderButton: false,
                         loading: false,
-                        onClick: () {},
+                        onClick: () {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(builder: (_) => const Login()));
+                        },
                         screenHieght: size.height / 14,
                         screenWidth: size.width / 1.1,
                         txt: AppLocalizations.of(context)!.getstartbuttom,

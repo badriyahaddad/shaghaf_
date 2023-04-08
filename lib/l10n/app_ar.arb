@@ -1,5 +1,4 @@
 {
-  
   "welcomesignuptitle": "انشئ حساب",
   "welcomesignupsubtitle": "قم بإنشاء حسابك، لا ياخذ منك الا دقائق ، ادخل بيانات الشخصية ",
   "welcomelogintitle": "اهلا بك",
@@ -21,5 +20,27 @@
   "loginmsgbuttonforgetpassword": "نسيت كلمة المرور ؟",
   "getstartedtitle": "اعثر على فنانيك المفضلين",
   "getstartedsubtitle": "استكشف فنانيك المفضلين على شغف",
-  "getstartbuttom" : "إبدا معنا"
+  "getstartbuttom" : "إبدا معنا",
+  "forgetpasswordtitle" : "ادخل بريدك الاكتروني ",
+  "forgetpasswordsubtitle" : "ادخل بريدك الاكتروني لارسال رمز التحقق لتغير كلمة المرور ",
+  "nextbutton" : "التالي",
+  "otptitle" : "ادخل رمز التحقق",
+  "otpsubtitle": "ادخل رمز التحقق المرسل رقم هاتفك ",
+  "otphelpertextone" : "لم يصلك رمز التحقق ؟",
+  "otphelpertexttwo": "اعادة الارسال",
+  "resetpasswordtitle": "إعادة تعين كلمة المرور",
+  "resetpasswordsubtitle": "ادخل كلمة المرور الجديدة",
+  "resetpasswordtextfiledone": "كلمة المرور الجديدة",
+  "resetpasswordtextfiletwo": "تأكيد كلمة المرور الجديدة",
+  "resetpasswordbutton": "إعادة التعين",
+  "dialogresetpasswordmsg": "تم إعادة كلمة المرور بنجاح ",
+  "homescreenappbartitle": "الرئيسية",
+  "homescreenappbar": "مرحبا بك،",
+  "homescreenappbarsubtitle": "انظم الينا لتستكشف خدماتنا",
+  "homescreencommonartits": "فنانون شائعون",
+  "homescreencommonart": "أعمال شائعة",
+  "more": "المزيد",
+  "search": "بحث ...",
+  "detailsartitsworks": "الاعمال",
+  "profilescreenappbartitle": "صفتحتك الشخصية"
 }

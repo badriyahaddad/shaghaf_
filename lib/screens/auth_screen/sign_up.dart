@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import '../../helpers/const.dart';
 import '../../widgets/clikable_widgets/button.dart';
 import '../../widgets/input_widget/text_field.dart';
@@ -14,13 +13,13 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  // controllers of the textfields
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
-
   final nameController = TextEditingController();
-  static final formkey = GlobalKey<FormState>();
-  bool langDir = false;
+  //key form
+  final formkey = GlobalKey<FormState>();
+  //variable to preform the validate function to check wether the textfields values are valid or not!
   bool enableLoginBtn = false;
   @override
   Widget build(BuildContext context) {
@@ -39,6 +38,7 @@ class _SignUpState extends State<SignUp> {
               key: formkey,
               onChanged: () {
                 setState(() {
+                  //enableLoginBtn put in setState in onchange function so basically it listened to the changes of states of any of the textfields
                   enableLoginBtn = formkey.currentState!.validate();
                 });
               },
@@ -49,6 +49,7 @@ class _SignUpState extends State<SignUp> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Coulmn of welcome statments
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,6 +57,7 @@ class _SignUpState extends State<SignUp> {
                         Padding(
                           padding: const EdgeInsets.all(2),
                           child: Text(
+                            //create your account text
                             AppLocalizations.of(context)!.welcomesignuptitle,
                             style: const TextStyle(
                                 fontSize: 25, fontWeight: FontWeight.bold),
@@ -64,6 +66,7 @@ class _SignUpState extends State<SignUp> {
                         Padding(
                           padding: const EdgeInsets.all(2),
                           child: Text(
+                            // helper text
                             AppLocalizations.of(context)!.welcomesignupsubtitle,
                             style: const TextStyle(
                                 fontSize: 20, color: Color(0xff949494)),
@@ -71,7 +74,9 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    //vertical space
+                    SizedBox(height: size.height / 70),
+                    //textfield name
                     TextFieldWidget(
                       prefix: Image.asset("assets/icons/nameIcon.png"),
                       textFieldController: nameController,
@@ -94,9 +99,11 @@ class _SignUpState extends State<SignUp> {
                       obscureText: false,
                       isPassword: false,
                     ),
-                    const SizedBox(
-                      height: 10,
+                    //vertical space
+                    SizedBox(
+                      height: size.height / 70,
                     ),
+                    //textfield email
                     TextFieldWidget(
                       isPassword: false,
                       textFieldController: emailController,
@@ -119,11 +126,13 @@ class _SignUpState extends State<SignUp> {
                       obscureText: false,
                       prefix: Image.asset("assets/icons/emailIcon.png"),
                     ),
-                    const SizedBox(
-                      height: 10,
+                    //vertical space
+                    SizedBox(
+                      height: size.height / 70,
                     ),
+                    // textfield password
                     TextFieldWidget(
-                      isPassword: true,
+                      isPassword: false,
                       prefix: Image.asset("assets/icons/passwordIcon.png"),
                       textFieldController: passwordController,
                       node: TextInputAction.done,
@@ -144,18 +153,22 @@ class _SignUpState extends State<SignUp> {
                       },
                       obscureText: true,
                     ),
+                    //vertical space
                     SizedBox(
                       height: size.height / 35,
                     ),
+                    //row of navigation to the other screen "Log In"
                     Row(
                       children: [
                         Text(
+                          // you already have an account text
                           AppLocalizations.of(context)!.signupmsgbutton,
                           style: const TextStyle(
                               color: Color(0xff949494), fontSize: 20),
                         ),
                         GestureDetector(
                           onTap: () {
+                            //Navigate to log in to the system
                             Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                     builder: (_) => const Login()));
@@ -163,6 +176,7 @@ class _SignUpState extends State<SignUp> {
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Text(
+                                // log in text
                                 AppLocalizations.of(context)!
                                     .signupmsgbuttonsec,
                                 style: TextStyle(
@@ -173,9 +187,11 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ],
                     ),
+                    //vertical space
                     SizedBox(
                       height: size.height / 30,
                     ),
+                    //button to confirm signing up to the system
                     Button(
                         color: mainColor,
                         screenWidth: size.width,

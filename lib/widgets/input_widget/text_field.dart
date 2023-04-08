@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:shaghaf/screens/auth_screen/forget_password.dart';
 import '../../helpers/const.dart';
-// import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore: must_be_immutable
 class TextFieldWidget extends StatefulWidget {
@@ -34,6 +34,9 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      // inputFormatters: [
+      //   LengthLimitingTextInputFormatter(1),
+      // ],
       obscureText: widget.isVisable ? false : widget.obscureText,
       controller: widget.textFieldController,
       keyboardType: widget.keyboardType,
@@ -49,16 +52,19 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         FocusScope.of(context).unfocus();
       },
       decoration: InputDecoration(
-        // counter: GestureDetector(
-        //   child: widget.isPassword
-        //       ? Text(
-        //           AppLocalizations.of(context)!.loginmsgbuttonforgetpassword,
-        //           style: const TextStyle(
-        //             color: Color(0xff949494),
-        //           ),
-        //         )
-        //       : null,
-        // ),
+        counter: widget.isPassword
+            ? GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => const ForgetPassword()));
+                },
+                child: Text(
+                  AppLocalizations.of(context)!.loginmsgbuttonforgetpassword,
+                  style: const TextStyle(
+                    color: Color(0xff949494),
+                  ),
+                ))
+            : null,
         isDense: true,
         prefixIcon: widget.prefix,
         suffixIcon: widget.obscureText

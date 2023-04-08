@@ -43,10 +43,11 @@ dependencies:
   # provider: 
   # http: 
   google_fonts:
+  flutter_staggered_grid_view:
   flutter_localizations: 
     sdk: flutter
   intl: 
-  # pin_code_fields:
+  pin_code_fields:
   # introduction_screen:
   # path_provider:
   # shimmer:

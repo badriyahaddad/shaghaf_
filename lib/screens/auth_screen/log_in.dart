@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shaghaf/screens/auth_screen/sign_up.dart';
-
 import '../../helpers/const.dart';
 import '../../widgets/clikable_widgets/button.dart';
 import '../../widgets/input_widget/text_field.dart';
+import '../main_screens/bottom_navigation_bar.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -14,16 +14,17 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  // controllers of the textfields
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
-
   final nameController = TextEditingController();
-  static final formkey = GlobalKey<FormState>();
-  bool langDir = false;
+  //key form
+  final formkey = GlobalKey<FormState>();
+  //variable to preform the validate function to check wether the textfields values are valid or not!
   bool enableLoginBtn = false;
   @override
   Widget build(BuildContext context) {
+    //MediaQuery for more responsive UI
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
@@ -39,6 +40,7 @@ class _LoginState extends State<Login> {
               key: formkey,
               onChanged: () {
                 setState(() {
+                  //enableLoginBtn put in setState in onchange function so basically it listened to the changes of states of any of the textfields
                   enableLoginBtn = formkey.currentState!.validate();
                 });
               },
@@ -49,6 +51,7 @@ class _LoginState extends State<Login> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Coulmn of welcome statments
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,6 +59,7 @@ class _LoginState extends State<Login> {
                         Padding(
                           padding: const EdgeInsets.all(2),
                           child: Text(
+                            //welcome text
                             AppLocalizations.of(context)!.welcomelogintitle,
                             style: const TextStyle(
                                 fontSize: 25, fontWeight: FontWeight.bold),
@@ -64,6 +68,7 @@ class _LoginState extends State<Login> {
                         Padding(
                           padding: const EdgeInsets.all(2),
                           child: Text(
+                            // helper text
                             AppLocalizations.of(context)!.welcomeloginsubtitle,
                             style: const TextStyle(
                                 fontSize: 20, color: Color(0xff949494)),
@@ -71,7 +76,9 @@ class _LoginState extends State<Login> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    //vertical space
+                    SizedBox(height: size.height / 70),
+                    //textfield email
                     TextFieldWidget(
                       isPassword: false,
                       textFieldController: emailController,
@@ -84,7 +91,8 @@ class _LoginState extends State<Login> {
                           return AppLocalizations.of(context)!
                               .validtionemptyemail;
                         }
-                        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                        if (!RegExp(
+                                "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]+.com")
                             .hasMatch(value)) {
                           return AppLocalizations.of(context)!
                               .validtioninvalidemail;
@@ -94,9 +102,11 @@ class _LoginState extends State<Login> {
                       obscureText: false,
                       prefix: Image.asset("assets/icons/emailIcon.png"),
                     ),
-                    const SizedBox(
-                      height: 10,
+                    //vertical space
+                    SizedBox(
+                      height: size.height / 70,
                     ),
+                    //textfield password
                     TextFieldWidget(
                       isPassword: true,
                       prefix: Image.asset("assets/icons/passwordIcon.png"),
@@ -119,18 +129,22 @@ class _LoginState extends State<Login> {
                       },
                       obscureText: true,
                     ),
+                    //vertical space
                     SizedBox(
                       height: size.height / 35,
                     ),
+                    //row of navigation to the other screen "Sign Up"
                     Row(
                       children: [
                         Text(
+                          //you don't have an account text
                           AppLocalizations.of(context)!.loginmsgbutton,
                           style: const TextStyle(
                               color: Color(0xff949494), fontSize: 20),
                         ),
                         GestureDetector(
                           onTap: () {
+                            //Navigate to sign up to the system
                             Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                     builder: (_) => const SignUp()));
@@ -138,6 +152,7 @@ class _LoginState extends State<Login> {
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Text(
+                                //sign up text
                                 AppLocalizations.of(context)!.signupbutton,
                                 style: TextStyle(
                                     color: buttomColor,
@@ -147,9 +162,11 @@ class _LoginState extends State<Login> {
                         ),
                       ],
                     ),
+                    //vertical space
                     SizedBox(
                       height: size.height / 30,
                     ),
+                    //button to confirm loging in to the system
                     Button(
                         color: mainColor,
                         screenWidth: size.width,
@@ -160,9 +177,10 @@ class _LoginState extends State<Login> {
                         isActive: enableLoginBtn,
                         onClick: () {
                           if (formkey.currentState!.validate()) {
-                            // Navigator.of(context).pushReplacement(
-                            //     MaterialPageRoute(
-                            //         builder: (_) => const HomeScreen()));
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (_) =>
+                                        const BottomTabsNaviScreen()));
                             setState(() {
                               formkey.currentState!.save();
                             });

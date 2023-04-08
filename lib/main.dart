@@ -43,6 +43,10 @@ class _MyAppState extends State<MyApp> {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        appBarTheme: const AppBarTheme(
+            iconTheme: IconThemeData(color: Colors.black),
+            elevation: 0,
+            backgroundColor: Colors.transparent),
         textTheme: GoogleFonts.ibmPlexSansArabicTextTheme(),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
