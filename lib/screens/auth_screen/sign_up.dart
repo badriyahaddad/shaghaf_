@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 import '../../helpers/const.dart';
+import '../../providers/theme_provider.dart';
 import '../../widgets/clikable_widgets/button.dart';
 import '../../widgets/input_widget/text_field.dart';
+import '../main_screens/bottom_navigation_bar.dart';
 import 'log_in.dart';
 
+//what is it: when the user no account they just need to sign up into the app
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
 
@@ -19,22 +23,29 @@ class _SignUpState extends State<SignUp> {
   final nameController = TextEditingController();
   //key form
   final formkey = GlobalKey<FormState>();
+
   //variable to preform the validate function to check wether the textfields values are valid or not!
   bool enableLoginBtn = false;
   @override
   Widget build(BuildContext context) {
+    //MediaQuery for more responsive UI
     Size size = MediaQuery.of(context).size;
+    //dark theme mode to listen to the changes when the mode it's changes
+    final themeListener = Provider.of<ThemeProvider>(context, listen: true);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             Image.asset(
-              "assets/auth_background.png",
+              themeListener.isDark
+                  ? "assets/auth_background_Dark.png"
+                  : "assets/auth_background.png",
               fit: BoxFit.cover,
               width: size.width,
               height: size.width,
             ),
             Form(
+              //form that are assigned for textfield, so the user can enter thier data
               key: formkey,
               onChanged: () {
                 setState(() {
@@ -59,8 +70,12 @@ class _SignUpState extends State<SignUp> {
                           child: Text(
                             //create your account text
                             AppLocalizations.of(context)!.welcomesignuptitle,
-                            style: const TextStyle(
-                                fontSize: 25, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                color: themeListener.isDark
+                                    ? titleTextColorDark
+                                    : titleTextColor),
                           ),
                         ),
                         Padding(
@@ -68,8 +83,11 @@ class _SignUpState extends State<SignUp> {
                           child: Text(
                             // helper text
                             AppLocalizations.of(context)!.welcomesignupsubtitle,
-                            style: const TextStyle(
-                                fontSize: 20, color: Color(0xff949494)),
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: themeListener.isDark
+                                    ? subTitleColorDark
+                                    : subTitleColor),
                           ),
                         ),
                       ],
@@ -78,7 +96,9 @@ class _SignUpState extends State<SignUp> {
                     SizedBox(height: size.height / 70),
                     //textfield name
                     TextFieldWidget(
-                      prefix: Image.asset("assets/icons/nameIcon.png"),
+                      prefix: Image.asset(themeListener.isDark
+                          ? "assets/icons/nameIcon_Dark.png"
+                          : "assets/icons/nameIcon.png"),
                       textFieldController: nameController,
                       node: TextInputAction.next,
                       isVisable: true,
@@ -124,7 +144,9 @@ class _SignUpState extends State<SignUp> {
                         return null;
                       },
                       obscureText: false,
-                      prefix: Image.asset("assets/icons/emailIcon.png"),
+                      prefix: Image.asset(themeListener.isDark
+                          ? "assets/icons/emailIcon_Dark.png"
+                          : "assets/icons/emailIcon.png"),
                     ),
                     //vertical space
                     SizedBox(
@@ -133,7 +155,9 @@ class _SignUpState extends State<SignUp> {
                     // textfield password
                     TextFieldWidget(
                       isPassword: false,
-                      prefix: Image.asset("assets/icons/passwordIcon.png"),
+                      prefix: Image.asset(themeListener.isDark
+                          ? "assets/icons/passwordIcon_Dark.png"
+                          : "assets/icons/passwordIcon.png"),
                       textFieldController: passwordController,
                       node: TextInputAction.done,
                       isVisable: false,
@@ -163,8 +187,11 @@ class _SignUpState extends State<SignUp> {
                         Text(
                           // you already have an account text
                           AppLocalizations.of(context)!.signupmsgbutton,
-                          style: const TextStyle(
-                              color: Color(0xff949494), fontSize: 20),
+                          style: TextStyle(
+                              color: themeListener.isDark
+                                  ? subTitleColorDark
+                                  : subTitleColor,
+                              fontSize: 20),
                         ),
                         GestureDetector(
                           onTap: () {
@@ -180,7 +207,9 @@ class _SignUpState extends State<SignUp> {
                                 AppLocalizations.of(context)!
                                     .signupmsgbuttonsec,
                                 style: TextStyle(
-                                    color: buttomColor,
+                                    color: themeListener.isDark
+                                        ? mainColorDark
+                                        : mainColor,
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold)),
                           ),
@@ -193,7 +222,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     //button to confirm signing up to the system
                     Button(
-                        color: mainColor,
+                        color: themeListener.isDark ? mainColorDark : mainColor,
                         screenWidth: size.width,
                         screenHieght: size.height * 0.061,
                         borderButton: false,
@@ -202,9 +231,10 @@ class _SignUpState extends State<SignUp> {
                         isActive: enableLoginBtn,
                         onClick: () {
                           if (formkey.currentState!.validate()) {
-                            // Navigator.of(context).pushReplacement(
-                            //     MaterialPageRoute(
-                            //         builder: (_) => const HomeScreen()));
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (_) =>
+                                        const BottomTabsNaviScreen()));
                             setState(() {
                               formkey.currentState!.save();
                             });

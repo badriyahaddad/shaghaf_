@@ -1,22 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:provider/provider.dart';
+import 'package:shaghaf/providers/theme_provider.dart';
 import '../../helpers/const.dart';
+import '../../screens/sub_screens/artwork_details_screen.dart';
 import 'gridview_card.dart';
 
 class ArtWorkCard extends StatefulWidget {
   const ArtWorkCard({super.key, required this.hide});
   final bool hide;
+
   @override
   State<ArtWorkCard> createState() => _ArtWorkCardState();
 }
 
 //Fake List
 List fakeList = [
-  "assets/artwork1.png",
-  "assets/artwork2.png",
-  "assets/artwork3.png",
-  "assets/artwork4.png"
+  {
+    "image": "assets/artwork1.png",
+    "name": "محمد الحداد",
+    "catagory": "رسام",
+    "artistpic": "assets/person2.png",
+  },
+  {
+    "image": "assets/artwork2.png",
+    "name": "ايمان الورفلي",
+    "catagory": "رسامة",
+    "artistpic": "assets/person3.png",
+  },
+  {
+    "image": "assets/artwork3.png",
+    "name": "نور محمد",
+    "catagory": "خياطة",
+    "artistpic": "assets/person1.png",
+  },
+  {
+    "image": "assets/artwork4.png",
+    "name": "ايمن الحجازي",
+    "catagory": "مصور فوتوغرافي",
+    "artistpic": "assets/person4.png",
+  }
 ];
 
 class _ArtWorkCardState extends State<ArtWorkCard> {
@@ -24,6 +48,8 @@ class _ArtWorkCardState extends State<ArtWorkCard> {
   Widget build(BuildContext context) {
     //MediaQuery for more responsive UI
     Size size = MediaQuery.of(context).size;
+    //dark theme mode to listen to the changes when the mode it's changes
+    final themeListener = Provider.of<ThemeProvider>(context, listen: true);
     return Column(
       children: [
         Padding(
@@ -34,12 +60,20 @@ class _ArtWorkCardState extends State<ArtWorkCard> {
                     children: [
                       Text(
                         AppLocalizations.of(context)!.homescreencommonart,
-                        style: const TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            color: themeListener.isDark
+                                ? titleTextColorDark
+                                : titleTextColor,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold),
                       ),
                       Text(
                         AppLocalizations.of(context)!.more,
-                        style: TextStyle(fontSize: 18, color: mainColor),
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: themeListener.isDark
+                                ? mainColorDark
+                                : mainColor),
                       ),
                     ],
                   )
@@ -59,8 +93,19 @@ class _ArtWorkCardState extends State<ArtWorkCard> {
               itemCount: fakeList.length,
               crossAxisCount: 2,
               itemBuilder: (BuildContext context, int index) {
-                return GridViewCard(
-                  index: index,
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => ArtWorkDetailsScreen(
+                              artistIamge: fakeList[index]["image"],
+                              artistName: fakeList[index]["name"],
+                              catagory: fakeList[index]["catagory"],
+                              artistPic: fakeList[index]["artistpic"],
+                            )));
+                  },
+                  child: GridViewCard(
+                    index: index,
+                  ),
                 );
               },
             ),

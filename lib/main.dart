@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shaghaf/providers/theme_provider.dart';
 import 'package:shaghaf/screens/auth_screen/get_started_screen.dart';
-
 import 'firebase_options.dart';
+import 'package:provider/provider.dart';
+
+import 'helpers/const.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+//firebase connected
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -18,6 +21,7 @@ Future<void> main() async {
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
+  //to set the language when changes
   static void setLocale(BuildContext context, Locale locale) {
     _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
     state!.setLocale(locale);
@@ -28,8 +32,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  //this variable of LOcale type set the langugae the user wants to change to
   Locale _locale = const Locale('ar');
-
+// this function set the language
   void setLocale(Locale locale) {
     setState(() {
       _locale = locale;
@@ -38,30 +43,55 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        appBarTheme: const AppBarTheme(
-            iconTheme: IconThemeData(color: Colors.black),
-            elevation: 0,
-            backgroundColor: Colors.transparent),
-        textTheme: GoogleFonts.ibmPlexSansArabicTextTheme(),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+    //dark theme mode to listen to the changes when the mode it's changes
+    // final themeListener = Provider.of<ThemeProvider>(context, listen: true);
+    //provider for the theme of the app
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
       ],
-      supportedLocales: const [
-        Locale('en'), // English
-        Locale('ar'), // Arabic
-      ],
-      locale: _locale,
-      home: const GetStartedScreen(),
+      //to consume the changes
+      child: Consumer<ThemeProvider>(builder: (context, themeConsumer, _) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            //background screen theme
+            scaffoldBackgroundColor:
+                themeConsumer.isDark ? backgroundColorDark : backgroundColor,
+            //appbar theme
+            appBarTheme: AppBarTheme(
+                iconTheme: IconThemeData(
+                    color: themeConsumer.isDark ? Colors.white : Colors.black),
+                elevation: 0,
+                backgroundColor: Colors.transparent),
+            bottomNavigationBarTheme: BottomNavigationBarThemeData(
+              backgroundColor: themeConsumer.isDark
+                  ? secondrayColorDark.withOpacity(0.5)
+                  : secondrayColor.withOpacity(0.5),
+              elevation: 0,
+            ),
+            //text theme
+            textTheme: GoogleFonts.ibmPlexSansArabicTextTheme(),
+
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          //langugae set up
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale('en'), // English
+            Locale('ar'), // Arabic
+          ],
+          locale: _locale,
+          //first screen after splash screen
+          home: const GetStartedScreen(),
+        );
+      }),
     );
   }
 }

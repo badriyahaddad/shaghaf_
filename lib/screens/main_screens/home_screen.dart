@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../widgets/static_widget/artist_list_card.dart';
 import '../../widgets/static_widget/artworks_card.dart';
 import '../../widgets/static_widget/coustom_appbar.dart';
@@ -16,6 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     //MediaQuery for more responsive UI
     Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -26,10 +28,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: size.height / 70,
               ),
               CostuomAppBar(
+                iconData: Icons.abc_outlined,
                 isOtherScreens: true,
                 profileName: 'احمد',
                 isHome: true,
                 title: AppLocalizations.of(context)!.homescreenappbartitle,
+                isDetails: false,
+                subTitle: '',
               ),
               SizedBox(
                 height: size.height / 30,

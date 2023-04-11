@@ -1,6 +1,8 @@
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../widgets/static_widget/coustom_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shaghaf/helpers/const.dart';
+
+import '../../providers/theme_provider.dart';
 
 class ProfileCard extends StatefulWidget {
   const ProfileCard(
@@ -20,17 +22,21 @@ class _ProfileCardState extends State<ProfileCard> {
   Widget build(BuildContext context) {
     //MediaQuery for more responsive UI
     Size size = MediaQuery.of(context).size;
+    //dark theme mode to listen to the changes when the mode it's changes
+    final themeListener = Provider.of<ThemeProvider>(context, listen: true);
     return Stack(
       alignment: AlignmentDirectional.center,
       children: [
         Positioned(
           top: 100,
           child: Container(
-            height: size.height / 5,
+            height: size.height / 4.5,
             width: size.width / 1.2,
             decoration: BoxDecoration(
-                color: const Color(0xffF2F2F2),
-                border: Border.all(color: const Color(0xff949494), width: 0.3),
+                color: themeListener.isDark ? cardColorDark : cardColor,
+                border: Border.all(
+                    color: themeListener.isDark ? borderColorDark : borderColor,
+                    width: 0.3),
                 borderRadius: BorderRadius.circular(30)),
           ),
         ),
@@ -52,17 +58,29 @@ class _ProfileCardState extends State<ProfileCard> {
             children: [
               Text(
                 widget.artistName,
-                style:
-                    const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: themeListener.isDark
+                      ? titleTextColorDark
+                      : titleTextColor,
+                ),
               ),
               Text(
                 widget.workCatagory,
-                style: TextStyle(fontSize: 20, color: Colors.grey.shade500),
+                style: TextStyle(
+                  fontSize: 20,
+                  color:
+                      themeListener.isDark ? subTitleColorDark : subTitleColor,
+                ),
               ),
               SizedBox(
-                height: size.height / 90,
+                height: size.height / 300,
               ),
-              const Icon(Icons.facebook)
+              Icon(
+                Icons.facebook,
+                color: themeListener.isDark ? subTitleColorDark : subTitleColor,
+              )
             ],
           ),
         )

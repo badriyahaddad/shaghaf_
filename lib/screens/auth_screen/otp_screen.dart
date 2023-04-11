@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+import 'package:shaghaf/providers/theme_provider.dart';
 import 'package:shaghaf/screens/auth_screen/reset_password_screen.dart';
 import '../../helpers/const.dart';
 import '../../widgets/clikable_widgets/button.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
+//what is it: to confirm the password change
 class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key});
 
@@ -20,14 +23,21 @@ class _OtpScreenState extends State<OtpScreen> {
   Widget build(BuildContext context) {
     //MediaQuery for more responsive UI
     Size size = MediaQuery.of(context).size;
+    //dark theme mode to listen to the changes when the mode it's changes
+    final themeListener = Provider.of<ThemeProvider>(context, listen: true);
     return Scaffold(
+      //this appbar allows the user to navigate back to the previous screen, through pushReplacement !
       appBar: AppBar(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: size.height / 15),
-            Center(child: Image.asset("assets/otp.png")),
+            Center(
+                child: Image.asset(
+              themeListener.isDark ? "assets/otp_dark.png" : "assets/otp.png",
+              width: size.width / 3,
+            )),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
@@ -97,7 +107,7 @@ class _OtpScreenState extends State<OtpScreen> {
                           //sign up text
                           AppLocalizations.of(context)!.otphelpertexttwo,
                           style: TextStyle(
-                              color: buttomColor,
+                              color: mainColor,
                               fontSize: 20,
                               fontWeight: FontWeight.bold)),
                     ),

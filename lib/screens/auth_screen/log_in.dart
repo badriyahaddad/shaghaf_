@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 import 'package:shaghaf/screens/auth_screen/sign_up.dart';
 import '../../helpers/const.dart';
+import '../../providers/theme_provider.dart';
 import '../../widgets/clikable_widgets/button.dart';
 import '../../widgets/input_widget/text_field.dart';
 import '../main_screens/bottom_navigation_bar.dart';
 
+//what is it: when the user has already an account they just need to sign in into the app
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -18,7 +21,7 @@ class _LoginState extends State<Login> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final nameController = TextEditingController();
-  //key form
+  //key form for the textfield
   final formkey = GlobalKey<FormState>();
   //variable to preform the validate function to check wether the textfields values are valid or not!
   bool enableLoginBtn = false;
@@ -26,16 +29,21 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     //MediaQuery for more responsive UI
     Size size = MediaQuery.of(context).size;
+    //dark theme mode to listen to the changes when the mode it's changes
+    final themeListener = Provider.of<ThemeProvider>(context, listen: true);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             Image.asset(
-              "assets/auth_background.png",
+              themeListener.isDark
+                  ? "assets/auth_background_Dark.png"
+                  : "assets/auth_background.png",
               fit: BoxFit.cover,
               width: size.width,
               height: size.width,
             ),
+            //form that are assigned for textfield, so the user can enter thier data
             Form(
               key: formkey,
               onChanged: () {
@@ -61,8 +69,12 @@ class _LoginState extends State<Login> {
                           child: Text(
                             //welcome text
                             AppLocalizations.of(context)!.welcomelogintitle,
-                            style: const TextStyle(
-                                fontSize: 25, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                color: themeListener.isDark
+                                    ? titleTextColorDark
+                                    : titleTextColor),
                           ),
                         ),
                         Padding(
@@ -70,8 +82,11 @@ class _LoginState extends State<Login> {
                           child: Text(
                             // helper text
                             AppLocalizations.of(context)!.welcomeloginsubtitle,
-                            style: const TextStyle(
-                                fontSize: 20, color: Color(0xff949494)),
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: themeListener.isDark
+                                    ? subTitleColorDark
+                                    : subTitleColor),
                           ),
                         ),
                       ],
@@ -100,7 +115,9 @@ class _LoginState extends State<Login> {
                         return null;
                       },
                       obscureText: false,
-                      prefix: Image.asset("assets/icons/emailIcon.png"),
+                      prefix: Image.asset(themeListener.isDark
+                          ? "assets/icons/emailIcon_Dark.png"
+                          : "assets/icons/emailIcon.png"),
                     ),
                     //vertical space
                     SizedBox(
@@ -109,7 +126,9 @@ class _LoginState extends State<Login> {
                     //textfield password
                     TextFieldWidget(
                       isPassword: true,
-                      prefix: Image.asset("assets/icons/passwordIcon.png"),
+                      prefix: Image.asset(themeListener.isDark
+                          ? "assets/icons/passwordIcon_Dark.png"
+                          : "assets/icons/passwordIcon.png"),
                       textFieldController: passwordController,
                       node: TextInputAction.done,
                       isVisable: false,
@@ -139,8 +158,11 @@ class _LoginState extends State<Login> {
                         Text(
                           //you don't have an account text
                           AppLocalizations.of(context)!.loginmsgbutton,
-                          style: const TextStyle(
-                              color: Color(0xff949494), fontSize: 20),
+                          style: TextStyle(
+                              color: themeListener.isDark
+                                  ? subTitleColorDark
+                                  : subTitleColor,
+                              fontSize: 20),
                         ),
                         GestureDetector(
                           onTap: () {
@@ -155,7 +177,9 @@ class _LoginState extends State<Login> {
                                 //sign up text
                                 AppLocalizations.of(context)!.signupbutton,
                                 style: TextStyle(
-                                    color: buttomColor,
+                                    color: themeListener.isDark
+                                        ? mainColorDark
+                                        : mainColor,
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold)),
                           ),
@@ -166,9 +190,9 @@ class _LoginState extends State<Login> {
                     SizedBox(
                       height: size.height / 30,
                     ),
-                    //button to confirm loging in to the system
+                    //button to confirm loging in to the app
                     Button(
-                        color: mainColor,
+                        color: themeListener.isDark ? mainColorDark : mainColor,
                         screenWidth: size.width,
                         screenHieght: size.height * 0.061,
                         borderButton: false,
@@ -177,6 +201,7 @@ class _LoginState extends State<Login> {
                         isActive: enableLoginBtn,
                         onClick: () {
                           if (formkey.currentState!.validate()) {
+                            //pushReplacement: user cannot go back here after loggin in
                             Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                     builder: (_) =>

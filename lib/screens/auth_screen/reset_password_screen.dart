@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 import '../../helpers/const.dart';
+import '../../providers/theme_provider.dart';
 import '../../widgets/clikable_widgets/button.dart';
 import '../../widgets/dialogs/password_reseted_dialog.dart';
 import '../../widgets/input_widget/text_field.dart';
@@ -20,14 +22,20 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   Widget build(BuildContext context) {
     //MediaQuery for more responsive UI
     Size size = MediaQuery.of(context).size;
+    final themeListener = Provider.of<ThemeProvider>(context, listen: true);
     return Scaffold(
+      //this appbar allows the user to navigate back to the previous screen, through pushReplacement !
       appBar: AppBar(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: size.height / 15),
-            Center(child: Image.asset("assets/otp.png")),
+            Center(
+                child: Image.asset(
+              themeListener.isDark ? "assets/otp_dark.png" : "assets/otp.png",
+              width: size.width / 3,
+            )),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(

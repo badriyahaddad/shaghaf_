@@ -39,8 +39,8 @@ dependencies:
   firebase_auth:
   cloud_firestore:
   flutter_native_splash: 
-  # shared_preferences: 
-  # provider: 
+  shared_preferences: 
+  provider: 
   # http: 
   google_fonts:
   flutter_staggered_grid_view:

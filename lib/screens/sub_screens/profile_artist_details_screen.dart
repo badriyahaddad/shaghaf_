@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+import 'package:shaghaf/providers/theme_provider.dart';
+import '../../helpers/const.dart';
 import '../../widgets/static_widget/artworks_card.dart';
 import '../../widgets/static_widget/coustom_appbar.dart';
 import '../../widgets/static_widget/profile_card.dart';
@@ -24,6 +27,8 @@ class _ProfileArtistDetailsScreenState
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    //dark theme mode to listen to the changes when the mode it's changes
+    final themeListener = Provider.of<ThemeProvider>(context, listen: true);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -33,14 +38,17 @@ class _ProfileArtistDetailsScreenState
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: CostuomAppBar(
+                  isDetails: false,
                   isHome: false,
                   profileName: '',
                   title: AppLocalizations.of(context)!.homescreencommonartits,
                   isOtherScreens: false,
+                  iconData: Icons.arrow_back,
+                  subTitle: '',
                 ),
               ),
               SizedBox(
-                height: size.width / 1.2,
+                height: size.width / 1.4,
                 width: size.width,
                 child: ProfileCard(
                   artistImage: widget.artistImage,
@@ -52,8 +60,12 @@ class _ProfileArtistDetailsScreenState
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Text(
                   AppLocalizations.of(context)!.detailsartitsworks,
-                  style: const TextStyle(
-                      fontSize: 25, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: themeListener.isDark
+                          ? titleTextColorDark
+                          : titleTextColor,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
               const ArtWorkCard(

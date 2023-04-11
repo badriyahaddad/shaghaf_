@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+import 'package:shaghaf/providers/theme_provider.dart';
 import '../../helpers/const.dart';
 import '../../screens/sub_screens/profile_artist_details_screen.dart';
 
@@ -27,6 +29,8 @@ class _ArtistListCardState extends State<ArtistListCard> {
   Widget build(BuildContext context) {
     //MediaQuery for more responsive UI
     Size size = MediaQuery.of(context).size;
+    //dark theme mode to listen to the changes when the mode it's changes
+    final themeListener = Provider.of<ThemeProvider>(context, listen: true);
     return Column(
       children: [
         Padding(
@@ -36,12 +40,19 @@ class _ArtistListCardState extends State<ArtistListCard> {
             children: [
               Text(
                 AppLocalizations.of(context)!.homescreencommonartits,
-                style:
-                    const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: themeListener.isDark
+                      ? titleTextColorDark
+                      : titleTextColor,
+                ),
               ),
               Text(
                 AppLocalizations.of(context)!.more,
-                style: TextStyle(fontSize: 18, color: mainColor),
+                style: TextStyle(
+                    fontSize: 18,
+                    color: themeListener.isDark ? mainColorDark : mainColor),
               ),
             ],
           ),

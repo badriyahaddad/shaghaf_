@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shaghaf/screens/auth_screen/forget_password.dart';
 import '../../helpers/const.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../providers/theme_provider.dart';
 
 // ignore: must_be_immutable
 class TextFieldWidget extends StatefulWidget {
@@ -33,12 +36,18 @@ class TextFieldWidget extends StatefulWidget {
 class _TextFieldWidgetState extends State<TextFieldWidget> {
   @override
   Widget build(BuildContext context) {
+    //dark theme mode to listen to the changes when the mode it's changes
+    final themeListener = Provider.of<ThemeProvider>(context, listen: true);
+
     return TextFormField(
+      style: TextStyle(
+          color: themeListener.isDark ? titleTextColorDark : titleTextColor),
       // inputFormatters: [
       //   LengthLimitingTextInputFormatter(1),
       // ],
       obscureText: widget.isVisable ? false : widget.obscureText,
       controller: widget.textFieldController,
+
       keyboardType: widget.keyboardType,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) {
@@ -51,6 +60,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       onEditingComplete: () {
         FocusScope.of(context).unfocus();
       },
+      cursorColor: themeListener.isDark ? mainColorDark : mainColor,
+
       decoration: InputDecoration(
         counter: widget.isPassword
             ? GestureDetector(
@@ -60,8 +71,10 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                 },
                 child: Text(
                   AppLocalizations.of(context)!.loginmsgbuttonforgetpassword,
-                  style: const TextStyle(
-                    color: Color(0xff949494),
+                  style: TextStyle(
+                    color: themeListener.isDark
+                        ? subTitleColorDark
+                        : subTitleColor,
                   ),
                 ))
             : null,
@@ -71,7 +84,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             ? IconButton(
                 icon: Icon(
                     widget.isVisable ? Icons.visibility_off : Icons.visibility,
-                    color: buttomColor),
+                    color: themeListener.isDark ? mainColorDark : mainColor),
                 onPressed: () {
                   setState(() {
                     widget.isVisable = !widget.isVisable;
@@ -80,8 +93,44 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
               )
             : null,
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        //hint text
         hintText: widget.hintTxt,
+// hint text style
+        hintStyle: TextStyle(
+            color: themeListener.isDark
+                ? subTitleColorDark.withOpacity(0.4)
+                : subTitleColor.withOpacity(0.4)),
+        //when the text field is activated
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+              width: 3,
+              color: themeListener.isDark ? mainColorDark : mainColor),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        //not activated
         border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        //when the text field is disabled
+        disabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+              color: themeListener.isDark ? mainColorDark : mainColor),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        //there's an error in the textfeiled
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: themeListener.isDark ? errorDark : error,
+            width: 3,
+          ),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        //when it's enabled
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+              color: themeListener.isDark
+                  ? mainColorDark.withOpacity(0.4)
+                  : mainColor.withOpacity(0.4)),
           borderRadius: BorderRadius.circular(8),
         ),
       ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shaghaf/screens/main_screens/products_screen.dart';
 import 'package:shaghaf/screens/main_screens/profile_screen.dart';
 import 'package:shaghaf/screens/main_screens/services_screen.dart';
-import '../../helpers/const.dart';
 import 'home_screen.dart';
 
 class BottomTabsNaviScreen extends StatefulWidget {
@@ -34,8 +33,8 @@ class _BottomTabsNaviScreenState extends State<BottomTabsNaviScreen> {
           child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             onTap: (updateIndex),
-            backgroundColor: secondrayColor.withOpacity(0.5),
-            elevation: 0,
+            // backgroundColor: secondrayColor.withOpacity(0.5),
+            // elevation: 0,
             currentIndex: currentIndex,
             items: [
               BottomNavigationBarItem(

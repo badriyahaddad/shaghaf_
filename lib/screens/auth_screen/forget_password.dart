@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 import 'package:shaghaf/screens/auth_screen/otp_screen.dart';
-
 import '../../helpers/const.dart';
+import '../../providers/theme_provider.dart';
 import '../../widgets/clikable_widgets/button.dart';
 import '../../widgets/input_widget/text_field.dart';
 
+//What is it: Forget password screen when the user foget thier password tey can set new password
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({super.key});
 
@@ -21,14 +23,21 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   Widget build(BuildContext context) {
     //MediaQuery for more responsive UI
     Size size = MediaQuery.of(context).size;
+    //dark theme mode to listen to the changes when the mode it's changes
+    final themeListener = Provider.of<ThemeProvider>(context, listen: true);
     return Scaffold(
+      //this appbar allows the user to navigate back to the previous screen, through pushReplacement !
       appBar: AppBar(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: size.height / 15),
-            Center(child: Image.asset("assets/otp.png")),
+            Center(
+                child: Image.asset(
+              themeListener.isDark ? "assets/otp_dark.png" : "assets/otp.png",
+              width: size.width / 3,
+            )),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
@@ -37,10 +46,12 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   //vertical space
                   SizedBox(height: size.height / 8),
                   Text(
+                    //title
                     AppLocalizations.of(context)!.forgetpasswordtitle,
                     style: const TextStyle(
                         fontSize: 25, fontWeight: FontWeight.bold),
                   ),
+                  //subTitle
                   Text(
                     AppLocalizations.of(context)!.forgetpasswordsubtitle,
                     style:
@@ -77,10 +88,11 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             ),
             //vertical space
             SizedBox(height: size.height / 4),
+            //button so they can navigate to another screen which is otp
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Button(
-                color: mainColor,
+                color: themeListener.isDark ? mainColorDark : mainColor,
                 isActive: true,
                 borderButton: false,
                 loading: false,
