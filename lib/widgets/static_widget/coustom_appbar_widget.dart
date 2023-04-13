@@ -15,14 +15,16 @@ class CostuomAppBar extends StatefulWidget {
       required this.isOtherScreens,
       required this.iconData,
       required this.isDetails,
-      required this.subTitle});
+      required this.subTitle,
+      required this.iconBehavior});
   final String profileName;
   final bool isHome;
   final String title;
   final String subTitle;
   final bool isOtherScreens;
-  final IconData iconData;
+  final Widget iconData;
   final bool isDetails;
+  final Function iconBehavior;
   @override
   State<CostuomAppBar> createState() => _CostuomAppBarState();
 }
@@ -49,11 +51,14 @@ class _CostuomAppBarState extends State<CostuomAppBar> {
                         backgroundColor: Colors.transparent,
                         child: widget.isOtherScreens
                             ? Image.asset("assets/profilehomescreen.png")
-                            : Icon(
-                                widget.iconData,
+                            : IconButton(
                                 color: themeListener.isDark
                                     ? titleTextColorDark
                                     : titleTextColor,
+                                icon: widget.iconData,
+                                onPressed: () {
+                                  widget.iconBehavior();
+                                },
                               ),
                       ),
                       Text(
@@ -66,7 +71,9 @@ class _CostuomAppBarState extends State<CostuomAppBar> {
                             fontWeight: FontWeight.bold),
                       ),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            widget.iconBehavior();
+                          },
                           icon: Image.asset(themeListener.isDark
                               ? "assets/icons/menu_dark.png"
                               : "assets/icons/menu.png")),
@@ -154,11 +161,14 @@ class _CostuomAppBarState extends State<CostuomAppBar> {
                       backgroundColor: widget.isDetails
                           ? const Color.fromARGB(120, 255, 255, 255)
                           : Colors.transparent,
-                      child: Icon(
-                        widget.iconData,
+                      child: IconButton(
                         color: themeListener.isDark
                             ? titleTextColorDark
                             : titleTextColor,
+                        icon: widget.iconData,
+                        onPressed: () {
+                          widget.iconBehavior();
+                        },
                       ),
                     ),
                     onTap: () {
@@ -170,7 +180,8 @@ class _CostuomAppBarState extends State<CostuomAppBar> {
                       Text(
                         widget.title,
                         style: TextStyle(
-                            color: titleTextColorDark,
+                            color:
+                                widget.isDetails ? Colors.white : Colors.black,
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),

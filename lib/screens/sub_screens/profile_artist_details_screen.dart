@@ -3,20 +3,20 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:shaghaf/providers/theme_provider.dart';
 import '../../helpers/const.dart';
-import '../../widgets/static_widget/artworks_card.dart';
-import '../../widgets/static_widget/coustom_appbar.dart';
+import '../../widgets/static_widget/artworks_homescreen_card.dart';
+import '../../widgets/static_widget/coustom_appbar_widget.dart';
 import '../../widgets/static_widget/profile_card.dart';
 
 class ProfileArtistDetailsScreen extends StatefulWidget {
   const ProfileArtistDetailsScreen({
     super.key,
     required this.artistName,
-    required this.artistImage,
+    required this.artWorkImage,
     required this.workCatagory,
   });
   final String workCatagory;
   final String artistName;
-  final String artistImage;
+  final String artWorkImage;
   @override
   State<ProfileArtistDetailsScreen> createState() =>
       _ProfileArtistDetailsScreenState();
@@ -43,7 +43,10 @@ class _ProfileArtistDetailsScreenState
                   profileName: '',
                   title: AppLocalizations.of(context)!.homescreencommonartits,
                   isOtherScreens: false,
-                  iconData: Icons.arrow_back,
+                  iconBehavior: () {
+                    Navigator.pop(context);
+                  },
+                  iconData: const Icon(Icons.arrow_back),
                   subTitle: '',
                 ),
               ),
@@ -51,7 +54,7 @@ class _ProfileArtistDetailsScreenState
                 height: size.width / 1.4,
                 width: size.width,
                 child: ProfileCard(
-                  artistImage: widget.artistImage,
+                  artWorkImage: widget.artWorkImage,
                   artistName: widget.artistName,
                   workCatagory: widget.workCatagory,
                 ),

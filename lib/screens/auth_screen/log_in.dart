@@ -205,7 +205,7 @@ class _LoginState extends State<Login> {
                             Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                     builder: (_) =>
-                                        const BottomTabsNaviScreen()));
+                                        const BottomNavigationBarScreen()));
                             setState(() {
                               formkey.currentState!.save();
                             });

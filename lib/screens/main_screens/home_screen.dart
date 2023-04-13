@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/static_widget/artist_list_card.dart';
-import '../../widgets/static_widget/artworks_card.dart';
-import '../../widgets/static_widget/coustom_appbar.dart';
+import '../../widgets/static_widget/artist_list_homescreen_card.dart';
+import '../../widgets/static_widget/artworks_homescreen_card.dart';
+import '../../widgets/static_widget/coustom_appbar_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -28,7 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: size.height / 70,
               ),
               CostuomAppBar(
-                iconData: Icons.abc_outlined,
+                iconBehavior: () {},
+                iconData: const Icon(Icons.abc_outlined),
                 isOtherScreens: true,
                 profileName: 'احمد',
                 isHome: true,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'coustom_appbar.dart';
+import 'coustom_appbar_widget.dart';
 
 class ArtworkDetailsImageCard extends StatefulWidget {
   const ArtworkDetailsImageCard(
@@ -48,13 +47,16 @@ class _ArtworkDetailsImageCardState extends State<ArtworkDetailsImageCard> {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 15),
           child: CostuomAppBar(
-            iconData: Icons.arrow_back,
+            iconData: const Icon(Icons.arrow_back),
             isDetails: true,
             isHome: false,
             isOtherScreens: true,
             profileName: '',
             subTitle: widget.catagory,
             title: widget.artistName,
+            iconBehavior: () {
+              Navigator.pop(context);
+            },
           ),
         ),
       ],

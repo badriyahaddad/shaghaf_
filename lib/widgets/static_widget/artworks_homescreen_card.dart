@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shaghaf/providers/theme_provider.dart';
 import '../../helpers/const.dart';
 import '../../screens/sub_screens/artwork_details_screen.dart';
+import '../../screens/sub_screens/common_artwork_screen.dart';
 import 'gridview_card.dart';
 
 class ArtWorkCard extends StatefulWidget {
@@ -67,13 +68,19 @@ class _ArtWorkCardState extends State<ArtWorkCard> {
                             fontSize: 25,
                             fontWeight: FontWeight.bold),
                       ),
-                      Text(
-                        AppLocalizations.of(context)!.more,
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: themeListener.isDark
-                                ? mainColorDark
-                                : mainColor),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (_) => const CommonArtWorkScreen()));
+                        },
+                        child: Text(
+                          AppLocalizations.of(context)!.more,
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: themeListener.isDark
+                                  ? mainColorDark
+                                  : mainColor),
+                        ),
                       ),
                     ],
                   )

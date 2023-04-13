@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:shaghaf/providers/theme_provider.dart';
 import '../../helpers/const.dart';
+import '../../screens/sub_screens/common_artist_screen.dart';
 import '../../screens/sub_screens/profile_artist_details_screen.dart';
 
 class ArtistListCard extends StatefulWidget {
@@ -48,11 +49,17 @@ class _ArtistListCardState extends State<ArtistListCard> {
                       : titleTextColor,
                 ),
               ),
-              Text(
-                AppLocalizations.of(context)!.more,
-                style: TextStyle(
-                    fontSize: 18,
-                    color: themeListener.isDark ? mainColorDark : mainColor),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => const CommonArtistScreen()));
+                },
+                child: Text(
+                  AppLocalizations.of(context)!.more,
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: themeListener.isDark ? mainColorDark : mainColor),
+                ),
               ),
             ],
           ),
@@ -75,7 +82,7 @@ class _ArtistListCardState extends State<ArtistListCard> {
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (_) => ProfileArtistDetailsScreen(
-                              artistImage: fakeList[index]["image"],
+                              artWorkImage: fakeList[index]["image"],
                               artistName: fakeList[index]["name"],
                               workCatagory: fakeList[index]["catagory"],
                             )));

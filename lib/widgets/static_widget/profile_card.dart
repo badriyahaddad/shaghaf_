@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shaghaf/helpers/const.dart';
-
 import '../../providers/theme_provider.dart';
 
 class ProfileCard extends StatefulWidget {
   const ProfileCard(
       {super.key,
       required this.artistName,
-      required this.artistImage,
+      required this.artWorkImage,
       required this.workCatagory});
   final String artistName;
-  final String artistImage;
+  final String artWorkImage;
   final String workCatagory;
   @override
   State<ProfileCard> createState() => _ProfileCardState();
@@ -46,7 +45,7 @@ class _ProfileCardState extends State<ProfileCard> {
             maxRadius: 50,
             backgroundColor: Colors.transparent,
             child: Image.asset(
-              widget.artistImage,
+              widget.artWorkImage,
               fit: BoxFit.cover,
               width: size.width / 1,
             ),

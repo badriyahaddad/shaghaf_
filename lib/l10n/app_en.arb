@@ -44,6 +44,12 @@
   "detailsartitsworks": "Artwork",
   "profilescreenappbartitle": "Your Profile",
   "profiletitle": "Your Work",
-  "loremipsum": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  "loremipsum": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  "book": "Book Now",
+  "productscreenappbartitle": "Products",
+  "filterbuttonall": "All",
+  "cartno": "In The Cart :",
+  "servicesappbartitle": "الخدمات",
+  "servicestitle": "المتوفر"
 
 }

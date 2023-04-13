@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../providers/theme_provider.dart';
 import '../../widgets/static_widget/artwork_details_card.dart';
 import '../../widgets/static_widget/artwork_details_image_card.dart';
 
@@ -20,7 +22,11 @@ class ArtWorkDetailsScreen extends StatefulWidget {
 class _ArtWorkDetailsScreenState extends State<ArtWorkDetailsScreen> {
   @override
   Widget build(BuildContext context) {
+    //dark theme mode to listen to the changes when the mode it's changes
+    final themeListener = Provider.of<ThemeProvider>(context, listen: true);
     return Scaffold(
+      backgroundColor:
+          themeListener.isDark ? Colors.grey.shade900 : Colors.grey.shade100,
       extendBodyBehindAppBar: true,
       body: SafeArea(
         child: Stack(

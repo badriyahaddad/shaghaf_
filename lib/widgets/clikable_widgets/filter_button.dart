@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../helpers/const.dart';
+import '../../providers/theme_provider.dart';
 
 class FilterButton extends StatelessWidget {
   const FilterButton(
@@ -12,6 +14,8 @@ class FilterButton extends StatelessWidget {
   final String btnTitle;
   @override
   Widget build(BuildContext context) {
+    //dark theme mode to listen to the changes when the mode it's changes
+    final themeListener = Provider.of<ThemeProvider>(context, listen: true);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
@@ -20,9 +24,14 @@ class FilterButton extends StatelessWidget {
         },
         child: Container(
           decoration: BoxDecoration(
-            color: isSelected ? mainColor : Colors.white,
+            color: isSelected
+                ? (themeListener.isDark ? mainColorDark : mainColor)
+                : (themeListener.isDark
+                    ? backgroundColorDark
+                    : backgroundColor),
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: mainColor),
+            border: Border.all(
+                color: themeListener.isDark ? mainColorDark : mainColor),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(
@@ -32,7 +41,11 @@ class FilterButton extends StatelessWidget {
               child: Text(
                 btnTitle,
                 style: TextStyle(
-                    color: isSelected ? Colors.white : mainColor,
+                    color: isSelected
+                        ? (themeListener.isDark
+                            ? backgroundColorDark
+                            : backgroundColor)
+                        : (themeListener.isDark ? mainColorDark : mainColor),
                     fontWeight: FontWeight.bold),
               ),
             ),

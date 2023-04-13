@@ -4,14 +4,15 @@ import 'package:shaghaf/screens/main_screens/profile_screen.dart';
 import 'package:shaghaf/screens/main_screens/services_screen.dart';
 import 'home_screen.dart';
 
-class BottomTabsNaviScreen extends StatefulWidget {
-  const BottomTabsNaviScreen({super.key});
+class BottomNavigationBarScreen extends StatefulWidget {
+  const BottomNavigationBarScreen({super.key});
 
   @override
-  State<BottomTabsNaviScreen> createState() => _BottomTabsNaviScreenState();
+  State<BottomNavigationBarScreen> createState() =>
+      _BottomNavigationBarScreenState();
 }
 
-class _BottomTabsNaviScreenState extends State<BottomTabsNaviScreen> {
+class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
   int currentIndex = 0;
   void updateIndex(int value) {
     setState(() {

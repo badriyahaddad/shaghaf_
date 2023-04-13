@@ -3,8 +3,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import '../../helpers/const.dart';
 import '../../providers/theme_provider.dart';
-import '../../widgets/static_widget/artworks_card.dart';
-import '../../widgets/static_widget/coustom_appbar.dart';
+import '../../widgets/static_widget/artworks_homescreen_card.dart';
+import '../../widgets/static_widget/coustom_appbar_widget.dart';
 import '../../widgets/static_widget/profile_card.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -28,23 +28,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: CostuomAppBar(
-                  isDetails: false,
-                  iconData: Icons.settings,
-                  isOtherScreens: false,
-                  isHome: true,
-                  profileName: '',
-                  title: AppLocalizations.of(context)!.profilescreenappbartitle,
-                  subTitle: '',
-                ),
+              SizedBox(
+                height: size.height / 70,
+              ),
+              CostuomAppBar(
+                isDetails: false,
+                iconData: const Icon(Icons.settings),
+                isOtherScreens: false,
+                isHome: true,
+                profileName: '',
+                title: AppLocalizations.of(context)!.profilescreenappbartitle,
+                subTitle: '',
+                iconBehavior: () {},
               ),
               SizedBox(
                 height: size.width / 1.3,
                 width: size.width,
                 child: const ProfileCard(
-                  artistImage: "assets/person3.png",
+                  artWorkImage: "assets/person3.png",
                   artistName: "إيمان الورفلي",
                   workCatagory: "رسامة",
                 ),
