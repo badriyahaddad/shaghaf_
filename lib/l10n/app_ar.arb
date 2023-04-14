@@ -50,5 +50,10 @@
   "filterbuttonall": "الكل",
   "cartno": "في السلة :",
   "servicesappbartitle": "الخدمات",
-  "servicestitle": "المتوفر"
+  "servicestitle": "المتوفر",
+  "cartscreentitle": "سلة المشتريات",
+  "total": "اجمالي",
+  "item" : "عنصر",
+  "purchase" : "شراء",
+  "cartisempty" : "لايوجد شيء في السلة !"
 }

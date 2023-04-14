@@ -49,7 +49,12 @@
   "productscreenappbartitle": "Products",
   "filterbuttonall": "All",
   "cartno": "In The Cart :",
-  "servicesappbartitle": "الخدمات",
-  "servicestitle": "المتوفر"
+  "servicesappbartitle": "Services",
+  "servicestitle": "Available",
+  "cartscreentitle": "Shopping Cart",
+  "total": "Total",
+  "item" : "Item",
+  "purchase" : "Purchase",
+  "cartisempty" : "Cart Is Empty"
 
 }

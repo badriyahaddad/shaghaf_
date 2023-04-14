@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:shaghaf/screens/sub_screens/cart_screen.dart';
 import '../../helpers/const.dart';
 import '../../providers/theme_provider.dart';
 import '../../widgets/clikable_widgets/filter_button.dart';
@@ -136,8 +137,8 @@ List product = [
 
 class _ProductScreenState extends State<ProductScreen> {
   int selectedTabIndex = 0;
-
   List cart = [];
+
   @override
   Widget build(BuildContext context) {
     //fake list
@@ -164,7 +165,12 @@ class _ProductScreenState extends State<ProductScreen> {
                 height: size.height / 70,
               ),
               CostuomAppBar(
-                iconBehavior: () {},
+                iconBehavior: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => CartScreen(
+                            cartList: cart,
+                          )));
+                },
                 isDetails: false,
                 iconData: Image.asset(
                   themeListener.isDark
