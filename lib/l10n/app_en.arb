@@ -1,6 +1,6 @@
 {
 "welcomesignuptitle": "Create Your Account",
-  "welcomesignupsubtitle": "Create Your Very First Account, it's only take less than minute",
+  "welcomesignupsubtitle": "Create your very first account, it's only take less than minute",
   "welcomelogintitle": "Welcome",
   "welcomeloginsubtitle": "We are happy to see you again, Enter your email and password",
   "hintemail": "Your Email",
@@ -55,6 +55,26 @@
   "total": "Total",
   "item" : "Item",
   "purchase" : "Purchase",
-  "cartisempty" : "Cart Is Empty"
+  "cartisempty" : "Cart Is Empty",
+  "settings": "Settings",
+  "options" : "Options",
+  "dashbord" : "DashBoard",
+  "editaccountdata": "Edit Account Data",
+  "logout": "Log out",
+  "postno": "Posts Numbers :",
+  "changeyourdatatitle": "Change Your Personal Data :",
+  "changeyourdatasubtitle" : "Change your account personal data, it's only take less than minute",
+  "editbutton": "Edit",
+  "booking": "Booking Histroy",
+  "bookingserv" : "Services That Are Booked",
+  "language" : "Language",
+  "languageenglish" : "English",
+  "languagearabic": "Arabic",
+  "lanuagepickertext": "Choose Your Language:",
+  "views": "Views",
+  "mode" : "Choose Your Mode:",
+"darkmode": "Dark Mode",
+"lightmode": "Light Mode"
 
+   
 }

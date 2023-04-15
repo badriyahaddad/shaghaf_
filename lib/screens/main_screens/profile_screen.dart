@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:shaghaf/screens/sub_screens/settings_screen.dart';
 import '../../helpers/const.dart';
 import '../../providers/theme_provider.dart';
 import '../../widgets/static_widget/artworks_homescreen_card.dart';
@@ -39,7 +40,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 profileName: '',
                 title: AppLocalizations.of(context)!.profilescreenappbartitle,
                 subTitle: '',
-                iconBehavior: () {},
+                iconBehavior: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const SettingScreen()));
+                },
               ),
               SizedBox(
                 height: size.width / 1.3,

@@ -22,7 +22,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
     Size size = MediaQuery.of(context).size;
     //dark theme mode to listen to the changes when the mode it's changes
     final themeListener = Provider.of<ThemeProvider>(context, listen: true);
-    final themeFunction = Provider.of<ThemeProvider>(context, listen: false);
+
     return Container(
       //for the background color
       decoration: BoxDecoration(
@@ -110,15 +110,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                             color: Color.fromARGB(255, 255, 255, 255)),
                       ),
                     ),
-                    IconButton(
-                      icon: Icon(Icons.dark_mode,
-                          color: themeListener.isDark
-                              ? Colors.red
-                              : Colors.purple),
-                      onPressed: () {
-                        themeFunction.switchMode();
-                      },
-                    ),
+
                     //vertical space
                     SizedBox(
                       height: size.height / 30,

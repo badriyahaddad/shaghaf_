@@ -32,8 +32,10 @@ class CostuomAppBar extends StatefulWidget {
 class _CostuomAppBarState extends State<CostuomAppBar> {
   final searchController = TextEditingController();
   bool isFav = false;
+
   @override
   Widget build(BuildContext context) {
+    bool islanguage = AppLocalizations.of(context)!.localeName == 'ar';
     //MediaQuery for more responsive UI
     Size size = MediaQuery.of(context).size;
     //dark theme mode to listen to the changes when the mode it's changes
@@ -47,6 +49,26 @@ class _CostuomAppBarState extends State<CostuomAppBar> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      IconButton(
+                          onPressed: () {
+                            widget.iconBehavior();
+                          },
+                          icon: Image.asset(themeListener.isDark
+                              ? (islanguage
+                                  ? "assets/icons/menue_Drak_ar.png"
+                                  : "assets/icons/menu_dark.png")
+                              : (islanguage
+                                  ? "assets/icons/menue_ar.png"
+                                  : "assets/icons/menu.png"))),
+                      Text(
+                        widget.title,
+                        style: TextStyle(
+                            color: themeListener.isDark
+                                ? titleTextColorDark
+                                : titleTextColor,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
                       CircleAvatar(
                         backgroundColor: Colors.transparent,
                         child: widget.isOtherScreens
@@ -61,22 +83,6 @@ class _CostuomAppBarState extends State<CostuomAppBar> {
                                 },
                               ),
                       ),
-                      Text(
-                        widget.title,
-                        style: TextStyle(
-                            color: themeListener.isDark
-                                ? titleTextColorDark
-                                : titleTextColor,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      IconButton(
-                          onPressed: () {
-                            widget.iconBehavior();
-                          },
-                          icon: Image.asset(themeListener.isDark
-                              ? "assets/icons/menu_dark.png"
-                              : "assets/icons/menu.png")),
                     ],
                   ),
                   SizedBox(
@@ -180,8 +186,13 @@ class _CostuomAppBarState extends State<CostuomAppBar> {
                       Text(
                         widget.title,
                         style: TextStyle(
-                            color:
-                                widget.isDetails ? Colors.white : Colors.black,
+                            color: widget.isDetails
+                                ? (themeListener.isDark
+                                    ? titleTextColor
+                                    : Colors.white)
+                                : (themeListener.isDark
+                                    ? titleTextColorDark
+                                    : Colors.black),
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
