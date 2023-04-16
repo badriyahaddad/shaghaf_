@@ -36,6 +36,7 @@ class _ViewsScreenState extends State<ViewsScreen> {
             height: size.height / 70,
           ),
           CostuomAppBar(
+            menueFunction: () {},
             isDetails: false,
             isHome: false,
             profileName: '',

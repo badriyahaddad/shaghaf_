@@ -74,5 +74,9 @@
   "views": "المظهر",
   "mode" : "اختر الوضع:",
   "darkmode": "وضع الليلي",
-  "lightmode": "وضع النهاري"
+  "lightmode": "وضع النهاري",
+  "editpassword": "تعديل كلمة المرور",
+"editemail": "تعديل البريد الاكتروني",
+"editname" : "تعديل اسمك",
+"bookingartist": "فنان"
 }

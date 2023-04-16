@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:shaghaf/screens/sub_screens/cart_screen.dart';
+
 import '../../helpers/const.dart';
 import '../../providers/theme_provider.dart';
 import '../../widgets/clikable_widgets/filter_button.dart';
-import '../../widgets/static_widget/coustom_appbar_widget.dart';
+
 import '../../widgets/static_widget/product_screen_card.dart';
 
 class ProductScreen extends StatefulWidget {
-  const ProductScreen({super.key});
-
+  const ProductScreen({super.key, required this.cart});
+  final List cart;
   @override
   State<ProductScreen> createState() => _ProductScreenState();
 }
@@ -137,7 +137,6 @@ List product = [
 
 class _ProductScreenState extends State<ProductScreen> {
   int selectedTabIndex = 0;
-  List cart = [];
 
   @override
   Widget build(BuildContext context) {
@@ -161,33 +160,10 @@ class _ProductScreenState extends State<ProductScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: size.height / 70,
-              ),
-              CostuomAppBar(
-                iconBehavior: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) => CartScreen(
-                            cartList: cart,
-                          )));
-                },
-                isDetails: false,
-                iconData: Image.asset(
-                  themeListener.isDark
-                      ? "assets/icons/cartIcon_Dark.png"
-                      : "assets/icons/cartIcon.png",
-                  width: size.width / 5,
-                ),
-                isOtherScreens: false,
-                isHome: true,
-                profileName: '',
-                title: AppLocalizations.of(context)!.productscreenappbartitle,
-                subTitle: '',
-              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Text(
-                  "${AppLocalizations.of(context)!.cartno} ${cart.length}",
+                  "${AppLocalizations.of(context)!.cartno} ${widget.cart.length}",
                   style: TextStyle(
                       color: themeListener.isDark
                           ? titleTextColorDark
@@ -227,7 +203,6 @@ class _ProductScreenState extends State<ProductScreen> {
                     mainAxisSpacing: 16.0,
                     crossAxisSpacing: 16.0,
                   ),
-                  // physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: product.length,
                   itemBuilder: (context, index) {
@@ -238,7 +213,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       productSubTitle: product[index]['productcatagory'],
                       iconBehavior: () {
                         setState(() {
-                          cart.add(product[index]);
+                          widget.cart.add(product[index]);
                         });
                       },
                     );

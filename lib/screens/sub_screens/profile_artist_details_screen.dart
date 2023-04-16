@@ -38,6 +38,7 @@ class _ProfileArtistDetailsScreenState
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: CostuomAppBar(
+                  menueFunction: () {},
                   isDetails: false,
                   isHome: false,
                   profileName: '',

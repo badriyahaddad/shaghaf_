@@ -47,6 +47,7 @@ class _ArtworkDetailsImageCardState extends State<ArtworkDetailsImageCard> {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 15),
           child: CostuomAppBar(
+            menueFunction: () {},
             iconData: const Icon(Icons.arrow_back),
             isDetails: true,
             isHome: false,

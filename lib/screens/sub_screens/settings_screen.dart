@@ -5,6 +5,8 @@ import 'package:shaghaf/helpers/const.dart';
 import 'package:shaghaf/widgets/static_widget/settings_card.dart';
 import '../../providers/theme_provider.dart';
 import '../../widgets/static_widget/coustom_appbar_widget.dart';
+import 'dashboard_screen.dart';
+import 'edit_account_data_screen.dart';
 import 'views_screen.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -32,6 +34,7 @@ class _SettingScreenState extends State<SettingScreen> {
             height: size.height / 70,
           ),
           CostuomAppBar(
+            menueFunction: () {},
             isDetails: false,
             isHome: false,
             profileName: '',
@@ -62,27 +65,33 @@ class _SettingScreenState extends State<SettingScreen> {
             height: size.height / 30,
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
             child: SettingsCard(
               icon: const Icon(Icons.dashboard_rounded),
               nextIcon: const Icon(Icons.navigate_next_rounded),
               title: AppLocalizations.of(context)!.dashbord,
               isLogOutCard: false,
-              iconBehavior: () {},
+              iconBehavior: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const DashboardScreen()));
+              },
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
             child: SettingsCard(
               icon: const Icon(Icons.edit_square),
               nextIcon: const Icon(Icons.navigate_next_rounded),
               title: AppLocalizations.of(context)!.editaccountdata,
               isLogOutCard: false,
-              iconBehavior: () {},
+              iconBehavior: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => const EditAccountDataScreen()));
+              },
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
             child: SettingsCard(
               icon: const Icon(Icons.filter_vintage_outlined),
               nextIcon: const Icon(Icons.navigate_next_rounded),
@@ -95,7 +104,7 @@ class _SettingScreenState extends State<SettingScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
             child: SettingsCard(
               icon: const Icon(Icons.logout_rounded),
               nextIcon: const Icon(Icons.navigate_next_rounded),

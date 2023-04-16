@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:shaghaf/helpers/const.dart';
 import '../../providers/theme_provider.dart';
 import '../../widgets/static_widget/artworks_homescreen_card.dart';
-import '../../widgets/static_widget/coustom_appbar_widget.dart';
 
 class ServicesScreen extends StatefulWidget {
   const ServicesScreen({super.key});
@@ -26,24 +25,6 @@ class _ServicesScreenState extends State<ServicesScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: size.height / 70,
-            ),
-            CostuomAppBar(
-              isDetails: false,
-              iconData: Image.asset(
-                themeListener.isDark
-                    ? "assets/icons/cartIcon_Dark.png"
-                    : "assets/icons/cartIcon.png",
-                width: size.width / 5,
-              ),
-              isOtherScreens: false,
-              isHome: true,
-              profileName: '',
-              title: AppLocalizations.of(context)!.servicesappbartitle,
-              subTitle: '',
-              iconBehavior: () {},
-            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Text(

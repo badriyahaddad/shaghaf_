@@ -49,6 +49,7 @@ class _CommonArtWorkScreenState extends State<CommonArtWorkScreen> {
           Padding(
             padding: const EdgeInsets.only(top: 20),
             child: CostuomAppBar(
+              menueFunction: () {},
               isDetails: false,
               isHome: false,
               iconBehavior: () {

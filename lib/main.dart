@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,10 +22,13 @@ Future<void> main() async {
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
   //to set the language when changes
   static void setLocale(BuildContext context, Locale locale) {
     _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
     state!.setLocale(locale);
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: mainColor));
   }
 
   @override
@@ -43,8 +47,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    //dark theme mode to listen to the changes when the mode it's changes
-    // final themeListener = Provider.of<ThemeProvider>(context, listen: true);
     //provider for the theme of the app
     return MultiProvider(
       providers: [
@@ -56,6 +58,10 @@ class _MyAppState extends State<MyApp> {
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(
+            drawerTheme: DrawerThemeData(
+              backgroundColor:
+                  themeConsumer.isDark ? backgroundColorDark : backgroundColor,
+            ),
             //background screen theme
             scaffoldBackgroundColor:
                 themeConsumer.isDark ? backgroundColorDark : backgroundColor,

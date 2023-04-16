@@ -45,7 +45,9 @@ class FilterButton extends StatelessWidget {
                         ? (themeListener.isDark
                             ? backgroundColorDark
                             : backgroundColor)
-                        : (themeListener.isDark ? mainColorDark : mainColor),
+                        : (themeListener.isDark
+                            ? titleTextColorDark
+                            : mainColor),
                     fontWeight: FontWeight.bold),
               ),
             ),

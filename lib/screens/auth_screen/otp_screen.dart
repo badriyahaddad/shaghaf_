@@ -47,13 +47,21 @@ class _OtpScreenState extends State<OtpScreen> {
                   SizedBox(height: size.height / 8),
                   Text(
                     AppLocalizations.of(context)!.otptitle,
-                    style: const TextStyle(
-                        fontSize: 25, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: themeListener.isDark
+                            ? titleTextColorDark
+                            : titleTextColor,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
                   ),
                   Text(
                     AppLocalizations.of(context)!.otpsubtitle,
-                    style:
-                        const TextStyle(fontSize: 20, color: Color(0xff949494)),
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: themeListener.isDark
+                          ? subTitleColorDark
+                          : subTitleColor,
+                    ),
                   ),
                 ],
               ),
@@ -65,24 +73,29 @@ class _OtpScreenState extends State<OtpScreen> {
               child: PinCodeTextField(
                 appContext: context,
                 enableActiveFill: true,
-                cursorColor: mainColor,
+                cursorColor: themeListener.isDark ? mainColorDark : mainColor,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 pinTheme: PinTheme(
-                  activeColor: mainColor,
-                  activeFillColor: mainColor.withOpacity(0.2),
+                  activeColor: themeListener.isDark ? mainColorDark : mainColor,
+                  activeFillColor: themeListener.isDark
+                      ? mainColorDark.withOpacity(0.2)
+                      : mainColor.withOpacity(0.2),
                   shape: PinCodeFieldShape.box,
                   borderRadius: BorderRadius.circular(16),
                   fieldHeight: 50,
                   fieldWidth: 50,
                   borderWidth: 0.9,
-                  inactiveColor: Colors.grey,
-                  selectedFillColor: const Color.fromARGB(54, 158, 158, 158),
+                  inactiveColor:
+                      themeListener.isDark ? subTitleColorDark : subTitleColor,
+                  selectedFillColor: themeListener.isDark
+                      ? subTitleColorDark.withOpacity(0.2)
+                      : subTitleColor.withOpacity(0.2),
                   inactiveFillColor: const Color.fromARGB(0, 255, 255, 255),
                   disabledColor: const Color.fromARGB(255, 255, 255, 255),
                 ),
                 animationType: AnimationType.fade,
                 pastedTextStyle: TextStyle(
-                  color: mainColor,
+                  color: themeListener.isDark ? mainColorDark : mainColor,
                   fontWeight: FontWeight.bold,
                 ),
                 length: 4,
@@ -96,8 +109,11 @@ class _OtpScreenState extends State<OtpScreen> {
                   Text(
                     //you don't have an account text
                     AppLocalizations.of(context)!.otphelpertextone,
-                    style:
-                        const TextStyle(color: Color(0xff949494), fontSize: 20),
+                    style: TextStyle(
+                        color: themeListener.isDark
+                            ? subTitleColorDark
+                            : subTitleColor,
+                        fontSize: 20),
                   ),
                   GestureDetector(
                     onTap: () {},
@@ -107,7 +123,9 @@ class _OtpScreenState extends State<OtpScreen> {
                           //sign up text
                           AppLocalizations.of(context)!.otphelpertexttwo,
                           style: TextStyle(
-                              color: mainColor,
+                              color: themeListener.isDark
+                                  ? mainColorDark
+                                  : mainColor,
                               fontSize: 20,
                               fontWeight: FontWeight.bold)),
                     ),
@@ -120,7 +138,7 @@ class _OtpScreenState extends State<OtpScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Button(
-                color: mainColor,
+                color: themeListener.isDark ? mainColorDark : mainColor,
                 isActive: true,
                 borderButton: false,
                 loading: false,

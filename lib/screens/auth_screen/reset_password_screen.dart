@@ -17,7 +17,7 @@ class ResetPasswordScreen extends StatefulWidget {
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   // controllers of the textfields
   final passwordController = TextEditingController();
-
+  final confirmPasswordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     //MediaQuery for more responsive UI
@@ -45,13 +45,21 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   SizedBox(height: size.height / 8),
                   Text(
                     AppLocalizations.of(context)!.resetpasswordtitle,
-                    style: const TextStyle(
-                        fontSize: 25, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: themeListener.isDark
+                            ? titleTextColorDark
+                            : titleTextColor,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
                   ),
                   Text(
                     AppLocalizations.of(context)!.resetpasswordsubtitle,
-                    style:
-                        const TextStyle(fontSize: 20, color: Color(0xff949494)),
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: themeListener.isDark
+                          ? subTitleColorDark
+                          : subTitleColor,
+                    ),
                   ),
                 ],
               ),
@@ -63,7 +71,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: TextFieldWidget(
                 isPassword: false,
-                prefix: Image.asset("assets/icons/passwordIcon.png"),
+                prefix: Image.asset(themeListener.isDark
+                    ? "assets/icons/passwordIcon_Dark.png"
+                    : "assets/icons/passwordIcon.png"),
                 textFieldController: passwordController,
                 node: TextInputAction.done,
                 isVisable: false,
@@ -90,8 +100,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: TextFieldWidget(
                 isPassword: false,
-                prefix: Image.asset("assets/icons/passwordIcon.png"),
-                textFieldController: passwordController,
+                prefix: Image.asset(themeListener.isDark
+                    ? "assets/icons/passwordIcon_Dark.png"
+                    : "assets/icons/passwordIcon.png"),
+                textFieldController: confirmPasswordController,
                 node: TextInputAction.done,
                 isVisable: false,
                 hintTxt: AppLocalizations.of(context)!.resetpasswordtextfiletwo,
@@ -115,7 +127,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Button(
-                color: mainColor,
+                color: themeListener.isDark ? mainColorDark : mainColor,
                 isActive: true,
                 borderButton: false,
                 loading: false,

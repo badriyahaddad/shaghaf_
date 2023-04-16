@@ -52,6 +52,7 @@ class _CommonArtistScreenState extends State<CommonArtistScreen> {
           Padding(
             padding: const EdgeInsets.only(top: 20),
             child: CostuomAppBar(
+              menueFunction: () {},
               iconBehavior: () {
                 Navigator.pop(context);
               },

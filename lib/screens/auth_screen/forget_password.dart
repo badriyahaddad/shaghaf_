@@ -48,14 +48,22 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   Text(
                     //title
                     AppLocalizations.of(context)!.forgetpasswordtitle,
-                    style: const TextStyle(
-                        fontSize: 25, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: themeListener.isDark
+                            ? titleTextColorDark
+                            : titleTextColor,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
                   ),
                   //subTitle
                   Text(
                     AppLocalizations.of(context)!.forgetpasswordsubtitle,
-                    style:
-                        const TextStyle(fontSize: 20, color: Color(0xff949494)),
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: themeListener.isDark
+                          ? subTitleColorDark
+                          : subTitleColor,
+                    ),
                   ),
                 ],
               ),
@@ -83,7 +91,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   return null;
                 },
                 obscureText: false,
-                prefix: Image.asset("assets/icons/emailIcon.png"),
+                prefix: Image.asset(themeListener.isDark
+                    ? "assets/icons/emailIcon_Dark.png"
+                    : "assets/icons/emailIcon.png"),
               ),
             ),
             //vertical space

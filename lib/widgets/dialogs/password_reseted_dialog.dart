@@ -32,6 +32,8 @@ class _PasswordRestedDialogState extends State<PasswordRestedDialog> {
     //dark theme mode to listen to the changes when the mode it's changes
     final themeListener = Provider.of<ThemeProvider>(context, listen: true);
     return SimpleDialog(
+      backgroundColor:
+          themeListener.isDark ? backgroundColorDark : backgroundColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       children: [
         SizedBox(

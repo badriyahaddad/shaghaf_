@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:shaghaf/screens/sub_screens/settings_screen.dart';
 import '../../helpers/const.dart';
 import '../../providers/theme_provider.dart';
 import '../../widgets/static_widget/artworks_homescreen_card.dart';
-import '../../widgets/static_widget/coustom_appbar_widget.dart';
 import '../../widgets/static_widget/profile_card.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -29,22 +27,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: size.height / 70,
-              ),
-              CostuomAppBar(
-                isDetails: false,
-                iconData: const Icon(Icons.settings),
-                isOtherScreens: false,
-                isHome: true,
-                profileName: '',
-                title: AppLocalizations.of(context)!.profilescreenappbartitle,
-                subTitle: '',
-                iconBehavior: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => const SettingScreen()));
-                },
-              ),
               SizedBox(
                 height: size.width / 1.3,
                 width: size.width,

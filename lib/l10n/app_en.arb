@@ -74,7 +74,11 @@
   "views": "Views",
   "mode" : "Choose Your Mode:",
 "darkmode": "Dark Mode",
-"lightmode": "Light Mode"
+"lightmode": "Light Mode",
+"editpassword": "Edit Password",
+"editemail": "Edit Email",
+"editname" : "Edit Name",
+"bookingartist": "Artist"
 
    
 }

@@ -16,7 +16,8 @@ class CostuomAppBar extends StatefulWidget {
       required this.iconData,
       required this.isDetails,
       required this.subTitle,
-      required this.iconBehavior});
+      required this.iconBehavior,
+      required this.menueFunction});
   final String profileName;
   final bool isHome;
   final String title;
@@ -25,6 +26,7 @@ class CostuomAppBar extends StatefulWidget {
   final Widget iconData;
   final bool isDetails;
   final Function iconBehavior;
+  final Function menueFunction;
   @override
   State<CostuomAppBar> createState() => _CostuomAppBarState();
 }
@@ -51,7 +53,7 @@ class _CostuomAppBarState extends State<CostuomAppBar> {
                     children: [
                       IconButton(
                           onPressed: () {
-                            widget.iconBehavior();
+                            widget.menueFunction();
                           },
                           icon: Image.asset(themeListener.isDark
                               ? (islanguage

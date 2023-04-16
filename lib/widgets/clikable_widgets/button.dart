@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shaghaf/helpers/const.dart';
+import 'package:shaghaf/providers/theme_provider.dart';
 
 class Button extends StatelessWidget {
   const Button(
@@ -21,6 +24,8 @@ class Button extends StatelessWidget {
   final Color color;
   @override
   Widget build(BuildContext context) {
+    //dark theme mode to listen to the changes when the mode it's changes
+    final themeListener = Provider.of<ThemeProvider>(context, listen: true);
     return loading
         ? const CircularProgressIndicator()
         : SizedBox(
@@ -40,10 +45,14 @@ class Button extends StatelessWidget {
                     width: 2)),
                 backgroundColor: MaterialStateProperty.all(
                   borderButton
-                      ? const Color.fromARGB(255, 255, 255, 255)
+                      ? themeListener.isDark
+                          ? backgroundColorDark
+                          : backgroundColor
                       : isActive!
                           ? color
-                          : color.withOpacity(0.2),
+                          : themeListener.isDark
+                              ? disaabledMainColorDark
+                              : disaabledMainColor,
                 ),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
