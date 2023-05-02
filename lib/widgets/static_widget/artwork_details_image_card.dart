@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'coustom_appbar_widget.dart';
 
 class ArtworkDetailsImageCard extends StatefulWidget {
-  const ArtworkDetailsImageCard(
-      {super.key,
-      required this.artistName,
-      required this.artistIamge,
-      required this.catagory,
-      required this.artistPic});
+  const ArtworkDetailsImageCard({
+    super.key,
+    required this.artistName,
+    required this.artistIamge,
+    required this.catagory,
+    required this.artistPic,
+  });
   final String artistName;
   final String artistIamge;
   final String catagory;
@@ -24,7 +25,7 @@ class _ArtworkDetailsImageCardState extends State<ArtworkDetailsImageCard> {
     Size size = MediaQuery.of(context).size;
     return Stack(
       children: [
-        Image.asset(
+        Image.network(
           widget.artistIamge,
           width: size.width,
           // height: size.height,

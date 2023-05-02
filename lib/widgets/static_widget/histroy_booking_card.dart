@@ -46,7 +46,7 @@ class _HistroyBookingCardState extends State<HistroyBookingCard> {
                 padding: const EdgeInsets.all(8.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16),
-                  child: Image.asset(
+                  child: Image.network(
                     fit: BoxFit.cover,
                     widget.image,
                     width: size.width / 4.5,

@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import '../../helpers/const.dart';
+import '../../providers/auth_provider.dart';
 import '../../providers/theme_provider.dart';
 import '../../widgets/clikable_widgets/button.dart';
 import '../../widgets/input_widget/text_field.dart';
-import '../main_screens/bottom_navigation_bar.dart';
 import 'log_in.dart';
+import 'package:email_validator/email_validator.dart';
 
 //what is it: when the user no account they just need to sign up into the app
 class SignUp extends StatefulWidget {
@@ -32,6 +33,7 @@ class _SignUpState extends State<SignUp> {
     Size size = MediaQuery.of(context).size;
     //dark theme mode to listen to the changes when the mode it's changes
     final themeListener = Provider.of<ThemeProvider>(context, listen: true);
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -136,8 +138,7 @@ class _SignUpState extends State<SignUp> {
                           return AppLocalizations.of(context)!
                               .validtionemptyemail;
                         }
-                        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
-                            .hasMatch(value)) {
+                        if (!EmailValidator.validate(value)) {
                           return AppLocalizations.of(context)!
                               .validtioninvalidemail;
                         }
@@ -231,11 +232,11 @@ class _SignUpState extends State<SignUp> {
                         isActive: enableLoginBtn,
                         onClick: () {
                           if (formkey.currentState!.validate()) {
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                    builder: (_) =>
-                                        const BottomNavigationBarScreen()));
                             setState(() {
+                              authProvider.signUp(
+                                emailController.text.toString().trim(),
+                                passwordController.text.toString().trim(),
+                              );
                               formkey.currentState!.save();
                             });
                           }

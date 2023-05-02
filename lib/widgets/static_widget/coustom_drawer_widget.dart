@@ -5,11 +5,28 @@ import 'package:shaghaf/screens/sub_screens/settings_screen.dart';
 import 'package:shaghaf/widgets/static_widget/settings_card.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../helpers/const.dart';
+import '../../providers/auth_provider.dart';
+import '../../screens/auth_screen/log_in.dart';
 import '../../screens/sub_screens/views_screen.dart';
 
-class CoustomDrawer extends StatelessWidget {
+class CoustomDrawer extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
   const CoustomDrawer({super.key, required this.scaffoldKey});
+
+  @override
+  State<CoustomDrawer> createState() => _CoustomDrawerState();
+}
+
+class _CoustomDrawerState extends State<CoustomDrawer> {
+  void logOut(BuildContext context) async {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    await authProvider.logOut();
+    // ignore: use_build_context_synchronously
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const Login()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +163,9 @@ class CoustomDrawer extends StatelessWidget {
               nextIcon: const Icon(Icons.navigate_next_rounded),
               title: AppLocalizations.of(context)!.logout,
               isLogOutCard: true,
-              iconBehavior: () {},
+              iconBehavior: () {
+                logOut(context);
+              },
             ),
           ),
         ],

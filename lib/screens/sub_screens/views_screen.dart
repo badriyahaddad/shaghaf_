@@ -140,6 +140,7 @@ class _ViewsScreenState extends State<ViewsScreen> {
                 onChanged: (bool value) {
                   setState(() {
                     themeFunction.switchMode();
+                    themeFunction.saveData();
                   });
                 },
               ),

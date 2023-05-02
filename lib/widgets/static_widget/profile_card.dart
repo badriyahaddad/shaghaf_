@@ -44,7 +44,7 @@ class _ProfileCardState extends State<ProfileCard> {
           child: CircleAvatar(
             maxRadius: 50,
             backgroundColor: Colors.transparent,
-            child: Image.asset(
+            child: Image.network(
               widget.artWorkImage,
               fit: BoxFit.cover,
               width: size.width / 1,

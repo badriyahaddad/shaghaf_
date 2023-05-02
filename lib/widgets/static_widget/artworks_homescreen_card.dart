@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
+import 'package:shaghaf/providers/artists_provider.dart';
+import 'package:shaghaf/providers/artwork_provider.dart';
 import 'package:shaghaf/providers/theme_provider.dart';
 import '../../helpers/const.dart';
 import '../../screens/sub_screens/artwork_details_screen.dart';
@@ -16,41 +18,24 @@ class ArtWorkCard extends StatefulWidget {
   State<ArtWorkCard> createState() => _ArtWorkCardState();
 }
 
-//Fake List
-List fakeList = [
-  {
-    "image": "assets/artwork1.png",
-    "name": "محمد الحداد",
-    "catagory": "رسام",
-    "artistpic": "assets/person2.png",
-  },
-  {
-    "image": "assets/artwork2.png",
-    "name": "ايمان الورفلي",
-    "catagory": "رسامة",
-    "artistpic": "assets/person3.png",
-  },
-  {
-    "image": "assets/artwork3.png",
-    "name": "نور محمد",
-    "catagory": "خياطة",
-    "artistpic": "assets/person1.png",
-  },
-  {
-    "image": "assets/artwork4.png",
-    "name": "ايمن الحجازي",
-    "catagory": "مصور فوتوغرافي",
-    "artistpic": "assets/person4.png",
-  }
-];
-
 class _ArtWorkCardState extends State<ArtWorkCard> {
+  @override
+  void initState() {
+    Provider.of<ArtworkProvider>(context, listen: false)
+        .loadArtWorkItemsFromFirestore();
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     //MediaQuery for more responsive UI
     Size size = MediaQuery.of(context).size;
     //dark theme mode to listen to the changes when the mode it's changes
     final themeListener = Provider.of<ThemeProvider>(context, listen: true);
+    final artworkListener =
+        Provider.of<ArtworkProvider>(context, listen: false);
+    final artistListenr = Provider.of<ArtistProvider>(context, listen: false);
     return Column(
       children: [
         Padding(
@@ -97,17 +82,18 @@ class _ArtWorkCardState extends State<ArtWorkCard> {
               crossAxisSpacing: 10,
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemCount: fakeList.length,
+              itemCount: artworkListener.items.length,
               crossAxisCount: 2,
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (_) => ArtWorkDetailsScreen(
-                              artistIamge: fakeList[index]["image"],
-                              artistName: fakeList[index]["name"],
-                              catagory: fakeList[index]["catagory"],
-                              artistPic: fakeList[index]["artistpic"],
+                              artistIamge: artworkListener.items[index].image,
+                              artistName:
+                                  artworkListener.items[index].artistName,
+                              catagory: artworkListener.items[index].catagoryAr,
+                              artistPic: artistListenr.items[index].artistImage,
                             )));
                   },
                   child: GridViewCard(

@@ -1,12 +1,13 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:shaghaf/providers/auth_provider.dart';
 import 'package:shaghaf/screens/auth_screen/sign_up.dart';
 import '../../helpers/const.dart';
 import '../../providers/theme_provider.dart';
 import '../../widgets/clikable_widgets/button.dart';
 import '../../widgets/input_widget/text_field.dart';
-import '../main_screens/bottom_navigation_bar.dart';
 
 //what is it: when the user has already an account they just need to sign in into the app
 class Login extends StatefulWidget {
@@ -20,17 +21,19 @@ class _LoginState extends State<Login> {
   // controllers of the textfields
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final nameController = TextEditingController();
+
   //key form for the textfield
   final formkey = GlobalKey<FormState>();
   //variable to preform the validate function to check wether the textfields values are valid or not!
   bool enableLoginBtn = false;
+
   @override
   Widget build(BuildContext context) {
     //MediaQuery for more responsive UI
     Size size = MediaQuery.of(context).size;
     //dark theme mode to listen to the changes when the mode it's changes
     final themeListener = Provider.of<ThemeProvider>(context, listen: true);
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -106,9 +109,7 @@ class _LoginState extends State<Login> {
                           return AppLocalizations.of(context)!
                               .validtionemptyemail;
                         }
-                        if (!RegExp(
-                                "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]+.com")
-                            .hasMatch(value)) {
+                        if (!EmailValidator.validate(value)) {
                           return AppLocalizations.of(context)!
                               .validtioninvalidemail;
                         }
@@ -201,12 +202,12 @@ class _LoginState extends State<Login> {
                         isActive: enableLoginBtn,
                         onClick: () {
                           if (formkey.currentState!.validate()) {
-                            //pushReplacement: user cannot go back here after loggin in
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                    builder: (_) =>
-                                        const BottomNavigationBarScreen()));
                             setState(() {
+                              authProvider.logIn(
+                                  emailController.text.toString().trim(),
+                                  passwordController.text.toString().trim(),
+                                  context);
+
                               formkey.currentState!.save();
                             });
                           }

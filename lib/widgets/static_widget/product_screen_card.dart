@@ -43,7 +43,7 @@ class _ProductScreenCardState extends State<ProductScreenCard> {
               SizedBox(
                 height: size.width / 60,
               ),
-              Image.asset(
+              Image.network(
                 widget.productImage,
                 width: size.width / 7,
               ),

@@ -7,11 +7,10 @@ class CommonArtistCard extends StatefulWidget {
   const CommonArtistCard(
       {super.key,
       required this.artistName,
-      required this.artistIamge,
       required this.catagory,
       required this.artistPic});
   final String artistName;
-  final String artistIamge;
+
   final String catagory;
   final String artistPic;
   @override
@@ -36,7 +35,7 @@ class _CommonArtistCardState extends State<CommonArtistCard> {
           SizedBox(
             height: size.width / 60,
           ),
-          Image.asset(
+          Image.network(
             widget.artistPic,
             width: size.width / 4,
           ),

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:shaghaf/models/cart_model.dart';
+
 import '../../helpers/const.dart';
+import '../../providers/cart_provider.dart';
 import '../../providers/theme_provider.dart';
 import '../../widgets/static_widget/cart_card.dart';
 import '../../widgets/static_widget/coustom_appbar_widget.dart';
 
 class CartScreen extends StatefulWidget {
-  const CartScreen({super.key, required this.cartList});
-  final List cartList;
+  const CartScreen({super.key});
+
   @override
   State<CartScreen> createState() => _CartScreenState();
 }
@@ -18,11 +21,13 @@ class _CartScreenState extends State<CartScreen> {
   @override
   void initState() {
     super.initState();
+
     _generateCountMap();
   }
 
   void _generateCountMap() {
-    for (var item in widget.cartList) {
+    for (var item
+        in Provider.of<CartProvider>(context, listen: false).cartList) {
       if (countMap.containsKey(item)) {
         countMap[item] += 1;
       } else {
@@ -33,11 +38,18 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List uniqueItems = widget.cartList.toSet().toList();
+    List<CartModel> uniqueItems =
+        Provider.of<CartProvider>(context, listen: false)
+            .cartList
+            .toSet()
+            .toList();
+
     //MediaQuery for more responsive UI
     Size size = MediaQuery.of(context).size;
     //dark theme mode to listen to the changes when the mode it's changes
     final themeListener = Provider.of<ThemeProvider>(context, listen: true);
+    final cartListener = Provider.of<CartProvider>(context, listen: false);
+
     return Scaffold(
         body: SafeArea(
             child: SingleChildScrollView(
@@ -79,7 +91,7 @@ class _CartScreenState extends State<CartScreen> {
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              " ${widget.cartList.length} ${AppLocalizations.of(context)!.item}",
+                              " ${cartListener.cartList.length} ${AppLocalizations.of(context)!.item}",
                               style: TextStyle(
                                 color: themeListener.isDark
                                     ? subTitleColorDark
@@ -94,7 +106,7 @@ class _CartScreenState extends State<CartScreen> {
                               thickness: 1,
                               height: 20,
                             ),
-                            widget.cartList.isEmpty
+                            cartListener.cartList.isEmpty
                                 ? Text(
                                     AppLocalizations.of(context)!.cartisempty,
                                     style: TextStyle(
@@ -111,17 +123,38 @@ class _CartScreenState extends State<CartScreen> {
                                         const NeverScrollableScrollPhysics(),
                                     itemBuilder: (context, index) {
                                       final item = uniqueItems[index];
-                                      final count = countMap[item] ?? 0;
+                                      int count = countMap[item] ?? 0;
+
                                       return CartCard(
-                                        producTitle: uniqueItems[index]
-                                            ['producttitle'],
-                                        productImage: uniqueItems[index]
-                                            ['productimage'],
-                                        productPrice: uniqueItems[index]
-                                            ['productprice'],
-                                        productSubTitle: uniqueItems[index]
-                                            ['productcatagory'],
+                                        producTitle:
+                                            AppLocalizations.of(context)!
+                                                        .localeName ==
+                                                    'ar'
+                                                ? uniqueItems[index].titleAr
+                                                : uniqueItems[index].titleEn,
+                                        productImage: uniqueItems[index].image,
+                                        productPrice: uniqueItems[index].price,
+                                        productSubTitle:
+                                            AppLocalizations.of(context)!
+                                                        .localeName ==
+                                                    'ar'
+                                                ? uniqueItems[index].catagoryAr
+                                                : uniqueItems[index].catagoryEn,
                                         noOfDoublecated: count,
+                                        minusIconBehavier: () {
+                                          setState(() {
+                                            uniqueItems[index].price -=
+                                                item.price;
+                                          });
+                                        },
+                                        plusIconBehavier: () {
+                                          setState(() {
+                                            // cartListener.cartList[index].price *
+
+                                            uniqueItems[index].price +=
+                                                item.price;
+                                          });
+                                        },
                                       );
                                     },
                                   )

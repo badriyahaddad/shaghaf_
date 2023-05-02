@@ -5,22 +5,22 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ThemeProvider with ChangeNotifier {
   bool isDark = false;
 
-  switchMode() {
+  Future<void> switchMode() async {
     isDark = !isDark;
-    saveData();
+    await saveData();
+    setTheme();
     //every change must be notified to the main root and injected into the whole app in provider
     notifyListeners();
   }
 
-  void saveData() async {
+  Future<void> saveData() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('isDark', isDark);
-    setTheme();
   }
 
 //set the theme through get theme
   setTheme() {
-    getTheme();
+    return getTheme();
   }
 
 //get theme to get

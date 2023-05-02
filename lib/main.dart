@@ -4,11 +4,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'package:shaghaf/providers/artists_provider.dart';
+import 'package:shaghaf/providers/artwork_provider.dart';
+import 'package:shaghaf/providers/auth_provider.dart';
+import 'package:shaghaf/providers/cart_provider.dart';
 import 'package:shaghaf/providers/theme_provider.dart';
-import 'package:shaghaf/screens/auth_screen/get_started_screen.dart';
+import 'package:shaghaf/services/screen_router.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
-
 import 'helpers/const.dart';
 
 Future<void> main() async {
@@ -51,6 +55,10 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        ChangeNotifierProvider(create: (context) => AuthProvider()),
+        ChangeNotifierProvider(create: (context) => CartProvider()),
+        ChangeNotifierProvider(create: (context) => ArtworkProvider()),
+        ChangeNotifierProvider(create: (context) => ArtistProvider()),
       ],
       //to consume the changes
       child: Consumer<ThemeProvider>(builder: (context, themeConsumer, _) {
@@ -95,7 +103,7 @@ class _MyAppState extends State<MyApp> {
           ],
           locale: _locale,
           //first screen after splash screen
-          home: const GetStartedScreen(),
+          home: const ScreenRouter(),
         );
       }),
     );

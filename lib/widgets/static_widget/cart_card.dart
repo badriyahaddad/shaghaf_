@@ -4,21 +4,25 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../helpers/const.dart';
 import '../../providers/theme_provider.dart';
 
+// ignore: must_be_immutable
 class CartCard extends StatefulWidget {
-  const CartCard(
-      {super.key,
-      required this.productImage,
-      required this.producTitle,
-      required this.productSubTitle,
-      required this.productPrice,
-      this.iconBehavior,
-      required this.noOfDoublecated});
+  CartCard({
+    super.key,
+    required this.productImage,
+    required this.producTitle,
+    required this.productSubTitle,
+    required this.productPrice,
+    required this.plusIconBehavier,
+    required this.noOfDoublecated,
+    required this.minusIconBehavier,
+  });
   final String productImage;
   final String producTitle;
   final String productSubTitle;
-  final String productPrice;
-  final Function? iconBehavior;
-  final int noOfDoublecated;
+  final int productPrice;
+  final Function plusIconBehavier;
+  final Function minusIconBehavier;
+  int noOfDoublecated;
   @override
   State<CartCard> createState() => _CartCardState();
 }
@@ -30,6 +34,7 @@ class _CartCardState extends State<CartCard> {
     Size size = MediaQuery.of(context).size;
     //dark theme mode to listen to the changes when the mode it's changes
     final themeListener = Provider.of<ThemeProvider>(context, listen: true);
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -45,7 +50,7 @@ class _CartCardState extends State<CartCard> {
                 top: 20,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
+                  child: Image.network(
                     widget.productImage,
                     width: size.width / 5,
                     height: size.width / 5,
@@ -54,8 +59,9 @@ class _CartCardState extends State<CartCard> {
               ),
               Positioned(
                 top: 30,
-                right:
-                    AppLocalizations.of(context)!.localeName == 'ar' ? 100 : 12,
+                right: AppLocalizations.of(context)!.localeName == 'ar'
+                    ? 100
+                    : 150,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -90,13 +96,13 @@ class _CartCardState extends State<CartCard> {
               Positioned(
                 top: 10,
                 left:
-                    AppLocalizations.of(context)!.localeName == 'ar' ? 10 : 100,
+                    AppLocalizations.of(context)!.localeName == 'ar' ? 10 : 300,
                 child: CircleAvatar(
                   backgroundColor: themeListener.isDark
                       ? backgroundColorDark
                       : backgroundColor,
                   child: Text(
-                    "${widget.noOfDoublecated}",
+                    widget.noOfDoublecated.toString(),
                     style: TextStyle(
                       color: themeListener.isDark
                           ? titleTextColorDark
@@ -110,7 +116,7 @@ class _CartCardState extends State<CartCard> {
                   bottom: 10,
                   left: AppLocalizations.of(context)!.localeName == 'ar'
                       ? 10
-                      : 100,
+                      : 200,
                   child: Row(
                     children: [
                       Container(
@@ -121,7 +127,11 @@ class _CartCardState extends State<CartCard> {
                                   ? subTitleColor.withOpacity(0.5)
                                   : subTitleColorDark.withOpacity(0.5),
                               borderRadius: BorderRadius.circular(8)),
-                          child: const Icon(Icons.add)),
+                          child: GestureDetector(
+                              onTap: () {
+                                widget.plusIconBehavier();
+                              },
+                              child: const Icon(Icons.add))),
                       SizedBox(
                         width: size.width / 50,
                       ),
@@ -152,7 +162,13 @@ class _CartCardState extends State<CartCard> {
                                   ? subTitleColor.withOpacity(0.5)
                                   : subTitleColorDark.withOpacity(0.5),
                               borderRadius: BorderRadius.circular(8)),
-                          child: const Icon(Icons.remove)),
+                          child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  widget.minusIconBehavier();
+                                });
+                              },
+                              child: const Icon(Icons.remove))),
                     ],
                   ))
             ],

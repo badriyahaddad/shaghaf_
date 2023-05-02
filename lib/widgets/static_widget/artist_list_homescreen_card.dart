@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+
 import 'package:shaghaf/providers/theme_provider.dart';
 import '../../helpers/const.dart';
+import '../../providers/artists_provider.dart';
 import '../../screens/sub_screens/common_artist_screen.dart';
 import '../../screens/sub_screens/profile_artist_details_screen.dart';
 
@@ -13,25 +15,21 @@ class ArtistListCard extends StatefulWidget {
   State<ArtistListCard> createState() => _ArtistListCardState();
 }
 
-//Fake List
-List fakeList = [
-  {"image": "assets/person1.png", "name": "نور محمد", "catagory": "خياطة"},
-  {"image": "assets/person2.png", "name": "محمد الحداد", "catagory": "رسام"},
-  {"image": "assets/person3.png", "name": "ايمان الورفلي", "catagory": "رسامة"},
-  {
-    "image": "assets/person4.png",
-    "name": "ايمن الحجازي",
-    "catagory": "مصور فوتوغرافي"
-  },
-];
-
 class _ArtistListCardState extends State<ArtistListCard> {
+  @override
+  void initState() {
+    Provider.of<ArtistProvider>(context, listen: false)
+        .loadArtistFromFirestore();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     //MediaQuery for more responsive UI
     Size size = MediaQuery.of(context).size;
     //dark theme mode to listen to the changes when the mode it's changes
     final themeListener = Provider.of<ThemeProvider>(context, listen: true);
+    final artistListener = Provider.of<ArtistProvider>(context, listen: false);
     return Column(
       children: [
         Padding(
@@ -76,22 +74,25 @@ class _ArtistListCardState extends State<ArtistListCard> {
               scrollDirection: Axis.horizontal,
               physics: const AlwaysScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemCount: fakeList.length,
+              itemCount: artistListener.items.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (_) => ProfileArtistDetailsScreen(
-                              artWorkImage: fakeList[index]["image"],
-                              artistName: fakeList[index]["name"],
-                              workCatagory: fakeList[index]["catagory"],
+                              artWorkImage:
+                                  artistListener.items[index].artistImage,
+                              artistName:
+                                  artistListener.items[index].artistName,
+                              workCatagory:
+                                  artistListener.items[index].catagoryAr,
                             )));
                   },
                   child: CircleAvatar(
                     backgroundColor: Colors.transparent,
                     maxRadius: 50,
-                    child: Image.asset(
-                      fakeList[index]["image"],
+                    child: Image.network(
+                      artistListener.items[index].artistImage,
                       fit: BoxFit.cover,
                     ),
                   ),

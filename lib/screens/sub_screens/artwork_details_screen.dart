@@ -44,7 +44,7 @@ class _ArtWorkDetailsScreenState extends State<ArtWorkDetailsScreen> {
                 child: ArtworkDetailsCard(
                   artistIamge: widget.artistIamge,
                   artistName: widget.artistName,
-                  artistPic: widget.artistPic,
+                  artistPic: widget.artistIamge,
                   catagory: widget.catagory,
                 ),
               )),
