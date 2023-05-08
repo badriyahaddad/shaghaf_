@@ -50,6 +50,11 @@ dependencies:
     sdk: flutter
   intl: 
   pin_code_fields:
+  image_cropper: 
+  image_picker: 
+  flutter_image_compress: 
+  firebase_storage: 
+  path_provider: 
 flutter_native_splash:
   color: "#F8EED3"
   image: assets/logof.png  

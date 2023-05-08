@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shaghaf/helpers/const.dart';
 import 'package:shaghaf/providers/theme_provider.dart';
+import 'package:shaghaf/screens/sub_screens/add_form_artwork_screen.dart';
 
 class FloatingButton extends StatefulWidget {
   const FloatingButton({super.key});
@@ -17,7 +18,10 @@ class _FloatingButtonState extends State<FloatingButton> {
     final themeListener = Provider.of<ThemeProvider>(context, listen: true);
     return FloatingActionButton(
       backgroundColor: themeListener.isDark ? mainColorDark : mainColor,
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (_) => const AddFormArtworkScreen()));
+      },
       child: Icon(
         Icons.add,
         color: themeListener.isDark ? backgroundColorDark : backgroundColor,

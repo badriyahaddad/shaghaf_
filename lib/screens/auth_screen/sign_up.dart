@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:shaghaf/screens/auth_screen/who_are_you_screen.dart';
 import '../../helpers/const.dart';
-import '../../providers/auth_provider.dart';
 import '../../providers/theme_provider.dart';
 import '../../widgets/clikable_widgets/button.dart';
 import '../../widgets/input_widget/text_field.dart';
@@ -33,7 +33,6 @@ class _SignUpState extends State<SignUp> {
     Size size = MediaQuery.of(context).size;
     //dark theme mode to listen to the changes when the mode it's changes
     final themeListener = Provider.of<ThemeProvider>(context, listen: true);
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -98,6 +97,7 @@ class _SignUpState extends State<SignUp> {
                     SizedBox(height: size.height / 70),
                     //textfield name
                     TextFieldWidget(
+                      isDiscription: false,
                       prefix: Image.asset(themeListener.isDark
                           ? "assets/icons/nameIcon_Dark.png"
                           : "assets/icons/nameIcon.png"),
@@ -127,6 +127,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     //textfield email
                     TextFieldWidget(
+                      isDiscription: false,
                       isPassword: false,
                       textFieldController: emailController,
                       node: TextInputAction.next,
@@ -155,6 +156,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     // textfield password
                     TextFieldWidget(
+                      isDiscription: false,
                       isPassword: false,
                       prefix: Image.asset(themeListener.isDark
                           ? "assets/icons/passwordIcon_Dark.png"
@@ -233,10 +235,19 @@ class _SignUpState extends State<SignUp> {
                         onClick: () {
                           if (formkey.currentState!.validate()) {
                             setState(() {
-                              authProvider.signUp(
-                                emailController.text.toString().trim(),
-                                passwordController.text.toString().trim(),
-                              );
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (_) => WhoAreYouScreen(
+                                        emailController: emailController.text
+                                            .toString()
+                                            .trim(),
+                                        nameController: nameController.text
+                                            .toString()
+                                            .trim(),
+                                        passwordController: passwordController
+                                            .text
+                                            .toString()
+                                            .trim(),
+                                      )));
                               formkey.currentState!.save();
                             });
                           }

@@ -19,6 +19,7 @@ class TextFieldWidget extends StatefulWidget {
     required this.textFieldController,
     required this.prefix,
     required this.isPassword,
+    required this.isDiscription,
   });
   final Function validtion;
   final TextInputType keyboardType;
@@ -29,6 +30,7 @@ class TextFieldWidget extends StatefulWidget {
   final TextInputAction node;
   final Widget? prefix;
   final bool isPassword;
+  final bool isDiscription;
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
 }
@@ -40,6 +42,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     final themeListener = Provider.of<ThemeProvider>(context, listen: true);
 
     return TextFormField(
+      maxLines: widget.isDiscription ? 5 : 1,
       style: TextStyle(
           color: themeListener.isDark ? titleTextColorDark : titleTextColor),
       // inputFormatters: [

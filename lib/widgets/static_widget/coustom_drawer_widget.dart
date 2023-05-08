@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shaghaf/providers/theme_provider.dart';
+
 import 'package:shaghaf/screens/sub_screens/settings_screen.dart';
 import 'package:shaghaf/widgets/static_widget/settings_card.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../helpers/const.dart';
 import '../../providers/auth_provider.dart';
-import '../../screens/auth_screen/log_in.dart';
+
+import '../../screens/auth_screen/get_started_screen.dart';
 import '../../screens/sub_screens/views_screen.dart';
 
 class CoustomDrawer extends StatefulWidget {
@@ -18,16 +20,6 @@ class CoustomDrawer extends StatefulWidget {
 }
 
 class _CoustomDrawerState extends State<CoustomDrawer> {
-  void logOut(BuildContext context) async {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
-    await authProvider.logOut();
-    // ignore: use_build_context_synchronously
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const Login()),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     //MediaQuery for more responsive UI
@@ -35,6 +27,7 @@ class _CoustomDrawerState extends State<CoustomDrawer> {
     //dark theme mode to listen to the changes when the mode it's changes
     final themeListener = Provider.of<ThemeProvider>(context, listen: true);
     final themeFunction = Provider.of<ThemeProvider>(context, listen: false);
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     return Drawer(
       child: SingleChildScrollView(
           child: SafeArea(
@@ -164,7 +157,9 @@ class _CoustomDrawerState extends State<CoustomDrawer> {
               title: AppLocalizations.of(context)!.logout,
               isLogOutCard: true,
               iconBehavior: () {
-                logOut(context);
+                authProvider.logOut();
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => const GetStartedScreen()));
               },
             ),
           ),

@@ -22,8 +22,12 @@ class CartProvider with ChangeNotifier {
   //   notifyListeners();
   // }
 
-  Future<void> loadCartItemsFromFirestore() async {
-    final cartItemsRef = FirebaseFirestore.instance.collection('cart');
+  Future<void> loadCartItemsFromFirestore(String? query) async {
+    final cartItemsRef = query == null
+        ? FirebaseFirestore.instance.collection('cart')
+        : FirebaseFirestore.instance
+            .collection('cart')
+            .where('catagoryAr', isEqualTo: query);
     final cartItemsSnapshot = await cartItemsRef.get();
     final cartItemsData = cartItemsSnapshot.docs;
     final List<CartModel> loadedCartItems = [];

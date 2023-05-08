@@ -98,6 +98,7 @@ class _LoginState extends State<Login> {
                     SizedBox(height: size.height / 70),
                     //textfield email
                     TextFieldWidget(
+                      isDiscription: false,
                       isPassword: false,
                       textFieldController: emailController,
                       node: TextInputAction.next,
@@ -126,6 +127,7 @@ class _LoginState extends State<Login> {
                     ),
                     //textfield password
                     TextFieldWidget(
+                      isDiscription: false,
                       isPassword: true,
                       prefix: Image.asset(themeListener.isDark
                           ? "assets/icons/passwordIcon_Dark.png"

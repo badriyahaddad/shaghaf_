@@ -6,20 +6,22 @@ import 'dart:convert';
 
 class ArtWorkModel {
   ArtWorkModel({
-    required this.artistName,
-    required this.catagoryAr,
-    required this.catagoryEn,
-    required this.discription,
-    required this.image,
-    required this.price,
+    this.artistName,
+    this.catagoryAr,
+    this.catagoryEn,
+    this.discription,
+    this.image,
+    this.uid,
+    this.price,
   });
 
-  String artistName;
-  String catagoryAr;
-  String catagoryEn;
-  String discription;
-  String image;
-  int price;
+  String? artistName;
+  String? catagoryAr;
+  String? catagoryEn;
+  String? discription;
+  String? image;
+  String? uid;
+  dynamic price;
 
   factory ArtWorkModel.fromRawJson(String str) =>
       ArtWorkModel.fromJson(json.decode(str));
@@ -33,6 +35,7 @@ class ArtWorkModel {
         discription: json["discription"],
         image: json["image"],
         price: json["price"],
+        uid: json["uid"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -42,5 +45,18 @@ class ArtWorkModel {
         "discription": discription,
         "image": image,
         "price": price,
+        "uid": uid,
       };
+  // sending data to our server
+  Map<String, dynamic> toMap() {
+    return {
+      "artistName": artistName,
+      "catagoryAr": catagoryAr,
+      "catagoryEn": catagoryEn,
+      "discription": discription,
+      "image": image,
+      "price": price,
+      "uid": uid,
+    };
+  }
 }

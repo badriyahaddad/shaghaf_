@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -8,6 +9,7 @@ class ArtworkProvider with ChangeNotifier {
   bool isFav = false;
   bool isFailed = false;
   bool isLoading = false;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   Future<void> isFaverite() async {
     isFav = !isFav;
     await saveData();
@@ -27,14 +29,14 @@ class ArtworkProvider with ChangeNotifier {
     isLoading = true;
 
     isFailed = false;
-    final cartItemsRef = FirebaseFirestore.instance.collection('artwork');
-    final cartItemsSnapshot = await cartItemsRef.get();
-    final cartItemsData = cartItemsSnapshot.docs;
-    final List<ArtWorkModel> loadedCartItems = [];
-    for (var doc in cartItemsData) {
-      loadedCartItems.add(ArtWorkModel.fromJson(doc.data()));
+    final artworkItemsRef = FirebaseFirestore.instance.collection('artwork');
+    final artworkItemsSnapshot = await artworkItemsRef.get();
+    final artworkItemsData = artworkItemsSnapshot.docs;
+    final List<ArtWorkModel> loadedartworkItems = [];
+    for (var doc in artworkItemsData) {
+      loadedartworkItems.add(ArtWorkModel.fromJson(doc.data()));
     }
-    items = loadedCartItems;
+    items = loadedartworkItems;
 
     isLoading = false;
     isFailed = true;
@@ -43,5 +45,29 @@ class ArtworkProvider with ChangeNotifier {
     if (kDebugMode) {
       print('Loaded ${items.length} artwork items from Firestore');
     }
+  }
+
+  postDetailsToFirestore(String price, String image, String discription,
+      String catagoryAr, String catagoryEn) async {
+    // calling our firestore
+    // calling our user model
+    // sedning these values
+
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    User? user = _auth.currentUser;
+    ArtWorkModel artWorkModel = ArtWorkModel();
+    // writing all the values
+
+    artWorkModel.uid = user!.uid;
+    artWorkModel.price = price;
+    artWorkModel.image = image;
+    artWorkModel.discription = discription;
+    artWorkModel.catagoryEn = catagoryEn;
+    artWorkModel.catagoryAr = catagoryAr;
+    await firebaseFirestore
+        .collection("artwork")
+        .doc(user.uid)
+        .set(artWorkModel.toMap());
+    notifyListeners();
   }
 }

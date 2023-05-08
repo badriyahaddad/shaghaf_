@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shaghaf/models/filter_model.dart';
 
 //--------------------Colors---------------------------------
 
@@ -30,3 +31,6 @@ Color successDark = const Color.fromARGB(255, 132, 255, 83);
 
 //--------------------Duration--------------------------------
 Duration animationDuration = const Duration(milliseconds: 200);
+//-------------------------------------------------------------
+String imageUrl = "";
+FilterModel? selectedItem;

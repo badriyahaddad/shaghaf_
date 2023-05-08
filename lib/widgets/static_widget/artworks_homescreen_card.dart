@@ -89,10 +89,10 @@ class _ArtWorkCardState extends State<ArtWorkCard> {
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (_) => ArtWorkDetailsScreen(
-                              artistIamge: artworkListener.items[index].image,
+                              artistIamge: artworkListener.items[index].image!,
                               artistName:
-                                  artworkListener.items[index].artistName,
-                              catagory: artworkListener.items[index].catagoryAr,
+                                  artworkListener.items[index].artistName!,
+                              catagory: artworkListener.items[index].catagoryAr!,
                               artistPic: artistListenr.items[index].artistImage,
                             )));
                   },

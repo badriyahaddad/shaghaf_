@@ -4,11 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:shaghaf/providers/artists_provider.dart';
 import 'package:shaghaf/providers/artwork_provider.dart';
 import 'package:shaghaf/providers/auth_provider.dart';
 import 'package:shaghaf/providers/cart_provider.dart';
+import 'package:shaghaf/providers/filter_provider.dart';
 import 'package:shaghaf/providers/theme_provider.dart';
 import 'package:shaghaf/services/screen_router.dart';
 import 'firebase_options.dart';
@@ -51,7 +51,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    //provider for the theme of the app
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
@@ -59,9 +58,12 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => CartProvider()),
         ChangeNotifierProvider(create: (context) => ArtworkProvider()),
         ChangeNotifierProvider(create: (context) => ArtistProvider()),
+        ChangeNotifierProvider(create: (context) => FilterProvider()),
       ],
       //to consume the changes
       child: Consumer<ThemeProvider>(builder: (context, themeConsumer, _) {
+        Provider.of<ThemeProvider>(context, listen: false).getTheme();
+
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',

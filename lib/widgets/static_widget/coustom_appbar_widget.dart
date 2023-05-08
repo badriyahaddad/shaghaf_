@@ -142,6 +142,7 @@ class _CostuomAppBarState extends State<CostuomAppBar> {
                             SizedBox(
                               width: size.width,
                               child: TextFieldWidget(
+                                isDiscription: false,
                                 isPassword: false,
                                 prefix: Image.asset(themeListener.isDark
                                     ? "assets/icons/serachIcon_Dark.png"

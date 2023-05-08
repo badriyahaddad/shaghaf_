@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:shaghaf/providers/cart_provider.dart';
+import 'package:shaghaf/providers/filter_provider.dart';
 
 import '../../helpers/const.dart';
 import '../../providers/theme_provider.dart';
@@ -21,7 +22,9 @@ class _ProductScreenState extends State<ProductScreen> {
   @override
   void initState() {
     Provider.of<CartProvider>(context, listen: false)
-        .loadCartItemsFromFirestore();
+        .loadCartItemsFromFirestore(null);
+    Provider.of<FilterProvider>(context, listen: false)
+        .loadFilterFromFirestore();
     Provider.of<CartProvider>(context, listen: false).cartList.clear();
     super.initState();
   }
@@ -29,24 +32,16 @@ class _ProductScreenState extends State<ProductScreen> {
   int counter = 0;
   @override
   Widget build(BuildContext context) {
-    //fake list
-    List filters = [
-      AppLocalizations.of(context)!.filterbuttonall,
-      "كتب",
-      "كاميرا",
-      "ادوات الخياطة",
-      "موسيقى"
-    ];
-
     //MediaQuery for more responsive UI
     Size size = MediaQuery.of(context).size;
     //dark theme mode to listen to the changes when the mode it's changes
     final themeListener = Provider.of<ThemeProvider>(context, listen: true);
+    final filterListener = Provider.of<FilterProvider>(context, listen: true);
     return Scaffold(
       body: Consumer<CartProvider>(builder: (context, cartConsumer, _) {
         return RefreshIndicator(
           onRefresh: () async {
-            cartConsumer.loadCartItemsFromFirestore();
+            cartConsumer.loadCartItemsFromFirestore(null);
           },
           child: SafeArea(
             child: SingleChildScrollView(
@@ -86,15 +81,24 @@ class _ProductScreenState extends State<ProductScreen> {
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         shrinkWrap: true,
-                        itemCount: filters.length,
+                        itemCount: filterListener.items.length,
                         itemBuilder: (context, index) {
                           return FilterButton(
-                            btnTitle: filters[index],
+                            btnTitle:
+                                AppLocalizations.of(context)!.localeName == 'ar'
+                                    ? filterListener.items[index].catagoryAr
+                                    : filterListener.items[index].catagoryEn,
                             isSelected: selectedTabIndex == index,
                             onClick: () {
                               setState(() {
                                 selectedTabIndex = index;
                               });
+                              Provider.of<CartProvider>(context, listen: false)
+                                  .loadCartItemsFromFirestore(filterListener
+                                              .items[index].catagoryAr ==
+                                          "الكل"
+                                      ? null
+                                      : filterListener.items[index].catagoryAr);
                             },
                           );
                         },
@@ -130,7 +134,6 @@ class _ProductScreenState extends State<ProductScreen> {
                               cartConsumer.cartList
                                   .add(cartConsumer.items[index]);
                               cartConsumer.items[index].price += counter;
-
                               cartConsumer.cartList.toSet().toList();
                             });
                           },

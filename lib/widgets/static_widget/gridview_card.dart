@@ -49,7 +49,7 @@ class _GridViewCardState extends State<GridViewCard> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16),
                   child: Image.network(
-                    artworkListener.items[widget.index].image,
+                    artworkListener.items[widget.index].image!,
                     fit: BoxFit.cover,
                     width: size.width / 1,
                   ),

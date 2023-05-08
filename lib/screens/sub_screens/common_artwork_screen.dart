@@ -10,34 +10,6 @@ class CommonArtWorkScreen extends StatefulWidget {
   State<CommonArtWorkScreen> createState() => _CommonArtWorkScreenState();
 }
 
-//Fake List
-List fakeList = [
-  {
-    "image": "assets/artwork1.png",
-    "name": "محمد الحداد",
-    "catagory": "رسام",
-    "artistpic": "assets/person2.png",
-  },
-  {
-    "image": "assets/artwork2.png",
-    "name": "ايمان الورفلي",
-    "catagory": "رسامة",
-    "artistpic": "assets/person3.png",
-  },
-  {
-    "image": "assets/artwork3.png",
-    "name": "نور محمد",
-    "catagory": "خياطة",
-    "artistpic": "assets/person1.png",
-  },
-  {
-    "image": "assets/artwork4.png",
-    "name": "ايمن الحجازي",
-    "catagory": "مصور فوتوغرافي",
-    "artistpic": "assets/person4.png",
-  }
-];
-
 class _CommonArtWorkScreenState extends State<CommonArtWorkScreen> {
   @override
   Widget build(BuildContext context) {

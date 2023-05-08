@@ -78,7 +78,22 @@
 "editpassword": "Edit Password",
 "editemail": "Edit Email",
 "editname" : "Edit Name",
-"bookingartist": "Artist"
-
-   
+"bookingartist": "Artist",
+"addnewartwork": "Add New Item",
+"addprice": "Price:",
+"adddiscription": "Discription:",
+"addcatagory": "Catagory:",
+"addimage": "Upload Image",
+"addpricehint": "Price",
+"adddiscrptionhint": "Discription",
+"addcatagoryhint": "Catagory",
+"dropdownvalue": "-- Select Type --",
+"whoareyou": "Who Are You ?",
+"whoareyoudiscrption": "Can You Tell Us Your Role !",
+"artcatagory": "What is Your Art Catagory ?",
+"rolebaseone": "Artist",
+"rolebasetwo": "User",
+"imagechange": "Change Image",
+"imageselect": "Select Image",
+"addbutton": "Add Item"
 }

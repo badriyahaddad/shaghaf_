@@ -78,5 +78,22 @@
   "editpassword": "تعديل كلمة المرور",
 "editemail": "تعديل البريد الاكتروني",
 "editname" : "تعديل اسمك",
-"bookingartist": "فنان"
+"bookingartist": "فنان",
+"addnewartwork": "إضافة عنصر جديد",
+"addprice": "السعر:",
+"adddiscription": "الوصف:",
+"addcatagory": ":النوع:",
+"addimage": "تحميل الصورة",
+"addpricehint": "السعر",
+"adddiscrptionhint": "الوصف",
+"addcatagoryhint": "النوع",
+"dropdownvalue": "--اختر من القائمة--",
+"whoareyou": "من انت ؟",
+"whoareyoudiscrption": "هل يمكننا بإخبارنا عن دورك ؟",
+"artcatagory": "ما نوع الفن الذي تقدمه؟",
+"rolebaseone": "فنان",
+"rolebasetwo": "مستخدم",
+"imagechange": "تغير الصورة",
+"imageselect": "تحميل الصورة",
+"addbutton": "إضافة عنصر"
 }

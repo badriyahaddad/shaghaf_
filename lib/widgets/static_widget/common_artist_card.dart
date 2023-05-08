@@ -35,9 +35,12 @@ class _CommonArtistCardState extends State<CommonArtistCard> {
           SizedBox(
             height: size.width / 60,
           ),
-          Image.network(
-            widget.artistPic,
-            width: size.width / 4,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(150),
+            child: Image.network(
+              widget.artistPic,
+              width: size.width / 4,
+            ),
           ),
           SizedBox(
             height: size.width / 100,

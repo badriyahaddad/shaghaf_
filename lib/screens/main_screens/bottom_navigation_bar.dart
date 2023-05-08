@@ -57,54 +57,62 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
             items: [
               BottomNavigationBarItem(
                 label: "",
-                icon: Image.asset(
-                  currentIndex == 0
-                      ? "assets/icons/selected_home.png"
-                      : "assets/icons/home.png",
-                  width: size.width / 15,
-                  height: size.width / 15,
-                  color: currentIndex == 0
-                      ? Colors.white
-                      : Colors.white.withOpacity(0.3),
+                icon: Center(
+                  child: Image.asset(
+                    currentIndex == 0
+                        ? "assets/icons/selected_home.png"
+                        : "assets/icons/home.png",
+                    width: size.width / 15,
+                    height: size.width / 15,
+                    color: currentIndex == 0
+                        ? Colors.white
+                        : Colors.white.withOpacity(0.3),
+                  ),
                 ),
               ),
               BottomNavigationBarItem(
                 label: "",
-                icon: Image.asset(
-                  currentIndex == 1
-                      ? "assets/icons/selected_products.png"
-                      : "assets/icons/products.png",
-                  width: size.width / 15,
-                  height: size.width / 15,
-                  color: currentIndex == 1
-                      ? Colors.white
-                      : Colors.white.withOpacity(0.3),
+                icon: Center(
+                  child: Image.asset(
+                    currentIndex == 1
+                        ? "assets/icons/selected_products.png"
+                        : "assets/icons/products.png",
+                    width: size.width / 15,
+                    height: size.width / 15,
+                    color: currentIndex == 1
+                        ? Colors.white
+                        : Colors.white.withOpacity(0.5),
+                  ),
                 ),
               ),
               BottomNavigationBarItem(
                 label: "",
-                icon: Image.asset(
-                  currentIndex == 2
-                      ? "assets/icons/selected_services.png"
-                      : "assets/icons/services.png",
-                  width: size.width / 12,
-                  height: size.width / 12,
-                  color: currentIndex == 2
-                      ? Colors.white
-                      : Colors.white.withOpacity(0.3),
+                icon: Center(
+                  child: Image.asset(
+                    currentIndex == 2
+                        ? "assets/icons/selected_services.png"
+                        : "assets/icons/services.png",
+                    width: size.width / 12,
+                    height: size.width / 12,
+                    color: currentIndex == 2
+                        ? Colors.white
+                        : Colors.white.withOpacity(0.5),
+                  ),
                 ),
               ),
               BottomNavigationBarItem(
                 label: "",
-                icon: Image.asset(
-                  currentIndex == 3
-                      ? "assets/icons/selected_profile.png"
-                      : "assets/icons/profile.png",
-                  width: size.width / 15,
-                  height: size.width / 15,
-                  color: currentIndex == 3
-                      ? Colors.white
-                      : Colors.white.withOpacity(0.3),
+                icon: Center(
+                  child: Image.asset(
+                    currentIndex == 3
+                        ? "assets/icons/selected_profile.png"
+                        : "assets/icons/profile.png",
+                    width: size.width / 15,
+                    height: size.width / 15,
+                    color: currentIndex == 3
+                        ? Colors.white
+                        : Colors.white.withOpacity(0.5),
+                  ),
                 ),
               ),
             ],

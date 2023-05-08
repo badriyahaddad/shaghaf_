@@ -6,10 +6,10 @@ class ThemeProvider with ChangeNotifier {
   bool isDark = false;
 
   Future<void> switchMode() async {
+    await getTheme();
+
     isDark = !isDark;
-    await saveData();
-    setTheme();
-    //every change must be notified to the main root and injected into the whole app in provider
+    saveData();
     notifyListeners();
   }
 
@@ -18,10 +18,10 @@ class ThemeProvider with ChangeNotifier {
     await prefs.setBool('isDark', isDark);
   }
 
-//set the theme through get theme
-  setTheme() {
-    return getTheme();
-  }
+// //set the theme through get theme
+//   setTheme() {
+//     return getTheme();
+//   }
 
 //get theme to get
   getTheme() async {

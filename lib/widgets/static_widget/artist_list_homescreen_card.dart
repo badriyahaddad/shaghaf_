@@ -91,9 +91,12 @@ class _ArtistListCardState extends State<ArtistListCard> {
                   child: CircleAvatar(
                     backgroundColor: Colors.transparent,
                     maxRadius: 50,
-                    child: Image.network(
-                      artistListener.items[index].artistImage,
-                      fit: BoxFit.cover,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(150),
+                      child: Image.network(
+                        artistListener.items[index].artistImage,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 );
