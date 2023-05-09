@@ -22,8 +22,8 @@ class AuthProvider with ChangeNotifier {
     return _auth.authStateChanges();
   }
 
-  Future<void> signUp(String email, String password, String name, bool isAdmin,
-      String image) async {
+  Future<void> signUp(String email, String password, String name,
+      String catagory, String image) async {
     if (!EmailValidator.validate(email)) {
       if (kDebugMode) {
         print('Invalid email format');
@@ -31,12 +31,13 @@ class AuthProvider with ChangeNotifier {
       return;
     }
     try {
-      UserCredential result =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email.trim(),
-        password: password.trim(),
-      );
-      postDetailsToFirestore(name, image, isAdmin);
+      UserCredential result = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+            email: email.trim(),
+            password: password.trim(),
+          )
+          .then((value) => postDetailsToFirestore(name, image, catagory));
+
       User? user = result.user;
       if (user != null) {
         _isLoggedIn = true;
@@ -119,7 +120,7 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  postDetailsToFirestore(String name, String image, bool isAdmin) async {
+  postDetailsToFirestore(String name, String image, String catagory) async {
     // calling our firestore
     // calling our user model
     // sedning these values
@@ -132,7 +133,7 @@ class AuthProvider with ChangeNotifier {
     userModel.uid = user.uid;
     userModel.name = name;
     userModel.image = image;
-    userModel.isAdmin = isAdmin;
+    userModel.catagory = catagory;
     await firebaseFirestore
         .collection("users")
         .doc(user.uid)
@@ -156,9 +157,5 @@ class AuthProvider with ChangeNotifier {
         print('Loaded ${users.length} artist itesssms from Firestore');
       }
     });
-  }
-
-  isAdmin() {
-    userRoleBase!.isAdmin = userRoleBase!.isAdmin!;
   }
 }

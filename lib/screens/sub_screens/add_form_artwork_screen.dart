@@ -8,7 +8,7 @@ import '../../providers/filter_provider.dart';
 import '../../providers/theme_provider.dart';
 import '../../widgets/clikable_widgets/button.dart';
 import '../../widgets/input_widget/drop_dwon_menu.dart';
-import '../../widgets/input_widget/user_image.dart';
+import '../../widgets/input_widget/artwork_image.dart';
 import '../../widgets/static_widget/coustom_appbar_widget.dart';
 
 class AddFormArtworkScreen extends StatefulWidget {
@@ -168,7 +168,7 @@ class _AddFormArtworkScreenState extends State<AddFormArtworkScreen> {
                       height: size.height / 70,
                     ),
                     Center(
-                      child: UserImage(
+                      child: ArtWorkImage(
                         onFileChanged: (imageUrl) {
                           setState(() {
                             imageUrl = imageUrl;
@@ -188,8 +188,8 @@ class _AddFormArtworkScreenState extends State<AddFormArtworkScreen> {
                             priceController.text.toString(),
                             imageUrl,
                             discrptionController.text.toString(),
-                            selectedItem!.catagoryAr.toString(),
-                            selectedItem!.catagoryEn.toString());
+                            filterListener.selectedItem!.catagoryAr.toString(),
+                            filterListener.selectedItem!.catagoryEn.toString());
                       },
                       screenHieght: size.height / 16,
                       screenWidth: size.width / 1.1,

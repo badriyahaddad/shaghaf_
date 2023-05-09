@@ -8,7 +8,7 @@ class UserModel {
   String? uid;
   String? email;
   String? image;
-  bool? isAdmin;
+  String? catagory;
   String? name;
   String? password;
 
@@ -16,7 +16,7 @@ class UserModel {
     this.uid,
     this.email,
     this.image,
-    this.isAdmin,
+    this.catagory,
     this.name,
     this.password,
   });
@@ -30,7 +30,7 @@ class UserModel {
         uid: json["uid"] ?? '',
         email: json["email"] ?? '',
         image: json["image"] ?? '',
-        isAdmin: json["isAdmin"] ?? '',
+        catagory: json["catagory"] ?? '',
         name: json["name"] ?? '',
         password: json["password"] ?? '',
       );
@@ -39,8 +39,8 @@ class UserModel {
         "uid": uid,
         "email": email,
         "image": image,
-        "isAdmin": isAdmin,
         "name": name,
+        "catagory": catagory,
         "password": password,
       };
 
@@ -50,8 +50,8 @@ class UserModel {
       'uid': uid,
       'email': email,
       'image': image,
+      'catagory': catagory,
       'name': name,
-      'isAdmin': isAdmin,
     };
   }
 }

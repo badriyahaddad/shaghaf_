@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shaghaf/providers/filter_provider.dart';
 import '../../helpers/const.dart';
 import '../../models/filter_model.dart';
 import '../../providers/theme_provider.dart';
@@ -16,6 +17,8 @@ class _DropDownMenueWidgetState extends State<DropDownMenueWidget> {
   @override
   Widget build(BuildContext context) {
     final themeListener = Provider.of<ThemeProvider>(context, listen: true);
+    final filterListener = Provider.of<FilterProvider>(context, listen: true);
+    final filterFunctions = Provider.of<FilterProvider>(context, listen: false);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -28,12 +31,12 @@ class _DropDownMenueWidgetState extends State<DropDownMenueWidget> {
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<FilterModel>(
-          value: selectedItem,
+          value: filterListener.selectedItem,
           hint: Center(
               child: Text(
-            selectedItem == null
+            filterListener.selectedItem == null
                 ? AppLocalizations.of(context)!.dropdownvalue
-                : selectedItem!.catagoryEn,
+                : filterListener.selectedItem!.catagoryEn,
           )),
           isExpanded: true,
           iconSize: 30,
@@ -43,9 +46,10 @@ class _DropDownMenueWidgetState extends State<DropDownMenueWidget> {
           ),
           items: widget.items.map(buildmenueItem).toList(),
           onChanged: (value) {
-            setState(() {
-              selectedItem = value;
-            });
+            // setState(() {
+            //   selectedItem = value;
+            // });
+            filterFunctions.setSelectedItem(value!);
           },
         ),
       ),

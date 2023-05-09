@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shaghaf/helpers/const.dart';
+import 'package:shaghaf/providers/auth_provider.dart';
 import '../clikable_widgets/icon_widget.dart';
 import '../input_widget/text_field.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +33,12 @@ class CostuomAppBar extends StatefulWidget {
 }
 
 class _CostuomAppBarState extends State<CostuomAppBar> {
+  @override
+  void initState() {
+    Provider.of<AuthProvider>(context, listen: false).loadUsersFromFirestore();
+    super.initState();
+  }
+
   final searchController = TextEditingController();
   bool isFav = false;
 
@@ -74,7 +81,7 @@ class _CostuomAppBarState extends State<CostuomAppBar> {
                       CircleAvatar(
                         backgroundColor: Colors.transparent,
                         child: widget.isOtherScreens
-                            ? Image.asset("assets/profilehomescreen.png")
+                            ? const SizedBox()
                             : IconButton(
                                 color: themeListener.isDark
                                     ? titleTextColorDark
@@ -141,6 +148,7 @@ class _CostuomAppBarState extends State<CostuomAppBar> {
                             ),
                             SizedBox(
                               width: size.width,
+                              height: size.height / 12,
                               child: TextFieldWidget(
                                 isDiscription: false,
                                 isPassword: false,

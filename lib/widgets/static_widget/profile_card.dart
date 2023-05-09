@@ -50,6 +50,9 @@ class _ProfileCardState extends State<ProfileCard> {
                 widget.artWorkImage,
                 fit: BoxFit.cover,
                 width: size.width / 1,
+                errorBuilder: (context, error, stackTrace) {
+                  return const Icon(Icons.photo);
+                },
               ),
             ),
           ),

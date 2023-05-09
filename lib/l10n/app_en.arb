@@ -95,5 +95,12 @@
 "rolebasetwo": "User",
 "imagechange": "Change Image",
 "imageselect": "Select Image",
-"addbutton": "Add Item"
+"addbutton": "Add Item",
+"camera": "Camera",
+"gallrey": "Gallary",
+"catagoryselect": "Select Your Art Type :",
+"signuperrormsgemailalredyinuse": "Email is already in use, log in",
+"signuperrormsgweakpassword": "Weak Password",
+"signuperrormsginvalidemail": "Invalid Emial Address",
+"signupsuccessmsg": "You signed up succesfully !"
 }

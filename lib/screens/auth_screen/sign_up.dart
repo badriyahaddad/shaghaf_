@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:shaghaf/screens/auth_screen/who_are_you_screen.dart';
+import 'package:shaghaf/screens/auth_screen/user_pick_image_screen.dart';
 import '../../helpers/const.dart';
 import '../../providers/theme_provider.dart';
 import '../../widgets/clikable_widgets/button.dart';
@@ -229,22 +229,21 @@ class _SignUpState extends State<SignUp> {
                         screenWidth: size.width,
                         screenHieght: size.height * 0.061,
                         borderButton: false,
-                        txt: AppLocalizations.of(context)!.signupbutton,
+                        txt: AppLocalizations.of(context)!.nextbutton,
                         loading: false,
                         isActive: enableLoginBtn,
                         onClick: () {
                           if (formkey.currentState!.validate()) {
                             setState(() {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (_) => WhoAreYouScreen(
-                                        emailController: emailController.text
+                                  builder: (_) => UserPickImageScreen(
+                                        email: emailController.text
                                             .toString()
                                             .trim(),
-                                        nameController: nameController.text
+                                        name: passwordController.text
                                             .toString()
                                             .trim(),
-                                        passwordController: passwordController
-                                            .text
+                                        password: nameController.text
                                             .toString()
                                             .trim(),
                                       )));

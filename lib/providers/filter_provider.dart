@@ -5,6 +5,8 @@ import '../models/filter_model.dart';
 class FilterProvider with ChangeNotifier {
   List<FilterModel> items = [];
   List<FilterModel> get item => items;
+  FilterModel? selectedItem;
+  FilterModel? selectedUser;
 
   Future<void> loadFilterFromFirestore() async {
     final cartItemsRef = FirebaseFirestore.instance.collection('filter');
@@ -21,5 +23,15 @@ class FilterProvider with ChangeNotifier {
         print('Loaded ${items.length} filter from Firestore');
       }
     });
+  }
+
+  setSelectedItem(FilterModel filterModel) {
+    selectedItem = filterModel;
+    notifyListeners();
+  }
+
+  setSelectedUser(FilterModel filterModel) {
+    selectedUser = filterModel;
+    notifyListeners();
   }
 }

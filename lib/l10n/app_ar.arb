@@ -95,5 +95,12 @@
 "rolebasetwo": "مستخدم",
 "imagechange": "تغير الصورة",
 "imageselect": "تحميل الصورة",
-"addbutton": "إضافة عنصر"
+"addbutton": "إضافة عنصر",
+"camera": "كاميرا",
+"gallrey": "المعرض",
+"catagoryselect": "اختر نوع فنك:",
+"signuperrormsgemailalredyinuse": "البريد الالكنروني المستخدم موجود بالفعل، قم بتسجيل الدخول",
+"signuperrormsgweakpassword": "كلمة السر ضعيفة",
+"signuperrormsginvalidemail": "بريد الاكتروني غير صالح",
+"signupsuccessmsg": "تم اإنشاء الحساب بنجاح "
 }
