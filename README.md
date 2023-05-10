@@ -25,7 +25,7 @@ This app is split into Five distinct sections. In the future, additional section
 
 <table>
   <tr>
-    <td><img src="assets/homeScreen.png" alt="Home Image"/></td>
+    <td><img src="assets/HomeScreen.png" alt="Home Image"/></td>
     <td valign="top">
       <h3>Home</h3>
       <p>Provides a screen with the common artists and common art-work.</p>
@@ -72,9 +72,8 @@ Android apk :
 Clone this repo to your computer:
 
 ```bash
-git clone [https://github.com/art-institute-of-chicago/aic-mobile-ios.git
-```](https://github.com/badriyahaddad/shaghaf_.git)
-
+git clone [https://github.com/art-institute-of-chicago/aic-mobile-ios.git](https://github.com/badriyahaddad/shaghaf_.git)
+```
 ## Data sources
 
 Firebase : Firestore, Authentication, storage
