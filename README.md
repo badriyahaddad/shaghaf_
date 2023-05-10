@@ -25,7 +25,7 @@ This app is split into Five distinct sections. In the future, additional section
 
 <table>
   <tr>
-    <td><img src="Documentation/home.png" alt="Home Image"/></td>
+    <td><img src="assets/homeScreen.png" alt="Home Image"/></td>
     <td valign="top">
       <h3>Home</h3>
       <p>Provides a screen with the common artists and common art-work.</p>
