@@ -72,8 +72,8 @@ Android apk :
 Clone this repo to your computer:
 
 ```bash
-git clone https://github.com/art-institute-of-chicago/aic-mobile-ios.git
-```
+git clone [https://github.com/art-institute-of-chicago/aic-mobile-ios.git
+```](https://github.com/badriyahaddad/shaghaf_.git)
 
 ## Data sources
 
