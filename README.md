@@ -79,6 +79,7 @@ git clone [https://github.com/art-institute-of-chicago/aic-mobile-ios.git](https
 Firebase : Firestore, Authentication, storage
 
 ## Contacts
+Benghazi Camp
 
 Taha Tarbah : Tahatarbah@gmail.com
 
