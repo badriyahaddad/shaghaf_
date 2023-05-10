@@ -13,9 +13,8 @@
 	1. [Purchasing Products](#Purchasing_Products)
 	1. [Asking for Services](#Asking_for_Services)
 	1. [Posting art-work](#Posting_art-work)
-	1. [Search](#search)
 	1. [Profile](#Profile)
-1. [Get the app](#get the app)
+1. [Get the app](#get_the_app)
 1. [Getting Started](#getting-started)
 1. [Installation](#installation)
 1. [Data sources](#Data-sources)
@@ -25,63 +24,45 @@
 
 ## Features
 
-This app is split into four distinct sections. In the future, additional sections might be added as we improve our infrastructure.
+This app is split into Five distinct sections. In the future, additional sections might be added as we improve our infrastructure.
 
 <table>
   <tr>
     <td><img src="Documentation/home.png" alt="Home Image"/></td>
     <td valign="top">
       <h3>Home</h3>
-      <p>Provides a summary of current tours/exhibits/events at the museum.</p>
+      <p>Provides a screen with the common artists and common art-work.</p>
     </td>
   </tr>
   <tr>
     <td><img src="Documentation/audioGuide.png" alt="Audio Guide Image"/></td>
     <td valign="top">
-      <h3>Audio Guide</h3>
-      <p>Allows users to type in numbers found in the physical space of the museum next to artworks, which pulls up the corresponding audio content and information.</p>
+      <h3>Purchasing Products</h3>
+      <p>Allows users to purchase art equipment.</p>
     </td>
   </tr>
   <tr>
     <td><img src="Documentation/map.png" alt="Map Image"/></td>
     <td valign="top">
-      <h3>Map</h3>
-      <p>The map has a number of information points (annotations) enabled at various zoom levels. These include:</p>
-      <ul>
-        <li>Departments</li>
-        <li>Amenities (bathrooms, elevators, etc.)</li>
-        <li>Galleries</li>
-        <li>Artworks</li>
-      </ul>
-      <p>The map uses CoreLocation to locate and orient the user when they are on-location in the museum.</p>
+      <h3>Asking for Services</h3>
+      <p>Get to find out how to contact artists for further deals</p>
     </td>
   </tr>
   <tr>
     <td><img src="Documentation/tours.png" alt="Tours Image"/></td>
     <td valign="top">
-      <h3>Tours</h3>
-      <p>Provides custom tours with unique audio content that work in tandem with the map and guide users on a narrated journey.</p>
+      <h3>Posting art-work</h3>
+      <p>Provides a platform to share art-work with the community.</p>
     </td>
   </tr>
   <tr>
     <td><img src="Documentation/search.png" alt="Search Image"/></td>
     <td valign="top">
-      <h3>Search</h3>
-      <p>Provides the ability to search for artworks, tours and exhibitions currently on display at the museum. Using the search, users are also able to find the location on the map of artworks as well as gift shops, restrooms, dining locations and the member lounge.</p>
+      <h3>Profile</h3>
+      <p>Allows users to have profiles to market their work as artists.</p>
     </td>
   </tr>
-  <tr>
-    <td><img src="Documentation/info.png" alt="Information Image"/></td>
-    <td valign="top">
-      <h3>Information</h3>
-      <p>This section includes:</p>
-      <ul>
-        <li>Museum Information: basic museum info: hours, holidays, etc.</li>
-        <li>Language Settings: allowing you to switch the language of the app to English, Spanish or Chinese.</li>
-        <li>Location Settings: allowing you to modify your preference for tracking your location in the museum.</li>
-      </ul>
-    </td>
-  </tr>
+ 
 </table>
 
 
