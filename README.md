@@ -82,5 +82,6 @@ Firebase : Firestore, Authentication, storage
 ## Contacts
 
 Taha Tarbah : Tahatarbah@gmail.com
+
 Badriya Haddad : Badriya.al.haddad.it.3915@gmail.com
 
