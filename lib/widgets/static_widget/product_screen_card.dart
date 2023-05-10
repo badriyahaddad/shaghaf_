@@ -73,15 +73,31 @@ class _ProductScreenCardState extends State<ProductScreenCard> {
           Positioned(
             top: 10,
             left: AppLocalizations.of(context)!.localeName == 'ar' ? 6 : 13,
-            child: CircleAvatar(
-              backgroundColor: themeListener.isDark ? mainColorDark : mainColor,
-              child: IconButton(
-                color: Colors.white,
-                icon: const Icon(Icons.add),
-                onPressed: () {
-                  widget.iconBehavior!();
-                },
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  " ${widget.productPrice} LY",
+                  style: TextStyle(
+                      color: themeListener.isDark ? successDark : success,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  width: size.width / 6,
+                ),
+                CircleAvatar(
+                  backgroundColor:
+                      themeListener.isDark ? mainColorDark : mainColor,
+                  child: IconButton(
+                    color: Colors.white,
+                    icon: const Icon(Icons.add),
+                    onPressed: () {
+                      widget.iconBehavior!();
+                    },
+                  ),
+                ),
+              ],
             ),
           )
         ],

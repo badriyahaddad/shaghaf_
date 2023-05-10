@@ -34,8 +34,7 @@ class _CoustomDrawerState extends State<CoustomDrawer> {
     final themeListener = Provider.of<ThemeProvider>(context, listen: true);
     final themeFunction = Provider.of<ThemeProvider>(context, listen: false);
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
-    final profileProvider =
-        Provider.of<AuthProvider>(context, listen: false).users;
+    final profileProvider = Provider.of<AuthProvider>(context, listen: false);
     return Drawer(
       child: SingleChildScrollView(
           child: SafeArea(
@@ -56,68 +55,63 @@ class _CoustomDrawerState extends State<CoustomDrawer> {
                     )),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: ListView.builder(
-                      itemCount: profileProvider.length,
-                      itemBuilder: (context, index) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: size.height / 40,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: size.height / 40,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(150),
+                            child: CircleAvatar(
+                              maxRadius: 50,
+                              backgroundColor: Colors.transparent,
+                              child: Image.network(
+                                profileProvider.currentUser?.image ?? "",
+                                fit: BoxFit.cover,
+                                width: size.width / 1,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return const Icon(Icons.photo);
+                                },
+                              ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(150),
-                                  child: CircleAvatar(
-                                    maxRadius: 50,
-                                    backgroundColor: Colors.transparent,
-                                    child: Image.network(
-                                      profileProvider[index].image!,
-                                      fit: BoxFit.contain,
-                                      width: size.width / 1,
-                                      errorBuilder:
-                                          (context, error, stackTrace) {
-                                        return const Icon(Icons.photo);
-                                      },
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(profileProvider[index].name!,
-                                        style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 25,
-                                            fontWeight: FontWeight.bold)),
-                                    Text(
-                                      profileProvider[index].catagory!,
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Icons.edit_square,
-                                      size: 25,
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(profileProvider.currentUser?.name ?? "",
+                                  style: const TextStyle(
                                       color: Colors.white,
-                                    )),
-                              ],
-                            ),
-                          ],
-                        );
-                      }),
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold)),
+                              Text(
+                                profileProvider.currentUser?.catagory ?? '',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                          IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.edit_square,
+                                size: 25,
+                                color: Colors.white,
+                              )),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Padding(

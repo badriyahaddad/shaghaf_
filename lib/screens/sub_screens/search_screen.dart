@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -6,7 +6,7 @@ import 'package:shaghaf/helpers/const.dart';
 import '../../providers/artists_provider.dart';
 import '../../providers/theme_provider.dart';
 import '../../widgets/input_widget/text_field.dart';
-import '../../widgets/static_widget/settings_card.dart';
+// import '../../widgets/static_widget/settings_card.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -84,37 +84,37 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ),
       ),
-      body: Consumer<ArtistProvider>(builder: (context, artistConsumer, _) {
-        return StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection('artist').snapshots(),
-          builder: (context, snapshot) {
-            return (snapshot.connectionState == ConnectionState.waiting)
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : ListView.builder(
-                    itemCount: snapshot.data!.docs.length,
-                    itemBuilder: (context, index) {
-                      var data = snapshot.data!.docs[index].data()
-                          as Map<String, dynamic>;
-                      if (artistConsumer.items[index].artistName.isEmpty) {
-                        return SettingsCard(
-                          icon: Image.network(
-                              artistConsumer.items[index].artistImage),
-                          nextIcon: const Icon(Icons.navigate_next_rounded),
-                          title: artistConsumer.items[index].artistName,
-                          isLogOutCard: false,
-                          iconBehavior: () {
-                            // Navigator.of(context).push(MaterialPageRoute(
-                            //     builder: (_) => const EditAccountDataScreen()));
-                          },
-                        );
-                      }
-                    },
-                  );
-          },
-        );
-      }),
+      // body: Consumer<ArtistProvider>(builder: (context, artistConsumer, _) {
+      //   return StreamBuilder<QuerySnapshot>(
+      //     stream: FirebaseFirestore.instance.collection('artist').snapshots(),
+      //     builder: (context, snapshot) {
+      //       return (snapshot.connectionState == ConnectionState.waiting)
+      //           ? const Center(
+      //               child: CircularProgressIndicator(),
+      //             )
+      //           : ListView.builder(
+      //               itemCount: snapshot.data!.docs.length,
+      //               itemBuilder: (context, index) {
+      //                 // var data = snapshot.data!.docs[index].data()
+      //                 //     as Map<String, dynamic>;
+      //                 if (artistConsumer.items[index].artistName.isEmpty) {
+      //                   return SettingsCard(
+      //                     icon: Image.network(
+      //                         artistConsumer.items[index].artistImage),
+      //                     nextIcon: const Icon(Icons.navigate_next_rounded),
+      //                     title: artistConsumer.items[index].artistName,
+      //                     isLogOutCard: false,
+      //                     iconBehavior: () {
+      //                       // Navigator.of(context).push(MaterialPageRoute(
+      //                       //     builder: (_) => const EditAccountDataScreen()));
+      //                     },
+      //                   );
+      //                 }
+      //               },
+      //             );
+      //     },
+      //   );
+      // }),
     );
   }
 }

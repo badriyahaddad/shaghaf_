@@ -82,15 +82,6 @@ class _CartScreenState extends State<CartScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              AppLocalizations.of(context)!.cartscreentitle,
-                              style: TextStyle(
-                                  color: themeListener.isDark
-                                      ? titleTextColorDark
-                                      : titleTextColor,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Text(
                               " ${cartListener.cartList.length} ${AppLocalizations.of(context)!.item}",
                               style: TextStyle(
                                 color: themeListener.isDark
