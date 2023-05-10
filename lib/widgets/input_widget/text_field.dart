@@ -20,6 +20,8 @@ class TextFieldWidget extends StatefulWidget {
     required this.prefix,
     required this.isPassword,
     required this.isDiscription,
+    required this.search,
+    this.enabled = true,
   });
   final Function validtion;
   final TextInputType keyboardType;
@@ -31,7 +33,9 @@ class TextFieldWidget extends StatefulWidget {
   final Widget? prefix;
   final bool isPassword;
   final bool isDiscription;
-  Function? search;
+  final bool enabled;
+
+  final Function search;
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
 }
@@ -44,6 +48,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
 
     return TextFormField(
       maxLines: widget.isDiscription ? 5 : 1,
+      enabled: widget.enabled,
       style: TextStyle(
           color: themeListener.isDark ? titleTextColorDark : titleTextColor),
       // inputFormatters: [
@@ -140,7 +145,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       ),
       onChanged: (value) {
         setState(() {
-          widget.search!();
+          widget.search(value);
         });
       },
     );

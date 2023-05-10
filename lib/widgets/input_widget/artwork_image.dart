@@ -83,16 +83,6 @@ class _ArtWorkImageState extends State<ArtWorkImage> {
         builder: (context) => Column(
           children: [
             SettingsCard(
-              icon: const Icon(Icons.camera),
-              nextIcon: const Icon(Icons.navigate_next_rounded),
-              title: AppLocalizations.of(context)!.camera,
-              isLogOutCard: false,
-              iconBehavior: () {
-                Navigator.of(context).pop();
-                imgFromCamera();
-              },
-            ),
-            SettingsCard(
               icon: const Icon(Icons.photo_camera_back_outlined),
               nextIcon: const Icon(Icons.navigate_next_rounded),
               title: AppLocalizations.of(context)!.gallrey,
@@ -110,23 +100,6 @@ class _ArtWorkImageState extends State<ArtWorkImage> {
 
   Future imgFromGallery() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-
-    setState(() {
-      if (pickedFile != null) {
-        _photo = File(pickedFile.path);
-        uploadFile(context);
-      } else {
-        if (kDebugMode) {
-          print('No image selected.');
-        }
-      }
-    });
-  }
-
-  Future imgFromCamera() async {
-    final pickedFile = await _picker.pickImage(
-      source: ImageSource.camera,
-    );
 
     setState(() {
       if (pickedFile != null) {

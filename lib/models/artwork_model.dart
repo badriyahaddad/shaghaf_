@@ -13,6 +13,7 @@ class ArtWorkModel {
     this.image,
     this.uid,
     this.price,
+    this.artistImage,
   });
 
   String? artistName;
@@ -22,6 +23,7 @@ class ArtWorkModel {
   String? image;
   String? uid;
   dynamic price;
+  String? artistImage;
 
   factory ArtWorkModel.fromRawJson(String str) =>
       ArtWorkModel.fromJson(json.decode(str));
@@ -36,6 +38,7 @@ class ArtWorkModel {
         image: json["image"],
         price: json["price"],
         uid: json["uid"],
+        artistImage: json["artistImage"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -46,6 +49,7 @@ class ArtWorkModel {
         "image": image,
         "price": price,
         "uid": uid,
+        "artistImage": artistImage,
       };
   // sending data to our server
   Map<String, dynamic> toMap() {
@@ -57,6 +61,7 @@ class ArtWorkModel {
       "image": image,
       "price": price,
       "uid": uid,
+      "artistImage": artistImage,
     };
   }
 }

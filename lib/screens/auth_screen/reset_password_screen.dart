@@ -70,6 +70,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: TextFieldWidget(
+                search: () {},
                 isDiscription: false,
                 isPassword: false,
                 prefix: Image.asset(themeListener.isDark
@@ -100,6 +101,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: TextFieldWidget(
+                search: () {},
                 isDiscription: false,
                 isPassword: false,
                 prefix: Image.asset(themeListener.isDark

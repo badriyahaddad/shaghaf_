@@ -74,9 +74,7 @@ class _ProductScreenCardState extends State<ProductScreenCard> {
             top: 10,
             left: AppLocalizations.of(context)!.localeName == 'ar' ? 6 : 13,
             child: CircleAvatar(
-              backgroundColor: themeListener.isDark
-                  ? secondrayColorDark.withOpacity(0.7)
-                  : secondrayColor.withOpacity(0.7),
+              backgroundColor: themeListener.isDark ? mainColorDark : mainColor,
               child: IconButton(
                 color: Colors.white,
                 icon: const Icon(Icons.add),

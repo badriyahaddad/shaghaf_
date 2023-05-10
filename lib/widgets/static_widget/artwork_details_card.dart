@@ -96,7 +96,7 @@ class _ArtworkDetailsCardState extends State<ArtworkDetailsCard> {
                           child: CircleAvatar(
                               maxRadius: size.width / 10,
                               child: Image.network(
-                                widget.artistPic,
+                                widget.artistPic.toString(),
                                 fit: BoxFit.cover,
                                 width: size.width / 1,
                               )),

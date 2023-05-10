@@ -9,7 +9,8 @@ class ArtistProvider with ChangeNotifier {
   ArtistModel? atistName;
   List<ArtistModel> items = [];
   List<ArtistModel> get item => items;
-
+  ArtistModel? selectedArtist;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
   Future<void> loadArtistFromFirestore() async {
     isLoading = true;
     isFailed = false;
@@ -30,5 +31,16 @@ class ArtistProvider with ChangeNotifier {
         print('Loaded ${items.length} artist itesssms from Firestore');
       }
     });
+  }
+
+  Future<void> getSingleArtist(String artistID) async {
+    var data = await firestore
+        .collection('artist')
+        .where('uid', isEqualTo: artistID)
+        .get();
+
+    selectedArtist = ArtistModel.fromJson(data.docs.first.data());
+    print("IMGURL " + selectedArtist!.artistImage.toString());
+    notifyListeners();
   }
 }

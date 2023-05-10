@@ -1,13 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:shaghaf/models/user_model.dart';
 import '../models/artwork_model.dart';
 
 class ArtworkProvider with ChangeNotifier {
   bool isFailed = false;
   bool isLoading = false;
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
+  UserModel? currentUserInstant;
   List<ArtWorkModel> items = [];
   List<ArtWorkModel> get item => items;
 
@@ -34,7 +35,7 @@ class ArtworkProvider with ChangeNotifier {
   }
 
   postDetailsToFirestore(String price, String image, String discription,
-      String catagoryAr, String catagoryEn) async {
+      String catagoryAr, String catagoryEn, String artistImage) async {
     // calling our firestore
     // calling our user model
     // sedning these values
@@ -50,6 +51,7 @@ class ArtworkProvider with ChangeNotifier {
     artWorkModel.discription = discription;
     artWorkModel.catagoryEn = catagoryEn;
     artWorkModel.catagoryAr = catagoryAr;
+    artWorkModel.artistImage = artistImage;
     await firebaseFirestore
         .collection("artwork")
         .doc(user.uid)

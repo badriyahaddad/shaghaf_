@@ -97,6 +97,7 @@ class _SignUpState extends State<SignUp> {
                     SizedBox(height: size.height / 70),
                     //textfield name
                     TextFieldWidget(
+                      search: () {},
                       isDiscription: false,
                       prefix: Image.asset(themeListener.isDark
                           ? "assets/icons/nameIcon_Dark.png"
@@ -127,6 +128,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     //textfield email
                     TextFieldWidget(
+                      search: () {},
                       isDiscription: false,
                       isPassword: false,
                       textFieldController: emailController,
@@ -156,6 +158,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     // textfield password
                     TextFieldWidget(
+                      search: () {},
                       isDiscription: false,
                       isPassword: false,
                       prefix: Image.asset(themeListener.isDark

@@ -98,6 +98,7 @@ class _LoginState extends State<Login> {
                     SizedBox(height: size.height / 70),
                     //textfield email
                     TextFieldWidget(
+                      search: () {},
                       isDiscription: false,
                       isPassword: false,
                       textFieldController: emailController,
@@ -127,6 +128,7 @@ class _LoginState extends State<Login> {
                     ),
                     //textfield password
                     TextFieldWidget(
+                      search: () {},
                       isDiscription: false,
                       isPassword: true,
                       prefix: Image.asset(themeListener.isDark

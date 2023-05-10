@@ -74,7 +74,7 @@ class _DashboardCardState extends State<DashboardCard> {
                     height: size.height / 100,
                   ),
                   Text(
-                    widget.price,
+                    widget.price.toString(),
                     style: TextStyle(
                       color: themeListener.isDark ? successDark : success,
                       fontSize: 20,

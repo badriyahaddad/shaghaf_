@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shaghaf/providers/artwork_provider.dart';
 import 'package:shaghaf/widgets/input_widget/text_field.dart';
 import '../../helpers/const.dart';
+import '../../providers/auth_provider.dart';
 import '../../providers/filter_provider.dart';
 import '../../providers/theme_provider.dart';
 import '../../widgets/clikable_widgets/button.dart';
@@ -39,6 +40,7 @@ class _AddFormArtworkScreenState extends State<AddFormArtworkScreen> {
     final themeListener = Provider.of<ThemeProvider>(context, listen: true);
     final itemListener = Provider.of<ArtworkProvider>(context, listen: false);
     final filterListener = Provider.of<FilterProvider>(context, listen: false);
+    final userListener = Provider.of<AuthProvider>(context, listen: true);
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
@@ -85,6 +87,7 @@ class _AddFormArtworkScreenState extends State<AddFormArtworkScreen> {
                       height: size.height / 70,
                     ),
                     TextFieldWidget(
+                      search: () {},
                       isDiscription: false,
                       isPassword: false,
                       textFieldController: priceController,
@@ -117,6 +120,7 @@ class _AddFormArtworkScreenState extends State<AddFormArtworkScreen> {
                       height: size.height / 70,
                     ),
                     TextFieldWidget(
+                      search: () {},
                       isDiscription: true,
                       isPassword: false,
                       textFieldController: discrptionController,
@@ -185,11 +189,14 @@ class _AddFormArtworkScreenState extends State<AddFormArtworkScreen> {
                       loading: false,
                       onClick: () {
                         itemListener.postDetailsToFirestore(
-                            priceController.text.toString(),
-                            imageUrl,
-                            discrptionController.text.toString(),
-                            filterListener.selectedItem!.catagoryAr.toString(),
-                            filterListener.selectedItem!.catagoryEn.toString());
+                          priceController.text.toString(),
+                          imageUrl,
+                          discrptionController.text.toString(),
+                          filterListener.selectedItem!.catagoryAr.toString(),
+                          filterListener.selectedItem!.catagoryEn.toString(),
+                          userListener.currentUser?.name ?? "",
+                        );
+                        Navigator.pop(context);
                       },
                       screenHieght: size.height / 16,
                       screenWidth: size.width / 1.1,

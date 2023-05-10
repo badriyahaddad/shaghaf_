@@ -110,6 +110,7 @@ class _EditAccountDataScreenState extends State<EditAccountDataScreen> {
                   SizedBox(height: size.height / 70),
                   //textfield name
                   TextFieldWidget(
+                    search: () {},
                     isDiscription: false,
                     prefix: Image.asset(themeListener.isDark
                         ? "assets/icons/nameIcon_Dark.png"
@@ -139,6 +140,7 @@ class _EditAccountDataScreenState extends State<EditAccountDataScreen> {
                   ),
                   //textfield email
                   TextFieldWidget(
+                    search: () {},
                     isDiscription: false,
                     isPassword: false,
                     textFieldController: emailController,

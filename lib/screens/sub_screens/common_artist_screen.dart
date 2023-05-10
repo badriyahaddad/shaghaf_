@@ -16,12 +16,6 @@ class CommonArtistScreen extends StatefulWidget {
 }
 
 class _CommonArtistScreenState extends State<CommonArtistScreen> {
-  // @override
-  // void initState() {
-  //   Provider.of<ArtistProvider>(context, listen: false)
-  //       .loadArtistFromFirestore();
-  //   super.initState();
-  // }
   @override
   void initState() {
     super.initState();

@@ -79,6 +79,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: TextFieldWidget(
+                  search: () {},
                   isDiscription: false,
                   isPassword: false,
                   textFieldController: emailController,

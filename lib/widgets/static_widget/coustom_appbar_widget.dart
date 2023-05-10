@@ -155,19 +155,25 @@ class _CostuomAppBarState extends State<CostuomAppBar> {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (_) => const SearchScreen()));
                                 },
-                                child: TextFieldWidget(
-                                  isDiscription: false,
-                                  isPassword: false,
-                                  prefix: Image.asset(themeListener.isDark
-                                      ? "assets/icons/serachIcon_Dark.png"
-                                      : "assets/icons/serachicon.png"),
-                                  textFieldController: searchController,
-                                  node: TextInputAction.search,
-                                  isVisable: false,
-                                  hintTxt: AppLocalizations.of(context)!.search,
-                                  keyboardType: TextInputType.visiblePassword,
-                                  validtion: (value) {},
-                                  obscureText: false,
+                                child: Hero(
+                                  tag: "textfiledwidgte",
+                                  child: TextFieldWidget(
+                                    enabled: false,
+                                    isDiscription: false,
+                                    isPassword: false,
+                                    prefix: Image.asset(themeListener.isDark
+                                        ? "assets/icons/serachIcon_Dark.png"
+                                        : "assets/icons/serachicon.png"),
+                                    textFieldController: searchController,
+                                    node: TextInputAction.search,
+                                    isVisable: false,
+                                    hintTxt:
+                                        AppLocalizations.of(context)!.search,
+                                    keyboardType: TextInputType.visiblePassword,
+                                    validtion: (value) {},
+                                    obscureText: false,
+                                    search: () {},
+                                  ),
                                 ),
                               ),
                             ),
