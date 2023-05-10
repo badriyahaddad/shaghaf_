@@ -15,11 +15,8 @@
 	1. [Posting art-work](#Posting_art-work)
 	1. [Profile](#Profile)
 1. [Get the app](#get_the_app)
-1. [Getting Started](#getting-started)
 1. [Installation](#installation)
 1. [Data sources](#Data-sources)
-    1. Firebase: FireStore
-    2. Firebase: Storage
 1. [Contacts](#contacts)
 
 ## Features
@@ -66,15 +63,24 @@ This app is split into Five distinct sections. In the future, additional section
 </table>
 
 
-## Getting Started
+## Get the app
 
-This project is a starting point for a Flutter application.
+Android apk : 
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Clone this repo to your computer:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+git clone https://github.com/art-institute-of-chicago/aic-mobile-ios.git
+```
+
+## Data sources
+
+Firebase : Firestore, Authentication, storage
+
+## Contacts
+
+Taha Tarbah : Tahatarbah@gmail.com
+Badriya Haddad : Badriya.al.haddad.it.3915@gmail.com
+
