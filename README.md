@@ -1,6 +1,9 @@
 # shaghaf
 
-A new Flutter project.
+![Shagaf]([https://raw.githubusercontent.com/Art-Institute-of-Chicago/template/master/aic-logo.gif](https://firebasestorage.googleapis.com/v0/b/passion-9985b.appspot.com/o/artwork_images%2Fandroid_icon.png?alt=media&token=49733d08-f178-495b-8168-abed11658a6c))
+
+# Shaghaf Official Mobile App
+> An app for all artists and art enthusiasts.
 
 ## Getting Started
 
