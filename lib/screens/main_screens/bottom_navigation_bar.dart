@@ -34,7 +34,12 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
     });
   }
 
-  PageController pageController = PageController(initialPage: 0);
+  @override
+  void initState() {
+    Provider.of<AuthProvider>(context, listen: false).getCurrntUser();
+    super.initState();
+  }
+
   List cart = [];
   @override
   Widget build(BuildContext context) {
@@ -42,7 +47,8 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
     Size size = MediaQuery.of(context).size;
     //dark theme mode to listen to the changes when the mode it's changes
     final themeListener = Provider.of<ThemeProvider>(context, listen: true);
-    final userListener = Provider.of<AuthProvider>(context, listen: false);
+    final userListener = Provider.of<AuthProvider>(context, listen: true);
+
     Container createBottombar(BuildContext context) {
       // ignore: avoid_unnecessary_containers
       return Container(
@@ -135,71 +141,63 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
                     SizedBox(
                       height: size.height / 70,
                     ),
-                    ListView.builder(
-                        itemCount: 1,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return CostuomAppBar(
-                            menueFunction: () {
-                              setState(() {
-                                openDrawer();
-                              });
-                            },
-                            iconBehavior: () {
-                              currentIndex == 1
-                                  ? Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                          builder: (_) => const CartScreen()))
-                                  : currentIndex == 2
-                                      ? Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (_) =>
-                                                  const HistoryBookingScreen()))
-                                      : currentIndex == 3
-                                          ? Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (_) =>
-                                                      const SettingScreen()))
-                                          : Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (_) =>
-                                                      const ProfileScreen()));
-                            },
-                            iconData: currentIndex == 0
-                                ? const Icon(Icons.abc_outlined)
-                                : currentIndex == 1
-                                    ? Image.asset(
-                                        themeListener.isDark
-                                            ? "assets/icons/cartIcon_Dark.png"
-                                            : "assets/icons/cartIcon.png",
-                                        width: size.width / 5,
-                                      )
-                                    : currentIndex == 2
-                                        ? Icon(
-                                            Icons.history,
-                                            color: themeListener.isDark
-                                                ? Colors.white
-                                                : Colors.black,
-                                          )
-                                        : const Icon(Icons.settings),
-                            isOtherScreens: currentIndex == 0 ? true : false,
-                            profileName: userListener.users[index].name!,
-                            isHome: true,
-                            title: currentIndex == 0
-                                ? AppLocalizations.of(context)!
-                                    .homescreenappbartitle
-                                : currentIndex == 1
-                                    ? AppLocalizations.of(context)!
-                                        .productscreenappbartitle
-                                    : currentIndex == 2
-                                        ? AppLocalizations.of(context)!
-                                            .servicesappbartitle
-                                        : AppLocalizations.of(context)!
-                                            .profilescreenappbartitle,
-                            isDetails: false,
-                            subTitle: '',
-                          );
-                        }),
+                    CostuomAppBar(
+                      menueFunction: () {
+                        setState(() {
+                          openDrawer();
+                        });
+                      },
+                      iconBehavior: () {
+                        currentIndex == 1
+                            ? Navigator.of(context).push(MaterialPageRoute(
+                                builder: (_) => const CartScreen()))
+                            : currentIndex == 2
+                                ? Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) =>
+                                        const HistoryBookingScreen()))
+                                : currentIndex == 3
+                                    ? Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (_) =>
+                                                const SettingScreen()))
+                                    : Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (_) =>
+                                                const ProfileScreen()));
+                      },
+                      iconData: currentIndex == 0
+                          ? const Icon(Icons.abc_outlined)
+                          : currentIndex == 1
+                              ? Image.asset(
+                                  themeListener.isDark
+                                      ? "assets/icons/cartIcon_Dark.png"
+                                      : "assets/icons/cartIcon.png",
+                                  width: size.width / 5,
+                                )
+                              : currentIndex == 2
+                                  ? Icon(
+                                      Icons.history,
+                                      color: themeListener.isDark
+                                          ? Colors.white
+                                          : Colors.black,
+                                    )
+                                  : const Icon(Icons.settings),
+                      isOtherScreens: currentIndex == 0 ? true : false,
+                      profileName: userListener.currentUser!.name!,
+                      isHome: true,
+                      title: currentIndex == 0
+                          ? AppLocalizations.of(context)!.homescreenappbartitle
+                          : currentIndex == 1
+                              ? AppLocalizations.of(context)!
+                                  .productscreenappbartitle
+                              : currentIndex == 2
+                                  ? AppLocalizations.of(context)!
+                                      .servicesappbartitle
+                                  : AppLocalizations.of(context)!
+                                      .profilescreenappbartitle,
+                      isDetails: false,
+                      subTitle: '',
+                    )
                   ],
                 ),
               ),
@@ -208,15 +206,13 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
         drawer: CoustomDrawer(
           scaffoldKey: scaffoldKey,
         ),
-        body: SafeArea(
-          child: currentIndex == 0
-              ? const HomeScreen()
-              : currentIndex == 1
-                  ? const ProductScreen()
-                  : currentIndex == 2
-                      ? const ServicesScreen()
-                      : const ProfileScreen(),
-        ),
+        body: currentIndex == 0
+            ? const HomeScreen()
+            : currentIndex == 1
+                ? const ProductScreen()
+                : currentIndex == 2
+                    ? const ServicesScreen()
+                    : const ProfileScreen(),
         bottomNavigationBar: createBottombar(context));
   }
 }

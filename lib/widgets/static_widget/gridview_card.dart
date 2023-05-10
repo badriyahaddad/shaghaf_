@@ -16,6 +16,7 @@ class GridViewCard extends StatefulWidget {
 }
 
 class _GridViewCardState extends State<GridViewCard> {
+  bool isFav = false;
   @override
   Widget build(BuildContext context) {
     //MediaQuery for more responsive UI
@@ -60,14 +61,14 @@ class _GridViewCardState extends State<GridViewCard> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: IconWidget(
-                    icon: artworkListener.isFav
-                        ? Icons.favorite
-                        : Icons.favorite_border,
+                    icon: isFav ? Icons.favorite : Icons.favorite_border,
                     isAppbar: true,
-                    isFave: artworkListener.isFav,
+                    isFave: isFav,
                     isSize: size.width / 15,
                     onClick: () {
-                      artworkListener.isFaverite();
+                      setState(() {
+                        isFav = !isFav;
+                      });
                     },
                   ),
                 ),

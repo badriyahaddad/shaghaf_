@@ -31,40 +31,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return SafeArea(
       child: Consumer<AuthProvider>(builder: (context, userConsumer, child) {
         return SingleChildScrollView(
-          child: ListView.builder(
-              itemCount: userConsumer.users.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: size.width / 1.3,
-                      width: size.width,
-                      child: ProfileCard(
-                        artWorkImage: userConsumer.users[index].image!,
-                        artistName: userConsumer.users[index].name!,
-                        workCatagory: userConsumer.users[index].catagory!,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: Text(
-                        AppLocalizations.of(context)!.profiletitle,
-                        style: TextStyle(
-                            color: themeListener.isDark
-                                ? titleTextColorDark
-                                : titleTextColor,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    const ArtWorkCard(
-                      hide: false,
-                    ),
-                  ],
-                );
-              }),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: size.width / 1.3,
+                width: size.width,
+                child: ProfileCard(
+                  artWorkImage: userConsumer.currentUser!.image!,
+                  artistName: userConsumer.currentUser!.name!,
+                  workCatagory: userConsumer.currentUser!.catagory!,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Text(
+                  AppLocalizations.of(context)!.profiletitle,
+                  style: TextStyle(
+                      color: themeListener.isDark
+                          ? titleTextColorDark
+                          : titleTextColor,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              const ArtWorkCard(
+                hide: false,
+              ),
+            ],
+          ),
         );
       }),
     );

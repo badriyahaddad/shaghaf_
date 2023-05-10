@@ -1,26 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../models/artwork_model.dart';
 
 class ArtworkProvider with ChangeNotifier {
-  bool isFav = false;
   bool isFailed = false;
   bool isLoading = false;
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  Future<void> isFaverite() async {
-    isFav = !isFav;
-    await saveData();
-    notifyListeners();
-  }
-
-  Future<void> saveData() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isFav', isFav);
-    notifyListeners();
-  }
 
   List<ArtWorkModel> items = [];
   List<ArtWorkModel> get item => items;

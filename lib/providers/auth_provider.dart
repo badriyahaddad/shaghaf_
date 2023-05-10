@@ -15,7 +15,7 @@ class AuthProvider with ChangeNotifier {
   UserModel? userRoleBase;
   List<UserModel> get userShaghaf => users;
   bool _isLoggedIn = false;
-
+  UserModel? currentUser;
   bool get isLoggedIn => _isLoggedIn;
 
   Stream<User?> get authStateChanges {
@@ -157,5 +157,17 @@ class AuthProvider with ChangeNotifier {
         print('Loaded ${users.length} artist itesssms from Firestore');
       }
     });
+  }
+
+  getCurrntUser() {
+    FirebaseFirestore.instance
+        .collection('users')
+        .where('uid', isEqualTo: _auth.currentUser!.uid)
+        .get()
+        .then((usersData) {
+      currentUser = UserModel.fromJson(usersData.docs.first.data());
+    });
+
+    notifyListeners();
   }
 }
