@@ -5,6 +5,25 @@
 # Shaghaf Official Mobile App
 > An app for all artists and art enthusiasts.
 
+
+## Table of Contents
+
+1. [Features](#features)
+	1. [Home](#home)
+	1. [Audio Guide](#audio-guide)
+	1. [Map](#map)
+	1. [Tours](#tours)
+	1. [Search](#search)
+	1. [Information](#information)
+1. [Get the app](#get the app)
+1. [Getting Started](#getting-started)
+	1. [Prerequisites](#prerequisites)
+1. [Installation](#installation)
+	1. [Xcode Settings + Info.plist](#xcode-settings--infoplist)
+1. [Data sources](#Data-sources)
+    1. Firebase: FireStore
+    2. Firebase: Storage
+1. [Contacts](#contacts)
 ## Getting Started
 
 This project is a starting point for a Flutter application.
