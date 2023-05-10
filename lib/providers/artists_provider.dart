@@ -6,7 +6,7 @@ class ArtistProvider with ChangeNotifier {
   bool isFav = false;
   bool isFailed = false;
   bool isLoading = false;
-
+  ArtistModel? atistName;
   List<ArtistModel> items = [];
   List<ArtistModel> get item => items;
 

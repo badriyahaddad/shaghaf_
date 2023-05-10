@@ -38,9 +38,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: size.width / 1.3,
                 width: size.width,
                 child: ProfileCard(
-                  artWorkImage: userConsumer.currentUser!.image!,
-                  artistName: userConsumer.currentUser!.name!,
-                  workCatagory: userConsumer.currentUser!.catagory!,
+                  artWorkImage: userConsumer.currentUser?.image ?? "",
+                  artistName: userConsumer.currentUser?.name ?? "",
+                  workCatagory: userConsumer.currentUser?.catagory ?? "",
                 ),
               ),
               Padding(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shaghaf/helpers/const.dart';
 import 'package:shaghaf/providers/auth_provider.dart';
+import '../../screens/sub_screens/search_screen.dart';
 import '../clikable_widgets/icon_widget.dart';
 import '../input_widget/text_field.dart';
 import 'package:provider/provider.dart';
@@ -149,19 +150,25 @@ class _CostuomAppBarState extends State<CostuomAppBar> {
                             SizedBox(
                               width: size.width,
                               height: size.height / 12,
-                              child: TextFieldWidget(
-                                isDiscription: false,
-                                isPassword: false,
-                                prefix: Image.asset(themeListener.isDark
-                                    ? "assets/icons/serachIcon_Dark.png"
-                                    : "assets/icons/serachicon.png"),
-                                textFieldController: searchController,
-                                node: TextInputAction.search,
-                                isVisable: false,
-                                hintTxt: AppLocalizations.of(context)!.search,
-                                keyboardType: TextInputType.visiblePassword,
-                                validtion: (value) {},
-                                obscureText: false,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (_) => const SearchScreen()));
+                                },
+                                child: TextFieldWidget(
+                                  isDiscription: false,
+                                  isPassword: false,
+                                  prefix: Image.asset(themeListener.isDark
+                                      ? "assets/icons/serachIcon_Dark.png"
+                                      : "assets/icons/serachicon.png"),
+                                  textFieldController: searchController,
+                                  node: TextInputAction.search,
+                                  isVisable: false,
+                                  hintTxt: AppLocalizations.of(context)!.search,
+                                  keyboardType: TextInputType.visiblePassword,
+                                  validtion: (value) {},
+                                  obscureText: false,
+                                ),
                               ),
                             ),
                           ],
