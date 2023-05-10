@@ -31,6 +31,7 @@ class TextFieldWidget extends StatefulWidget {
   final Widget? prefix;
   final bool isPassword;
   final bool isDiscription;
+  Function? search;
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
 }
@@ -137,6 +138,11 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           borderRadius: BorderRadius.circular(8),
         ),
       ),
+      onChanged: (value) {
+        setState(() {
+          widget.search!();
+        });
+      },
     );
   }
 }

@@ -183,7 +183,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
                                     )
                                   : const Icon(Icons.settings),
                       isOtherScreens: currentIndex == 0 ? true : false,
-                      profileName: userListener.currentUser!.name!,
+                      profileName: userListener.currentUser?.name ?? "",
                       isHome: true,
                       title: currentIndex == 0
                           ? AppLocalizations.of(context)!.homescreenappbartitle
