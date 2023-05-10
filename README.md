@@ -25,35 +25,35 @@ This app is split into Five distinct sections. In the future, additional section
 
 <table>
   <tr>
-    <td><img src="Documentation/home.png" alt="Home Image"/></td>
+    <td><img src="assets/HomeScreen.png" alt="Home Image"/></td>
     <td valign="top">
       <h3>Home</h3>
       <p>Provides a screen with the common artists and common art-work.</p>
     </td>
   </tr>
   <tr>
-    <td><img src="Documentation/audioGuide.png" alt="Audio Guide Image"/></td>
+    <td><img src="assets/Supplies Screen.png" alt="Audio Guide Image"/></td>
     <td valign="top">
       <h3>Purchasing Products</h3>
       <p>Allows users to purchase art equipment.</p>
     </td>
   </tr>
   <tr>
-    <td><img src="Documentation/map.png" alt="Map Image"/></td>
+    <td><img src="assets/Details.png" alt="Map Image"/></td>
     <td valign="top">
       <h3>Asking for Services</h3>
       <p>Get to find out how to contact artists for further deals</p>
     </td>
   </tr>
   <tr>
-    <td><img src="Documentation/tours.png" alt="Tours Image"/></td>
+    <td><img src="assets/Onboarding 3.png" alt="Tours Image"/></td>
     <td valign="top">
       <h3>Posting art-work</h3>
       <p>Provides a platform to share art-work with the community.</p>
     </td>
   </tr>
   <tr>
-    <td><img src="Documentation/search.png" alt="Search Image"/></td>
+    <td><img src="assets/profle Artist.png" alt="Search Image"/></td>
     <td valign="top">
       <h3>Profile</h3>
       <p>Allows users to have profiles to market their work as artists.</p>
@@ -72,14 +72,14 @@ Android apk :
 Clone this repo to your computer:
 
 ```bash
-git clone https://github.com/art-institute-of-chicago/aic-mobile-ios.git
+git clone [https://github.com/art-institute-of-chicago/aic-mobile-ios.git](https://github.com/badriyahaddad/shaghaf_.git)
 ```
-
 ## Data sources
 
 Firebase : Firestore, Authentication, storage
 
 ## Contacts
+Benghazi Camp
 
 Taha Tarbah : Tahatarbah@gmail.com
 
