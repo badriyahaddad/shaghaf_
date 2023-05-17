@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
-import 'package:shaghaf/models/artist_model.dart';
 import 'package:shaghaf/providers/artists_provider.dart';
 import 'package:shaghaf/providers/artwork_provider.dart';
 import 'package:shaghaf/providers/theme_provider.dart';
@@ -24,8 +23,7 @@ class _ArtWorkCardState extends State<ArtWorkCard> {
   void initState() {
     Provider.of<ArtworkProvider>(context, listen: false)
         .loadArtWorkItemsFromFirestore();
-    Provider.of<ArtistProvider>(context, listen: false)
-        .loadArtistFromFirestore();
+
     super.initState();
   }
 
@@ -94,10 +92,14 @@ class _ArtWorkCardState extends State<ArtWorkCard> {
                               artistIamge: artworkListener.items[index].image!,
                               artistName:
                                   artworkListener.items[index].artistName!,
-                              catagory:
-                                  artworkListener.items[index].catagoryAr!,
+                              catagory: AppLocalizations.of(context)!
+                                          .localeName ==
+                                      'ar'
+                                  ? artworkListener.items[index].catagoryAr!
+                                  : artworkListener.items[index].catagoryEn!,
                               artistPic: artistListenr.items[index].artistImage,
-                              artistUid: artworkListener.items[index].uid!,
+                              price:
+                                  artworkListener.items[index].price.toString(),
                             )));
                   },
                   child: GridViewCard(

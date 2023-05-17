@@ -1,14 +1,20 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:shaghaf/providers/auth_provider.dart';
 import 'package:shaghaf/screens/auth_screen/forget_password.dart';
-import 'package:shaghaf/screens/sub_screens/settings_screen.dart';
 import '../../helpers/const.dart';
+import '../../models/user_model.dart';
 import '../../providers/theme_provider.dart';
 import '../../widgets/clikable_widgets/button.dart';
 import '../../widgets/input_widget/text_field.dart';
 import '../../widgets/static_widget/coustom_appbar_widget.dart';
 import '../../widgets/static_widget/settings_card.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class EditAccountDataScreen extends StatefulWidget {
   const EditAccountDataScreen({super.key});
@@ -18,6 +24,12 @@ class EditAccountDataScreen extends StatefulWidget {
 }
 
 class _EditAccountDataScreenState extends State<EditAccountDataScreen> {
+  final ImagePicker _picker = ImagePicker();
+
+  firebase_storage.FirebaseStorage storage =
+      firebase_storage.FirebaseStorage.instance;
+
+  File? _photo;
   // controllers of the textfields
   final emailController = TextEditingController();
   final nameController = TextEditingController();
@@ -32,6 +44,7 @@ class _EditAccountDataScreenState extends State<EditAccountDataScreen> {
     Size size = MediaQuery.of(context).size;
     //dark theme mode to listen to the changes when the mode it's changes
     final themeListener = Provider.of<ThemeProvider>(context, listen: true);
+    final userListener = Provider.of<AuthProvider>(context, listen: true);
     return Scaffold(
         body: SafeArea(
             child: SingleChildScrollView(
@@ -105,6 +118,32 @@ class _EditAccountDataScreenState extends State<EditAccountDataScreen> {
                         ),
                       ),
                     ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          selectPhoto();
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(150),
+                          child: CircleAvatar(
+                            backgroundColor: themeListener.isDark
+                                ? cardColorDark
+                                : cardColor,
+                            maxRadius: 50,
+                            child: Image.network(
+                              userListener.currentUser?.image ?? "",
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) {
+                                return const Icon(Icons.photo);
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                   //vertical space
                   SizedBox(height: size.height / 70),
@@ -204,9 +243,17 @@ class _EditAccountDataScreenState extends State<EditAccountDataScreen> {
                 loading: false,
                 isActive: enableLoginBtn,
                 onClick: () {
+                  UserModel updatedUser = UserModel(
+                    uid: userListener.currentUser!.uid,
+                    email: emailController.text.toString().trim(),
+                    image: userListener.currentUser!.image,
+                    catagory: userListener.currentUser!.catagory,
+                    name: nameController.text.toString().trim(),
+                    password: userListener.currentUser!.password,
+                  );
+                  // ignore: unused_local_variable
+                  Map<String, dynamic> updatedUserData = updatedUser.toMap();
                   if (formkey.currentState!.validate()) {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (_) => const SettingScreen()));
                     setState(() {
                       formkey.currentState!.save();
                     });
@@ -214,5 +261,63 @@ class _EditAccountDataScreenState extends State<EditAccountDataScreen> {
                 }),
           )
         ]))));
+  }
+
+  Future selectPhoto() async {
+    await showModalBottomSheet(
+      context: context,
+      builder: (context) => BottomSheet(
+        onClosing: () {},
+        builder: (context) => Column(
+          children: [
+            SettingsCard(
+              icon: const Icon(Icons.photo_camera_back_outlined),
+              nextIcon: const Icon(Icons.navigate_next_rounded),
+              title: AppLocalizations.of(context)!.gallrey,
+              isLogOutCard: false,
+              iconBehavior: () {
+                Navigator.of(context).pop();
+                imgFromGallery();
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future imgFromGallery() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _photo = File(pickedFile.path);
+        uploadFile(context);
+      } else {
+        if (kDebugMode) {
+          print('No image selected.');
+        }
+      }
+    });
+  }
+
+  Future uploadFile(BuildContext context) async {
+    if (_photo == null) return;
+
+    try {
+      final ref =
+          firebase_storage.FirebaseStorage.instance.ref().child('user_images');
+      await ref.putFile(_photo!).then((value) async {
+        String url = (await ref.getDownloadURL()).toString();
+        setState(() {
+          imageUserUrl = url;
+        });
+        if (kDebugMode) {
+          print("this is the url $url");
+        }
+      });
+    } catch (e) {
+      // print('error occured');
+    }
   }
 }

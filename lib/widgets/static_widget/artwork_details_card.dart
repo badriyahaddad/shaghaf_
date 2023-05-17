@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shaghaf/helpers/const.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../providers/history_provider.dart';
 import '../../providers/theme_provider.dart';
 import '../clikable_widgets/button.dart';
 
@@ -11,11 +12,13 @@ class ArtworkDetailsCard extends StatefulWidget {
       required this.artistName,
       required this.artistIamge,
       required this.catagory,
-      required this.artistPic});
+      required this.artistPic,
+      required this.price});
   final String artistName;
   final String artistIamge;
   final String catagory;
   final String artistPic;
+  final String price;
   @override
   State<ArtworkDetailsCard> createState() => _ArtworkDetailsCardState();
 }
@@ -27,6 +30,7 @@ class _ArtworkDetailsCardState extends State<ArtworkDetailsCard> {
     Size size = MediaQuery.of(context).size;
     //dark theme mode to listen to the changes when the mode it's changes
     final themeListener = Provider.of<ThemeProvider>(context, listen: true);
+    final histroyListener = Provider.of<HistoryProvider>(context, listen: true);
     return SizedBox.expand(
       child: DraggableScrollableSheet(
         initialChildSize: 0.2,
@@ -95,10 +99,13 @@ class _ArtworkDetailsCardState extends State<ArtworkDetailsCard> {
                               horizontal: 12, vertical: 16),
                           child: CircleAvatar(
                               maxRadius: size.width / 10,
-                              child: Image.network(
-                                widget.artistPic.toString(),
-                                fit: BoxFit.cover,
-                                width: size.width / 1,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(150),
+                                child: Image.network(
+                                  widget.artistPic,
+                                  fit: BoxFit.cover,
+                                  width: size.width / 1,
+                                ),
                               )),
                         ),
                         Padding(
@@ -134,7 +141,6 @@ class _ArtworkDetailsCardState extends State<ArtworkDetailsCard> {
                                 width: size.width / 2,
                                 child: Text(
                                   AppLocalizations.of(context)!.loremipsum,
-                                  // overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     color: themeListener.isDark
                                         ? subTitleColorDark
@@ -160,7 +166,16 @@ class _ArtworkDetailsCardState extends State<ArtworkDetailsCard> {
                           ? secondrayColorDark
                           : secondrayColor,
                       loading: false,
-                      onClick: () {},
+                      onClick: () {
+                        histroyListener.postDetailsToFirestore(
+                            widget.price,
+                            widget.artistIamge,
+                            widget.artistName,
+                            widget.catagory,
+                            widget.catagory,
+                            widget.artistPic);
+                        Navigator.pop(context);
+                      },
                       isActive: false,
                       screenHieght: size.height / 17,
                       screenWidth: size.width,

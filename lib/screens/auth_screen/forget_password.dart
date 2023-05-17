@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:shaghaf/providers/auth_provider.dart';
-import 'package:shaghaf/screens/auth_screen/otp_screen.dart';
 import '../../helpers/const.dart';
 import '../../providers/theme_provider.dart';
 import '../../widgets/clikable_widgets/button.dart';
@@ -119,9 +118,10 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       .forgetPassword(
                         emailController.text.toString().trim(),
                       )
-                      .then((value) => Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                              builder: (_) => const OtpScreen())));
+                      .then((value) => Navigator.pop(context));
+                  // .then((value) => Navigator.of(context).pushReplacement(
+                  //     MaterialPageRoute(
+                  //         builder: (_) => const OtpScreen())));
                 },
                 screenHieght: size.height / 15,
                 screenWidth: size.width / 1.1,

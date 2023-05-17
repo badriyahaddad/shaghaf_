@@ -9,6 +9,7 @@ import 'package:shaghaf/providers/artwork_provider.dart';
 import 'package:shaghaf/providers/auth_provider.dart';
 import 'package:shaghaf/providers/cart_provider.dart';
 import 'package:shaghaf/providers/filter_provider.dart';
+import 'package:shaghaf/providers/history_provider.dart';
 import 'package:shaghaf/providers/theme_provider.dart';
 import 'package:shaghaf/services/screen_router.dart';
 import 'firebase_options.dart';
@@ -63,6 +64,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => ArtworkProvider()),
         ChangeNotifierProvider(create: (context) => ArtistProvider()),
         ChangeNotifierProvider(create: (context) => FilterProvider()),
+        ChangeNotifierProvider(create: (context) => HistoryProvider()),
       ],
       //to consume the changes
       child: Consumer<ThemeProvider>(builder: (context, themeConsumer, _) {

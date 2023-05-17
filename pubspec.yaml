@@ -57,7 +57,7 @@ dependencies:
   path_provider: 
 flutter_native_splash:
   color: "#F8EED3"
-  image: assets/logof.png  
+  image: assets/logosplash.png  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -67,11 +67,11 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/android_icon.png"
-  image_path_ios: "assets/android_icon.png"
+  image_path: "assets/shaghaf_logo.jpg"
+  image_path_ios: "assets/shaghaf_logo.jpg"
   remove_alpha_ios: true
   adaptive_icon_background: "#4B5CD2"
-  adaptive_icon_foreground: "assets/android_icon.png"
+  adaptive_icon_foreground: "assets/shaghaf_logo.jpg"
   adaptive_icon_padding: true
 
   # The "flutter_lints" package below contains a set of recommended lints to

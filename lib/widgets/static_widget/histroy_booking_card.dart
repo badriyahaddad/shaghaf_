@@ -94,7 +94,7 @@ class _HistroyBookingCardState extends State<HistroyBookingCard> {
           Padding(
             padding: const EdgeInsets.all(10),
             child: Text(
-              widget.price,
+              widget.price.toString(),
               style: TextStyle(
                   color: themeListener.isDark
                       ? titleTextColorDark

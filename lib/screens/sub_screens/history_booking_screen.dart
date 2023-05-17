@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:shaghaf/providers/artwork_provider.dart';
+import 'package:shaghaf/providers/history_provider.dart';
 import 'package:shaghaf/widgets/static_widget/histroy_booking_card.dart';
 import '../../widgets/static_widget/coustom_appbar_widget.dart';
 
@@ -14,13 +14,19 @@ class HistoryBookingScreen extends StatefulWidget {
 
 class _HistoryBookingScreenState extends State<HistoryBookingScreen> {
   @override
+  void initState() {
+    Provider.of<HistoryProvider>(context, listen: false)
+        .loadHistorytemsFromFirestore();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    //MediaQuery for more responsive UI
+    // MediaQuery for more responsive UI
     Size size = MediaQuery.of(context).size;
-    //dark theme mode to listen to the changes when the mode it's changes
 
     return Scaffold(body: SafeArea(child: SingleChildScrollView(child:
-        Consumer<ArtworkProvider>(builder: (context, artworkListner, child) {
+        Consumer<HistoryProvider>(builder: (context, historyListner, child) {
       return Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,18 +53,18 @@ class _HistoryBookingScreenState extends State<HistoryBookingScreen> {
             ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemCount: artworkListner.items.length,
+              itemCount: historyListner.items.length,
               itemBuilder: (context, index) {
                 return Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
                   child: HistroyBookingCard(
                     catagory: AppLocalizations.of(context)!.localeName == 'ar'
-                        ? artworkListner.items[index].catagoryAr!
-                        : artworkListner.items[index].catagoryEn!,
-                    nameArtist: artworkListner.items[index].artistName!,
-                    price: artworkListner.items[index].price,
-                    image: artworkListner.items[index].image!,
+                        ? historyListner.items[index].catagoryAr!
+                        : historyListner.items[index].catagoryEn!,
+                    nameArtist: historyListner.items[index].artistName!,
+                    price: historyListner.items[index].price.toString(),
+                    image: historyListner.items[index].image!,
                     headlineTitle: AppLocalizations.of(context)!.bookingartist,
                   ),
                 );

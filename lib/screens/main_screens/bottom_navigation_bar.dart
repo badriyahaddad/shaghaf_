@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shaghaf/providers/auth_provider.dart';
@@ -9,6 +11,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../widgets/static_widget/coustom_appbar_widget.dart';
 import '../../widgets/static_widget/coustom_drawer_widget.dart';
 import '../sub_screens/cart_screen.dart';
+
 import '../sub_screens/history_booking_screen.dart';
 import '../sub_screens/settings_screen.dart';
 import 'home_screen.dart';

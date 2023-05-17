@@ -32,15 +32,4 @@ class ArtistProvider with ChangeNotifier {
       }
     });
   }
-
-  Future<void> getSingleArtist(String artistID) async {
-    var data = await firestore
-        .collection('artist')
-        .where('uid', isEqualTo: artistID)
-        .get();
-
-    selectedArtist = ArtistModel.fromJson(data.docs.first.data());
-    print("IMGURL " + selectedArtist!.artistImage.toString());
-    notifyListeners();
-  }
 }

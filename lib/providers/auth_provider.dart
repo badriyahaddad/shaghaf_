@@ -170,4 +170,25 @@ class AuthProvider with ChangeNotifier {
 
     notifyListeners();
   }
+
+// editUserInfo(String name, String image, String catagory) async {
+//     // calling our firestore
+//     // calling our user model
+//     // sedning these values
+
+//     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+//     User? user = _auth.currentUser;
+//     UserModel userModel = UserModel();
+//     // writing all the values
+//     currentUser!.email = user!.email;
+//      currentUser!.uid = user.uid;
+//     currentUser!.name = name;
+//     currentUser!.image = image;
+
+//     await firebaseFirestore
+//         .collection("users")
+//         .doc(user.uid)
+//         .set(userModel.toMap());
+//     notifyListeners();
+//   }
 }
