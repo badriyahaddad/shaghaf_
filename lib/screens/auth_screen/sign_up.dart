@@ -238,18 +238,19 @@ class _SignUpState extends State<SignUp> {
                         onClick: () {
                           if (formkey.currentState!.validate()) {
                             setState(() {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (_) => UserPickImageScreen(
-                                        email: emailController.text
-                                            .toString()
-                                            .trim(),
-                                        name: passwordController.text
-                                            .toString()
-                                            .trim(),
-                                        password: nameController.text
-                                            .toString()
-                                            .trim(),
-                                      )));
+                              Navigator.of(context)
+                                  .pushReplacement(MaterialPageRoute(
+                                      builder: (_) => UserPickImageScreen(
+                                            email: emailController.text
+                                                .toString()
+                                                .trim(),
+                                            name: passwordController.text
+                                                .toString()
+                                                .trim(),
+                                            password: nameController.text
+                                                .toString()
+                                                .trim(),
+                                          )));
                               formkey.currentState!.save();
                             });
                           }

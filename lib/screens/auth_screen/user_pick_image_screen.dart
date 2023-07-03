@@ -49,7 +49,7 @@ class _UserPickImageScreenState extends State<UserPickImageScreen> {
               color: themeListener.isDark ? mainColorDark : mainColor,
               loading: false,
               onClick: () {
-                Navigator.of(context).push(MaterialPageRoute(
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (_) => SelectUserCatagoryScreen(
                           email: widget.email,
                           name: widget.name,

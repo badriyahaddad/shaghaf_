@@ -194,7 +194,8 @@ class _AddFormArtworkScreenState extends State<AddFormArtworkScreen> {
                           discrptionController.text.toString(),
                           filterListener.selectedItem!.catagoryAr.toString(),
                           filterListener.selectedItem!.catagoryEn.toString(),
-                          userListener.currentUser?.name ?? "",
+                          userListener.currentUser!.name ?? "",
+                          userListener.currentUser!.image ?? "",
                         );
                         Navigator.pop(context);
                       },

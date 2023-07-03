@@ -34,8 +34,15 @@ class ArtworkProvider with ChangeNotifier {
     }
   }
 
-  postDetailsToFirestore(String price, String image, String discription,
-      String catagoryAr, String catagoryEn, String artistImage) async {
+  postDetailsToFirestore(
+    String price,
+    String image,
+    String discription,
+    String catagoryAr,
+    String catagoryEn,
+    String artistName,
+    String artistImage,
+  ) async {
     // calling our firestore
     // calling our user model
     // sedning these values
@@ -43,6 +50,7 @@ class ArtworkProvider with ChangeNotifier {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     User? user = _auth.currentUser;
     ArtWorkModel artWorkModel = ArtWorkModel();
+    //UserModel currrentUser = UserModel();
     // writing all the values
 
     artWorkModel.uid = user!.uid;
@@ -51,7 +59,9 @@ class ArtworkProvider with ChangeNotifier {
     artWorkModel.discription = discription;
     artWorkModel.catagoryEn = catagoryEn;
     artWorkModel.catagoryAr = catagoryAr;
+    artWorkModel.artistName = artistName;
     artWorkModel.artistImage = artistImage;
+
     await firebaseFirestore
         .collection("artwork")
         .doc(user.uid)
